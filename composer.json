@@ -9,9 +9,17 @@
             "email": "barry@tercet.io"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Nekudo\\ShinyBlog\\": "src/"
+        }
+    },
     "require": {
         "erusev/parsedown": "^1.6",
         "erusev/parsedown-extra": "^0.7.1",
-        "nikic/fast-route": "^1.2"
+        "nikic/fast-route": "^1.2",
+        "symfony/yaml": "^3.3",
+        "cocur/slugify": "^3.0",
+        "illuminate/support": "^5.5"
     }
 }

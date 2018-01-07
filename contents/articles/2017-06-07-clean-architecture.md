@@ -1,25 +1,21 @@
-{
-  "title":"Cleaning up your codebase with a clean architecture",
-  "description": "A practical example of using a clean architecture to separate your code across layers while using design patterns effectively.",
-  "slug" : "clean-architecture",
-  "date": "2018-01-07",
-  "categories":"Clean code, Layered architecture, PHP, Design"
-}
-
-::METAEND::
+---
+title: Cleaning up your codebase with a clean architecture
+published: true
+cover_image: https://thepracticaldev.s3.amazonaws.com/i/kd02wzjkn28r3r5ya579.jpg
+description: A practical example of using a clean architecture to separate your code across layers while using design patterns effectively.
+tags: clean code, layered architecture, php, design
+---
 
 Let's talk software architecture. Most of us know [MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller), it's the foundation for pretty much every web framework. As your product grows though, problems with MVC will start to appear. Even a relatively simple product can end up with a bloated and messy codebase. MVC is where we start, but what do you do when you need to evolve past it?
-
-
 
 Before we go further, let's examine why we have so much trouble explaining the answer.
 
 Here's a common conversation (for developers anyway)
 
-devA: "Our codebase is really messy, how do we clean it up?"
-devB: "We need to refactor it, move code into objects, separate the concerns."
-devA: "Ok, great. How do we do that?"
-devB: "We'll use design patterns and follow the SOLID principles."
+- devA: "Our codebase is really messy, how do we clean it up?"
+- devB: "We need to refactor it, move code into objects, separate the concerns."
+- devA: "Ok, great. How do we do that?"
+- devB: "We'll use design patterns and follow the SOLID principles."
 
 This is where we normally stop, we seem to think that's a good enough answer for someone to get started. It's like you asked a carpenter how to make a table, and he just points at his tools and says "use those". The answer is technically correct, but it doesn't tell the whole story and it definitely isn't useful to someone learning to write software (or make tables).* The tools are important, and you need to know what they are, but they're only a small part of the process.
  

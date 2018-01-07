@@ -14,18 +14,17 @@
     <body>
         <nav class="topnav">
             <ul>
-                <li class="first"><a href="/">nekudo.com</a></li>
+                <li class="first"><a href="/">barryosull.com</a></li>
                 <li<?php if($navActive === 'blog'): ?> class="active"<?php endif; ?>><a href="/blog">Blog</a></li>
-                <li<?php if($navActive === 'imprint'): ?> class="active"<?php endif; ?>><a href="/imprint">Imprint</a></li>
-                <li><a href="https://github.com/nekudo">Github</a></li>
-                <li class="last"><a href="https://twitter.com/lemmingzshadow">Twitter</a></li>
+                <li><a href="https://github.com/barryosull">Github</a></li>
+                <li class="last"><a href="https://twitter.com/barryosull">Twitter</a></li>
             </ul>
         </nav>
         <div class="content">
             <?php echo $template; ?>
         </div>
         <div class="footer">
-            <p>nekudo.com - keep it simple :)</p>
+            <p>barryosull.com - because I need a blog and this will do</p>
         </div>
         <script src="/themes/kiss/js/prism.js"></script>
     </body>

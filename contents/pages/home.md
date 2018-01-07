@@ -1,19 +1,10 @@
-{
-    "title": "Homepage",
-    "metaTitle": "ShinyBlog - A shiny blog :)",
-    "description": "A dummy homepage...",
-    "slug": "home",
-    "date" : "2016-01-23",
-    "layout": "fullpage"
-}
+---
+title: "Homepage"
+metaTitle: "Barryosull.com"
+description: "The homepage of my site"
+slug: "home"
+date : 2018-01-07
+---
 
-::METAEND::
-
-A dummy homepage.
-
-Visit the [Blog](/blog) or another [page](/imprint).
-
-The content of this page can be edited in this file:
-
-<pre>/contents/pages/home.md</pre>
+Placeholder page for now, I recommend you vist the [Blog](/blog) for actual content.
 

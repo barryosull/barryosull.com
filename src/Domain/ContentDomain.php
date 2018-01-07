@@ -6,6 +6,8 @@ use DirectoryIterator;
 use Nekudo\ShinyBlog\Domain\Entity\ArticleEntity;
 use RuntimeException;
 use ParsedownExtra;
+use Symfony\Component\Yaml\Yaml;
+use Cocur\Slugify\Slugify;
 
 class ContentDomain extends BaseDomain
 {
@@ -146,18 +148,70 @@ class ContentDomain extends BaseDomain
         if (empty($this->contentRaw)) {
             throw new RuntimeException('Invalid content file.');
         }
-        if (strpos($this->contentRaw, '::METAEND::') === false) {
-            throw new RuntimeException('Invalid content file.');
+
+        if ($this->isJsonMeta()) {
+            list($data, $content) = $this->parseJsonMeta();
+        } else if ($this->isJekyllMeta()) {
+            list($data, $content) = $this->parseJekyllMeta($pathToFile);
+        } else {
+            throw new RuntimeException('Invalid content file, missing meta information');
         }
-        $sections = explode('::METAEND::', $this->contentRaw);
-        $data = json_decode($sections[0], true);
+
         if ($includeContent === false) {
             return $data;
         }
-        $data['content'] = trim($sections[1]);
+        $data['content'] = $content;
         $this->parseMarkdownContent($data['content']);
         return $data;
     }
+
+    // TODO: extract into its own class
+    private function parseJsonMeta(): array
+    {
+        $sections = explode('::METAEND::', $this->contentRaw);
+        $data = json_decode($sections[0], true);
+        $content = trim($sections[1]);
+
+        return [$data, $content];
+    }
+
+    // TODO: extract into its own class
+    private function parseJekyllMeta($pathToFile): array
+    {
+        $sections = explode('---', $this->contentRaw);
+        $data = Yaml::parse($sections[1], Yaml::PARSE_DATETIME);
+        if (!isset($data['slug'])) {
+            $data['slug'] = (new Slugify())->slugify($data['title']);
+        }
+        if (!isset($data['author'])) {
+            $data['author'] = 'Barry';
+        }
+        if (isset($data['date'])) {
+            $data['date'] = $data['date']->format('Y-m-d');
+        } else {
+            $file_name = last(explode("/", $pathToFile));
+            $data['date'] = substr($file_name, 0, 10);
+        }
+        if (isset($data['tags'])) {
+            $data['categories'] = $data['tags'] ?? [];
+        }
+
+        $content = trim($sections[2]);
+
+        return [$data, $content];
+    }
+
+    private function isJsonMeta()
+    {
+        return strpos($this->contentRaw, '::METAEND::') !== false;
+    }
+
+    private function isJekyllMeta()
+    {
+        $sections = explode('---', $this->contentRaw);
+        return count($sections) > 1;
+    }
+
 
     /**
      * Translates markdown to html.

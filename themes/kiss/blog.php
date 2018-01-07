@@ -1,6 +1,6 @@
 <section class="blog">
     <?php if ($showTitle === true): ?>
-        <h1>Blog <small>Project news and web-development articles</small></h1>
+        <h1>Blog <small>Articles on DDD, Event Sourcing and software development in general, with a sprinkle of PHP and sarcasm.</small></h1>
     <?php endif; ?>
     <?php if (empty($articles)): ?>
         <p>Sorry - no articles found.</p>
@@ -10,10 +10,12 @@
                 <header>
                     <h2><a href="<?php echo $article->getUrl(); ?>"><?php echo $article->getTitle(); ?></a></h2>
                     <div class="article-meta">
-                        published at
-                        <time datetime="<?php echo $article->getDate(); ?>" pubdate>
-                            <?php echo $article->getDate(); ?>
-                        </time>
+                        <?php if ($article->getDate() != ''):?>
+                            published at
+                            <time datetime="<?php echo $article->getDate(); ?>" pubdate>
+                                <?php echo $article->getDate(); ?>
+                            </time>
+                        <?php endif; ?>
                     </div>
                 </header>
                 <blockquote class="article-excerpt">
