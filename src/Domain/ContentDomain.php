@@ -45,8 +45,17 @@ class ContentDomain extends BaseDomain
         if (!is_dir($pathToArticleContents)) {
             throw new RuntimeException('Articles folder not found.');
         }
-        $this->articleMeta = $this->getContentMeta($pathToArticleContents, $keyName);
+        $allArticleMeta = $this->getContentMeta($pathToArticleContents, $keyName);
+        $this->articleMeta = $this->filterOutUnpublished($allArticleMeta);
+
         return true;
+    }
+
+    private function filterOutUnpublished($articleMeta)
+    {
+        return array_filter($articleMeta, function($article){
+            return isset($article['published']) && $article['published'] == true;
+        });
     }
 
     /**

@@ -18,12 +18,14 @@ Done:
   - Disable for development
 - Update production instance to use latest PHP7 version
     - Release site
+- Blog article cover images
 
 Next:
-- Blog article cover images
+- Published/Unpublished articles, set via meta (allows sending links to unpublished articles)
+- Fix tables in markdown parser, they're not working right (see ES article)
 - Change markdown to accept '\n' 
 - Add sharing links (just twitter for now)
-- Published/Unpublished articles, set via meta (allows sending links to unpublished articles)
+
 
 ## License
 
