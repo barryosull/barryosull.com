@@ -1,5 +1,9 @@
 <article class="article">
     <header>
+        <?php if ($article->getCoverImage()):?>
+            <div class="image image-final" style="background-color:#e3dac6;background-image:url(<?php echo $article->getCoverImage(); ?>)"></div>
+        <?php endif; ?>
+
         <h1><?php echo $article->getTitle(); ?></h1>
         <div class="article-meta">
             published at

@@ -108,4 +108,16 @@ class ArticleEntity extends BaseEntity
     {
         return !empty($this->categories);
     }
+
+    protected $coverImage;
+
+    public function setCoverImage(string $cover_image)
+    {
+        $this->coverImage = $cover_image;
+    }
+
+    public function getCoverImage()
+    {
+        return $this->coverImage;
+    }
 }

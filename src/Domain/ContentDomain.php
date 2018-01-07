@@ -196,6 +196,8 @@ class ContentDomain extends BaseDomain
             $data['categories'] = $data['tags'] ?? [];
         }
 
+        $data['coverImage'] = $data['cover_image'] ?? null;
+
         $content = trim($sections[2]);
 
         return [$data, $content];
