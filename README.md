@@ -26,6 +26,7 @@ Next:
 - Fix tables in markdown parser, they're not working right (see ES article)
 - Change markdown to accept '\n' 
 - Add sharing links (just twitter for now)
+- Add my own image hosting (can't use dev.to's, it's just not cool to leech)
 
 
 ## License
