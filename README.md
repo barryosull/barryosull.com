@@ -19,6 +19,8 @@ Done:
 
 Next:
 - Blog article cover images
+- Update production instance to use latest PHP7 version
+    - Release site
 - Change markdown to accept '\n' 
 - Add sharing links (just twitter for now)
 - Published/Unpublished articles, set via meta (allows sending links to unpublished articles)
