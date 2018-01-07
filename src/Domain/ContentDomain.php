@@ -87,7 +87,7 @@ class ContentDomain extends BaseDomain
             }
             $itemMeta = $this->parseContentFile($file->getPathname(), false);
             if (empty($itemMeta[$keyName])) {
-                throw new RuntimeException('Key not found in items metadata.');
+                throw new RuntimeException("Key '$keyName' not found in items metadata.");
             }
             $key = $itemMeta[$keyName];
             $metadata[$key] = $itemMeta;

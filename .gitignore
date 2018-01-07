@@ -15,3 +15,4 @@
 # OSX
 /src/config.php
 **.DS_Store
+/vendor/

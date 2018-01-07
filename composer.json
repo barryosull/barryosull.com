@@ -1,0 +1,17 @@
+{
+    "name": "barryosull/blog",
+    "description": "My site and blog",
+    "type": "project",
+    "license": "None",
+    "authors": [
+        {
+            "name": "Barry O Sullivan",
+            "email": "barry@tercet.io"
+        }
+    ],
+    "require": {
+        "erusev/parsedown": "^1.6",
+        "erusev/parsedown-extra": "^0.7.1",
+        "nikic/fast-route": "^1.2"
+    }
+}
