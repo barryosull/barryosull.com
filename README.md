@@ -14,9 +14,11 @@ Done:
 - Jekyll parser
   -  Clean up 
 - Code syntax should be dark background 
+- Google Analytics
+  - Disable for development
 
 Next:
-- Cover images
+- Blog article cover images
 - Change markdown to accept '\n' 
 - Add sharing links (just twitter for now)
 - Published/Unpublished articles, set via meta (allows sending links to unpublished articles)

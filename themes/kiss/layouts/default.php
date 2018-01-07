@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <?php if (getenv('ENV') != "development") :?>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112076964-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-112076964-1');
+        </script>
+        <?php endif; ?>
         <meta charset="utf-8">
         <title><?php echo $this->getTitle(); ?></title>
         <meta name="robots" content="<?php echo $this->getIndex(); ?>" />
