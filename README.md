@@ -6,17 +6,19 @@ It is a simple site that is based on https://github.com/nekudo/shiny_blog, a nic
 ## TODOs
 The list of things I'd like to do in this blog to make it usable
 
-- Blog listing cuts (done)
-- Get vendor folder working with composer (done)
-- Make date optional (done)
-- Default author to me (done)
-- Jekyll parser (done)
-  -  Clean up (done)
-- Code syntax should be dark background
+Done:
+- Blog listing cuts
+- Get vendor folder working with composer
+- Make date optional
+- Default author to me
+- Jekyll parser
+  -  Clean up 
+- Code syntax should be dark background 
+
+Next:
 - Cover images
 - Change markdown to accept '\n' 
 - Add sharing links (just twitter for now)
-
 - Published/Unpublished articles, set via meta (allows sending links to unpublished articles)
 
 ## License
