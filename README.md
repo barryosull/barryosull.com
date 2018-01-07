@@ -19,9 +19,10 @@ Done:
 - Update production instance to use latest PHP7 version
     - Release site
 - Blog article cover images
+- Publish/Unpublish articles via meta meta info
 
 Next:
-- Published/Unpublished articles, set via meta (allows sending links to unpublished articles)
+- Published/Unpublished articles, allows sending links to unpublished articles
 - Fix tables in markdown parser, they're not working right (see ES article)
 - Change markdown to accept '\n' 
 - Add sharing links (just twitter for now)
