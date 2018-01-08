@@ -9,11 +9,6 @@ if ($_GET['command'] != $password) {
 
 chdir(__DIR__."/../");
 
-exec("git pull origin master", $output);
+passthru("git pull origin master");
 
-$result = implode("\n", $output);
-
-file_put_contents(__DIR__."/../release.output", $result);
-
-echo "<h1>Result</h1>";
-echo nl2br($result);
+echo "Done";
