@@ -122,9 +122,3 @@ There we have it. At this stage it should be clear that I love event sourcing. I
 If you're interested in hearing more about event sourcing, be sure to subscribe to my blog and follow me on twitter. If you'd like to talk further about Event Sourcing, please contact me at barry@tercet.io.
 
 
-
-
-
-
-
-
