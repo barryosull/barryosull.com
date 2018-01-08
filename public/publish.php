@@ -11,4 +11,8 @@ chdir("../");
 
 exec("git pull origin master", $output);
 
-file_put_contents('./release.output', implode("\n", $output));
+$result = implode("\n", $output);
+
+file_put_contents('./release.output', $result);
+
+echo nl2br($result);
