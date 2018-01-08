@@ -7,12 +7,12 @@ if ($_GET['command'] != $password) {
     return;
 }
 
-chdir("../");
+chdir(__DIR__."/../");
 
 exec("git pull origin master", $output);
 
 $result = implode("\n", $output);
 
-file_put_contents('./release.output', $result);
+file_put_contents(__DIR__."/../release.output", $result);
 
 echo nl2br($result);
