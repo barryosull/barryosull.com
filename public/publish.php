@@ -15,4 +15,5 @@ $result = implode("\n", $output);
 
 file_put_contents(__DIR__."/../release.output", $result);
 
+echo "<h1>Result</h1>";
 echo nl2br($result);
