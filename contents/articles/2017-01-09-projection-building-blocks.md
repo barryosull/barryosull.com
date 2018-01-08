@@ -151,7 +151,7 @@ Finally we get to "projections". A projection is the result of "projecting"* a s
 
 Here's a simple example that looks after a customer's cart and it's items.
 
-```
+```php
 <?php namespace DoctrinePlayground\App\Projections\Carts;
 
 use Doctrine\DBAL\Connection;
