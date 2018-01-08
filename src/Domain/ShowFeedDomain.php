@@ -24,7 +24,7 @@ class ShowFeedDomain extends ContentDomain
      */
     public function getArticles(int $limit = 0, string $categorySlug = '') : array
     {
-        $this->loadArticleMeta('date');
+        $this->loadArticlesMeta('date')->filterOutUnpublished();
         if (!empty($categorySlug)) {
             $this->filterArticlesByCategorySlug($categorySlug);
         }

@@ -16,9 +16,9 @@ class ShowArticleDomain extends ContentDomain
      */
     public function getArticleBySlug(string $slug) : ArticleEntity
     {
-        $this->loadArticleMeta('slug');
+        $this->loadArticlesMeta('slug');
         if (!isset($this->articleMeta[$slug])) {
-            throw new NotFoundException('Sry. The requested article seems to be lost in space.');
+            throw new NotFoundException('Sorry. The requested article seems to be lost in space.');
         }
         $articleData = $this->parseContentFile($this->articleMeta[$slug]['file']);
         $article = new ArticleEntity($this->config, $articleData);

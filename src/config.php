@@ -18,7 +18,7 @@ return [
      */
     'seo' => [
         'blog' => [
-            'title' => 'ShinyBlog - A shiny blog',
+            'title' => 'Blog - Barry O Sullivan',
             'description' => 'Enter meta-description for blog pages.',
             'index' => 'index,follow'
         ],

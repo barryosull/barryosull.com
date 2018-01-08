@@ -35,7 +35,7 @@ class ShowSitemapDomain extends ContentDomain
     public function getArticlesData() : array
     {
         $articlesData = [];
-        $this->loadArticleMeta('date');
+        $this->loadArticlesMeta('date')->filterOutUnpublished();
         krsort($this->articleMeta, SORT_NATURAL);
         $articleRouteBuildPattern = $this->config['routes']['article']['buildPattern'];
         foreach ($this->articleMeta as $articleMeta) {
@@ -55,7 +55,7 @@ class ShowSitemapDomain extends ContentDomain
      */
     public function getBlogLastmod() : string
     {
-        $this->loadArticleMeta('date');
+        $this->loadArticlesMeta('date')->filterOutUnpublished();
         krsort($this->articleMeta, SORT_NATURAL);
         if (empty($this->articleMeta)) {
             return '';

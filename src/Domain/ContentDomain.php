@@ -34,9 +34,9 @@ class ContentDomain extends BaseDomain
      *
      * @param string $keyName Name of value to use as array key.
      * @param bool $forceReload Reload metadata even if already loaded
-     * @return bool
+     * @return ContentDomain
      */
-    protected function loadArticleMeta(string $keyName, bool $forceReload = false) : bool
+    protected function loadArticlesMeta(string $keyName, bool $forceReload = false) : ContentDomain
     {
         if (!empty($this->articleMeta) && $forceReload === false) {
             return true;
@@ -45,15 +45,15 @@ class ContentDomain extends BaseDomain
         if (!is_dir($pathToArticleContents)) {
             throw new RuntimeException('Articles folder not found.');
         }
-        $allArticleMeta = $this->getContentMeta($pathToArticleContents, $keyName);
-        $this->articleMeta = $this->filterOutUnpublished($allArticleMeta);
 
-        return true;
+        $this->articleMeta = $this->getContentMeta($pathToArticleContents, $keyName);
+
+        return $this;
     }
 
-    private function filterOutUnpublished($articleMeta)
+    public function filterOutUnpublished()
     {
-        return array_filter($articleMeta, function($article){
+        $this->articleMeta = array_filter($this->articleMeta, function($article){
             return isset($article['published']) && $article['published'] == true;
         });
     }
