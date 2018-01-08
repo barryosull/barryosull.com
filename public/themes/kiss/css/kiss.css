@@ -1,5 +1,5 @@
 body {
-	background-color: #fff;
+	background-color: #e4dfe8;
 	color: #424242;
 	margin: 0;
 	padding: 0;
@@ -9,13 +9,14 @@ body {
 }
 body > .content {
 	margin: 0 auto;
-	padding: 0 10px;
+	padding: 0 40px;
 	max-width: 780px;
+	background-color: #fff;
 }
 
 /** Navbar **/
 .topnav {
-	background-color: #eee;
+	background-color: #fff;
 	border-bottom: 1px solid #ddd;
 	margin-bottom: 10px;
 }
@@ -36,7 +37,7 @@ body > .content {
 	float: left;
 }
 .topnav ul li.active {
-	background-color: #ddd;
+	background-color: #e4dfe8;
 }
 .topnav ul li a {
 	display: block;
@@ -66,6 +67,7 @@ body > .content {
 }
 
 header h1 {
+	padding-top: 20px;
 	font-size: calc(1.85vw + 25px);
 	line-height: normal;
 }
@@ -219,4 +221,16 @@ table {
 .content img {
 	left: -6px;
 	max-width: calc(100% + 12px);
+}
+
+.content blockquote {
+	border-left: calc(0.2vw + 2px) solid #333;
+	padding: 0.1% 6% 0.1% 4%;
+	margin: 1.6em 1vw;
+	font-size: 0.92em;
+	line-height: 1.4em;
+}
+
+.page, .blog {
+	padding: 20px 0px;
 }

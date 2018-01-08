@@ -25,9 +25,9 @@ Done:
 - Fix tables in markdown parser, they're not working right (see ES article)
 - Fix HTML title on blog
 - Add sharing links (just twitter for now)
+- Images should auto resize
 
 Next:
-- Images should auto resize
 - Add more articles
 - Publish automatically on commit
 - Add my own image hosting (can't use dev.to's, it's just not cool to leech)

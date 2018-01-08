@@ -111,7 +111,7 @@ class ArticleEntity extends BaseEntity
 
     protected $coverImage;
 
-    public function setCoverImage(string $cover_image)
+    public function setCoverImage($cover_image)
     {
         $this->coverImage = $cover_image;
     }
