@@ -1,6 +1,6 @@
 ---
 title: "Event Sourcing: What it is and why it's awesome"
-published: false
+published: true
 description: An overview of Event Sourcing, it's pros, cons, and why it's so awesome
 cover_image: https://thepracticaldev.s3.amazonaws.com/i/02ln9f0zkcssv5iqd9ws.png
 tags: Event Sourcing, powerful, web dev, projections

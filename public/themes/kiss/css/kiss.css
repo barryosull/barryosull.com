@@ -185,3 +185,33 @@ header .image {
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
 }
+
+table {
+	display: table;
+	border-collapse: separate;
+	border-spacing: 2px;
+	border-color: grey;
+}
+
+.content table {
+	font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+	margin: 0.8em 0 1.2em;
+	display: block;
+	table-layout: fixed;
+}
+
+.content table th {
+	border: 1px solid #dbdbdb;
+	padding: 5px 1vw;
+	background: #f9f9fa;
+	text-align: left;
+}
+
+.content table td {
+	border: 1px solid #dbdbdb;
+	padding: 5px 1vw;
+	width: 1000px;
+	box-sizing: border-box;
+}

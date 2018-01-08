@@ -207,7 +207,13 @@ class ContentDomain extends BaseDomain
 
         $data['coverImage'] = $data['cover_image'] ?? null;
 
-        $content = trim($sections[2]);
+        $content = trim(
+            implode("---",
+                array_values(
+                    array_slice($sections, 2)
+                )
+            )
+        );
 
         return [$data, $content];
     }
