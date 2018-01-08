@@ -215,3 +215,8 @@ table {
 	width: 1000px;
 	box-sizing: border-box;
 }
+
+.content img {
+	left: -6px;
+	max-width: calc(100% + 12px);
+}
