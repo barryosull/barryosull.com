@@ -22,16 +22,15 @@ Done:
 - Publish/Unpublish articles via meta meta info
 - Published/Unpublished articles, allows sending links to unpublished articles
 - Put files in a public dir
-- Publish automatically on commit
 - Fix tables in markdown parser, they're not working right (see ES article)
 - Fix HTML title on blog
 
-
 Next:
-- Change markdown to accept '\n' 
+- Add more articles
 - Add sharing links (just twitter for now)
+- Publish automatically on commit
 - Add my own image hosting (can't use dev.to's, it's just not cool to leech)
-- Build pages on deploy, site seems to go slow sometimes
+- Build pages on deploy, site seems to go slow/freeze sometimes
 
 ## License
 

@@ -12,6 +12,8 @@
             gtag('config', 'UA-112076964-1');
         </script>
         <?php endif; ?>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
         <meta charset="utf-8">
         <title><?php echo $this->getTitle(); ?></title>
         <meta name="robots" content="<?php echo $this->getIndex(); ?>" />
