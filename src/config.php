@@ -113,6 +113,12 @@ return [
             'buildPattern' => '/blog/page-%d',
             'action' => 'blog',
         ],
+        'blog_not_published' => [
+            'method' => 'GET',
+            'route' => '/blog/unpublished',
+            'buildPattern' => '/blog',
+            'action' => 'blogUnpublished',
+        ],
         'category' => [
             'method' => 'GET',
             'route' => '/blog/category/{slug:[a-z0-9-]+}',

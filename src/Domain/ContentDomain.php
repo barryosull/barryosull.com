@@ -58,6 +58,13 @@ class ContentDomain extends BaseDomain
         });
     }
 
+    public function filterOutPublished()
+    {
+        $this->articleMeta = array_filter($this->articleMeta, function($article){
+            return isset($article['published']) && $article['published'] == false;
+        });
+    }
+
     /**
      * Loads metadata of pages.
      *

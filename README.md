@@ -26,12 +26,13 @@ Done:
 - Fix HTML title on blog
 - Add sharing links (just twitter for now)
 - Images should auto resize
+- View list of unpublished
 
 Next:
 - Add more articles
 - Publish automatically on commit
 - Add my own image hosting (can't use dev.to's, it's just not cool to leech)
-- Build pages on deploy, site seems to go slow/freeze sometimes
+- Investigate freezes on site, sometimes it just goes really slow
 
 ## License
 

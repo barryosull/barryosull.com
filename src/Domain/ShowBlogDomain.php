@@ -52,6 +52,12 @@ class ShowBlogDomain extends ContentDomain
         return $articles;
     }
 
+    public function getUnpublishedArticles(): array
+    {
+        $this->loadArticlesMeta('date')->filterOutPublished();
+        return $this->getArticlesFromMeta();
+    }
+
     /**
      * Checks if requested page is valid.
      *

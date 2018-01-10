@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Nekudo\ShinyBlog;
 
 use Exception;
+use Nekudo\ShinyBlog\Action\ShowBlogUnpublishedAction;
 use RuntimeException;
 use FastRoute;
 use FastRoute\RouteCollector;
@@ -118,6 +119,9 @@ class ShinyBlog
                 break;
             case 'blog':
                 $action = new ShowBlogAction($this->config);
+                break;
+            case 'blogUnpublished':
+                $action = new ShowBlogUnpublishedAction($this->config);
                 break;
             case 'feed':
                 $action = new ShowFeedAction($this->config);
