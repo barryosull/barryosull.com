@@ -29,6 +29,8 @@ Done:
 - View list of unpublished
 
 Next:
+- Subscribe to mailing list
+- Publish automatically to dev.to
 - Add more articles
 - Publish automatically on commit
 - Add my own image hosting (can't use dev.to's, it's just not cool to leech)
