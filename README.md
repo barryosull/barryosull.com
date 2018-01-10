@@ -27,11 +27,12 @@ Done:
 - Add sharing links (just twitter for now)
 - Images should auto resize
 - View list of unpublished
+- Add more articles
 
 Next:
+- Easy preview of unpublished article
 - Subscribe to mailing list
 - Publish automatically to dev.to
-- Add more articles
 - Publish automatically on commit
 - Add my own image hosting (can't use dev.to's, it's just not cool to leech)
 - Investigate freezes on site, sometimes it just goes really slow
