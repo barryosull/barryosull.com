@@ -31,6 +31,7 @@
                 <li<?php if($navActive === 'blog'): ?> class="active"<?php endif; ?>><a href="/blog">Blog</a></li>
                 <li><a href="https://github.com/barryosull">Github</a></li>
                 <li class="last"><a href="https://twitter.com/barryosull">Twitter</a></li>
+                <li><a href="https://www.linkedin.com/in/barryosu/">LinkedIn</a></li>
             </ul>
         </nav>
         <div class="content">
