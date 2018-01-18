@@ -31,8 +31,10 @@ Done:
 - Easy preview of unpublished article
 - Improve homepage
 - Add links to latest article and featured library
+- Single deploy script
 
 Next:
+- Make deploy script trigger after push to master
 - Add some way to contact me
 - Subscribe to mailing list
 - Publish automatically to dev.to
