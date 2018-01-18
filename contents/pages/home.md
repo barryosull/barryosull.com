@@ -25,5 +25,3 @@ If you'd like to contact me about opportunities, drop me an email
 | Featured Article | Featured OpenSource Project |
 | ---------------- | ------------------------- |
 | [Developer Deprogramming: Getting started in Event Sourcing](/blog/developer-deprogramming-getting-started-in-event-sourcing) | [The Projectionist: System for running projectors and keeping track of their position](https://github.com/barryosull/the-projectionist) |
-
-Testing deploy script.
