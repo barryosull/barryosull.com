@@ -39,7 +39,7 @@ class ContentDomain extends BaseDomain
     protected function loadArticlesMeta(string $keyName, bool $forceReload = false) : ContentDomain
     {
         if (!empty($this->articleMeta) && $forceReload === false) {
-            return true;
+            return $this;
         }
         $pathToArticleContents = $this->config['contentsFolder'] . 'articles/';
         if (!is_dir($pathToArticleContents)) {

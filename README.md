@@ -28,9 +28,12 @@ Done:
 - Images should auto resize
 - View list of unpublished
 - Add more articles
+- Easy preview of unpublished article
+- Improve homepage
+- Add links to latest article and featured library
 
 Next:
-- Easy preview of unpublished article
+- Add some way to contact me
 - Subscribe to mailing list
 - Publish automatically to dev.to
 - Publish automatically on commit
