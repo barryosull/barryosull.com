@@ -18,7 +18,7 @@ In my spare time I contribute to open source (including the core of PHP), [write
 
 ### [I am actively looking for new opportunities\]
 
-If you'd like to contact me about opportunities, drop me an email. 
+If you'd like to contact me about opportunities, drop me a message on LinkedIn. 
 
 | Featured Article | Featured OpenSource Project |
 | ---------------- | ------------------------- |
