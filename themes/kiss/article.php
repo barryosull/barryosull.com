@@ -13,13 +13,13 @@
             by <?php echo $article->getAuthor(); ?>
         </span>
 
-        <a href="https://twitter.com/intent/tweet?text=<?php echo $article->getTitle()?>&url=http%3A%2F%2Fblog.barryosull.local%2Fblog%2F<?php echo $article->getSlug()?>&via=barryosull" class="twitter-share-button" data-size="large" data-show-count="false">Tweet</a>
+        <a href="https://twitter.com/intent/tweet?text=<?php echo $article->getTitle()?>&url=http%3A%2F%2Fbarryosull.com%2Fblog%2F<?php echo $article->getSlug()?>&via=barryosull" class="twitter-share-button" data-size="large" data-show-count="false">Tweet</a>
 
     </header>
     <div class="entry-content">
         <?php echo $article->getContent(); ?>
 
-        <a href="https://twitter.com/intent/tweet?text=<?php echo $article->getTitle()?>&url=http%3A%2F%2Fblog.barryosull.local%2Fblog%2F<?php echo $article->getSlug()?>&via=barryosull" class="twitter-share-button" data-size="large" data-show-count="false">Tweet</a>
+        <a href="https://twitter.com/intent/tweet?text=<?php echo $article->getTitle()?>&url=http%3A%2F%2Fbarryosull.com%2Fblog%2F<?php echo $article->getSlug()?>&via=barryosull" class="twitter-share-button" data-size="large" data-show-count="false">Tweet</a>
 
     </div>
     <footer>
