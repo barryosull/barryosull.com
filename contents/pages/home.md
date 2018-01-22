@@ -6,7 +6,7 @@ slug: "welcome"
 date : 2018-01-07
 ---
 
-<img class="face" style="float:right;width:100px;height:100px;" src="https://thepracticaldev.s3.amazonaws.com/uploads/user/profile_image/17829/130dc702-1fb9-4dfc-9151-138dbdd78095.jpg">
+<img class="face" style="float:right;width:100px;height:100px; padding:20px;" src="https://thepracticaldev.s3.amazonaws.com/uploads/user/profile_image/17829/130dc702-1fb9-4dfc-9151-138dbdd78095.jpg">
 
 I am a Lead PHP Developer and Solutions Architect. I work closely with business owners to understand domain problems, architect solutions, then lead the team in their development. I have designed and built distributed, event sourced applications, using the latest in domain exploratory techniques, such as domain mapping and Event Storming. I have worked remotely for the last 3 years and know how to build and maintain a remote team.
 
