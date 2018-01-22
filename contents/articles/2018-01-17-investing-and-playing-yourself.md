@@ -7,15 +7,15 @@ tags:
 
 This article is the extension of a rant I had with some friends recently.
 
-It's about the game of investment and how it's turned against itself. This article is focuses on what it's like to invest in Ireland, but I'd wager it's applicable to other areas as well.
+It's about the game of investment, why it's played, and how it's eating itself. This article focuses on what it's like to invest in Ireland and England, but I'd wager it's applicable everywhere, as the problem is emergent in any investment system.
 
-This article is about a cultural I've seen in the startup world. It's one that's not properly address, it's mostly danced around, and I think it's responsible for a lot of the dead companies out there.
+This article is about a cultur I've seen in the startup world. It's one that's not properly addressed, it's mostly danced around, and I think it's responsible for a lot of the dead companies out there.
 
 # Let's talk about building a B2B business:
-If you want to build a scalable business from scratch, there are a couple of steps that you must follow. 
+If you want to build a scalable business from scratch, there are a couple of steps that you pretty much have to follow. 
 
 ## 1. Find businesses with a problem they want solved
-First step, find a problem that someone is willing to pay to make go away. If you can't do this, then you don't have a business, no matter how "hyped" you've gotten yourself about a "game changing" idea. Don't focus on a particular solution right now, just find out if there's a problem they'd like to go away. Next find out if more businesses have this kind of problem and are willing to pay. If you've gotten this far, then you're confident there's a shared problem that's profitable to solve.
+First step, find a problem that someone is willing to pay to make go away. If you can't do this, then you don't have a business, no matter how "hyped" you've gotten yourself about a "game changing" idea. Don't focus on a particular solution right now, just find out if there's a real problem. Next find out if more businesses have this kind of problem and are willing to pay to solve it. If you've gotten this far, then you're confident there's a shared problem that's profitable to solve.
 
 ## 2. Iterate on the problem to reach a solution
 From that group of people, find a beta customer that's willing to actively work with you to make the problem go away. If you can't do this, then it's actually not a real problem, it's just a nice to have.
@@ -25,12 +25,12 @@ To make this work you'll need to work in their office and see how they currently
 Once you've done this, do the same thing for another potential customer, then another, and another. After a couple you’ll have a solid idea of what brings value and what can be generalised into a product. At this stage you're confident you can build a product to solve the markets needs, ie. you have product market fit.
 
 ## 3. Building the product
-You now have happy customers (early adopters) and a solid idea of what you need to build. This is the stage where you aim to build a generic, stable product that you can market and sell to others. Honestly, everyone knows this part, and if you don't there's a ton of writing on the topic that explain it far better than I ever will.
+You now have happy customers (early adopters) and a solid idea of what you need to build. This is the stage where you aim to build a generic, stable product that you can market and sell to others. Honestly, everyone knows this part, there's a ton of writing on the topic that explains this step far better than I ever will.
 
 # Why this doesn't happen
-This approach above is the best there is, it’s iterative, stops waste and guarantees there’s a market for your product. 
+The approach above is the best there is. It’s iterative, stops waste and guarantees there’s a market for your product. 
 
-It’s also the approach that is least likely to get investment, and is therefore never, ever followed.
+It’s also the approach that is least likely to get investment, and is therefore; never, ever followed.
 
 ## What investors want
 To understand why this approach doesn't get investment, we need to understand investors. 
