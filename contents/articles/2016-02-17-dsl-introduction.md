@@ -40,19 +40,19 @@ And that's it, we've defined our language.
 # So what are the advantages of this DSL?
 You can already see the main advantage of this DSL, it allow us to autoamte a complex, error prone process. It turns out though, that we can use this DSL to solve various other issues, further highlighting how useful they are. Here are a few examples.
 
-## Generating requests
+## 1. Generating requests
 Making a request object client side is no longer a pain. We can use the same DSL to define the shape of the request that should be sent, and you can validate the request before you send it. Not only that, but you can automate the generation of the request itself. We created a request factory that takes in a form and tries to extract the request parameters out by key. Then we can set any remaining parameters manually. Very handy.
 
-## Sending  and receving requests
+## 2. Sending and receiving requests
 Sending requests to a server is easy, but tiring to implement, especially if the URLs are not uniformly named and structed. You end up writing a lot of boilerplate code that is painful to change. Well, you can automate this. We created a single Command endpoint that takes in the above request, and then decodes the command and runs it. Now we have only one endpoint to hit, so our code is drastially reduced, both client and server side.
 
-## Documenting Requests
+## 3. Documenting requests
 We can use the above DSL to create a request schema. That schema can be used in documentation, or you can make the endpoint self documenting. If someone sends a request with the method "OPTIONS", you return the Schema as JSON, making it easier for people to use and understand your API.
 
-## Speed of development
+## 4. Speed of development
 Once you understand the language, changing or writing a new request is quick and painless. With this DSL, I was able to write and validate an entire collection of requests (20 in total) in under 30 minutes. This would have taken me at least a day if I didn't have the DSL handy. 
 
-## Modular
+## 5. Modular
 This DSL is not just specific to our current app, it can used in any app, as long as it uses commands and valueobjects (which all our apps do/will, we're DDD/CQRS junkies). So now have another tool that can rapidly speed up development across all our applications.
 
 # DSLs can be used anywhere
