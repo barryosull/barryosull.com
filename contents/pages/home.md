@@ -8,19 +8,15 @@ date : 2018-01-07
 
 <img class="face" style="float:right;width:100px;height:100px;" src="https://thepracticaldev.s3.amazonaws.com/uploads/user/profile_image/17829/130dc702-1fb9-4dfc-9151-138dbdd78095.jpg">
 
-Hello there. My name is Barry O Sullivan, I am a Lead PHP Developer and Solutions Architect.
+I am a Lead PHP Developer and Solutions Architect. I work closely with business owners to understand domain problems, architect solutions, then lead the team in their development. I have designed and built distributed, event sourced applications, using the latest in domain exploratory techniques, such as domain mapping and Event Storming. I have worked remotely for the last 3 years and know how to build and maintain a remote team.
 
-I am passionate about writing software that solves real problems. I've been working with startups for 7 years, so I have experience designing and building full solutions from scratch.
+My leading style is centered around best practices, such as automated tests, Continuous Integration, Code Reviews, Documentation, clean architecture and consistent, maintainable code. I believe a culture focussed on training and upskilling leads to a better dev team and a better product.
 
-### I am actively looking for new opportunities
+In my spare time I contribute to open source (including the core of PHP), [write articles](/blog) and give talks on software dev, and also run [PHPDublin](https://www.meetup.com/PHP-Dublin/), Ireland's largest PHP meetup group.
 
-One my key goals is to make software better over time, not worse. When given a piece of software, if I can make it better I will.
+### [I am actively looking for new opportunities\]
 
-My key skill is writing testable code that expresses the complexity of a business domain. Every developer on the teams needs to work together, so training in design is a key part of what I do.
-
-I also write articles on software developer. Head over to the [Blog](/blog) and have a look.
-
-If you'd like to contact me about opportunities, drop me an email 
+If you'd like to contact me about opportunities, drop me an email. 
 
 | Featured Article | Featured OpenSource Project |
 | ---------------- | ------------------------- |
