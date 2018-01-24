@@ -90,6 +90,12 @@ return [
             'buildPattern' => '/',
             'action' => 'page',
         ],
+        'talks' => [
+            'method' => 'GET',
+            'route' => '/talks',
+            'buildPattern' => '/talks',
+            'action' => 'page',
+        ],
         'sitemap' => [
             'method' => 'GET',
             'route' => '/sitemap.xml',

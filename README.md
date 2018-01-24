@@ -36,12 +36,13 @@ Done:
 - Add some way to contact me (LinkedIn link, good enough for now)
 
 Next:
+- Add my own image hosting (can't use dev.to's, it's just not cool to leech)
+    - Do things
 - Add notes to articles
     - http://docs.annotatorjs.org/en/v1.2.x/getting-started.html
     - https://github.com/julien-c/annotator-php/blob/master/index.php
 - Subscribe to mailing list
 - Publish automatically to dev.to
-- Add my own image hosting (can't use dev.to's, it's just not cool to leech)
 - Investigate freezes on site, sometimes it just goes really slow
 
 ## License
