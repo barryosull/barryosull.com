@@ -12,15 +12,9 @@ declare(strict_types=1);
 namespace Nekudo\ShinyBlog;
 
 use Exception;
-use Nekudo\ShinyBlog\Action\ShowBlogUnpublishedAction;
 use RuntimeException;
 use FastRoute;
 use FastRoute\RouteCollector;
-use Nekudo\ShinyBlog\Action\ShowArticleAction;
-use Nekudo\ShinyBlog\Action\ShowBlogAction;
-use Nekudo\ShinyBlog\Action\ShowFeedAction;
-use Nekudo\ShinyBlog\Action\ShowPageAction;
-use Nekudo\ShinyBlog\Action\ShowSitemapAction;
 use Nekudo\ShinyBlog\Responder\HttpResponder;
 use Nekudo\ShinyBlog\Responder\NotFoundResponder;
 
@@ -110,29 +104,16 @@ class ShinyBlog
      */
     protected function runAction(string $actionName, array $arguments = [])
     {
-        switch ($actionName) {
-            case 'page':
-                $action = new ShowPageAction($this->config);
-                break;
-            case 'article':
-                $action = new ShowArticleAction($this->config);
-                break;
-            case 'blog':
-                $action = new ShowBlogAction($this->config);
-                break;
-            case 'blogUnpublished':
-                $action = new ShowBlogUnpublishedAction($this->config);
-                break;
-            case 'feed':
-                $action = new ShowFeedAction($this->config);
-                break;
-            case 'sitemap':
-                $action = new ShowSitemapAction($this->config);
-                break;
-            default:
-                throw new RuntimeException('Invalid action.');
-                break;
+        $actionNamespace = "\\Nekudo\\ShinyBlog\\Action";
+        $actionController = "Show".ucfirst($actionName)."Action";
+
+        $actionClassPath = $actionNamespace."\\".$actionController;
+        
+        if (!class_exists($actionClassPath)) {
+            throw new RuntimeException('Invalid action.');
         }
+
+        $action = new $actionClassPath($this->config);
         $action->__invoke($arguments);
     }
 }

@@ -41,7 +41,6 @@ Next:
     - https://github.com/julien-c/annotator-php/blob/master/index.php
 - Subscribe to mailing list
 - Publish automatically to dev.to
-- Publish automatically on commit
 - Add my own image hosting (can't use dev.to's, it's just not cool to leech)
 - Investigate freezes on site, sometimes it just goes really slow
 

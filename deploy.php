@@ -7,4 +7,4 @@ $dotenv->load();
 
 $host = getenv('REMOTE_HOST');
 
-exec('ssh '.$host.' "cd /var/www/barryosull.com/ && git pull origin master"');
+exec('ssh '.$host.' "cd /var/www/barryosull.com/ && git pull origin master && composer update"');
