@@ -33,9 +33,12 @@ Done:
 - Add links to latest article and featured library
 - Single deploy script
 - Make deploy script trigger after push to master
+- Add some way to contact me (LinkedIn link, good enough for now)
 
 Next:
-- Add some way to contact me
+- Add notes to articles
+    - http://docs.annotatorjs.org/en/v1.2.x/getting-started.html
+    - https://github.com/julien-c/annotator-php/blob/master/index.php
 - Subscribe to mailing list
 - Publish automatically to dev.to
 - Publish automatically on commit
