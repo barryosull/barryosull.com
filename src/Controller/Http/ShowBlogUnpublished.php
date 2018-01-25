@@ -23,8 +23,10 @@ class ShowBlogUnpublished extends BaseAction
     {
         $not_published = $this->domain->getUnpublishedArticles();
 
+        echo "<ol>";
         foreach ($not_published as $article) {
-            echo '<a href="'.$article->getUrl().'">'.$article->getTitle()."</a><br>";
+            echo '<li><a style="font-family: Arial, Helvetica, sans-serif;" href="'.$article->getUrl().'">'.$article->getTitle()."</a></li>";
         }
+        echo "</ol>";
     }
 }
