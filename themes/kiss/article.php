@@ -1,3 +1,18 @@
+<?php if (!$article->getPublished()) :?>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    <script src="http://assets.annotateit.org/annotator/v1.1.0/annotator-full.min.js"></script>
+    <link rel="stylesheet" href="http://assets.annotateit.org/annotator/v1.1.0/annotator.min.css">
+
+    <script type="text/javascript">
+        jQuery(function ($) {
+            $('.article').annotator();
+        });
+    </script>
+
+<?php endif; ?>
+
+
+
 <article class="article">
     <header>
         <?php if ($article->getCoverImage()):?>

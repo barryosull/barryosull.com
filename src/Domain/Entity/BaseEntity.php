@@ -35,6 +35,8 @@ abstract class BaseEntity
     /** @var string $content */
     protected $content;
 
+    protected $published;
+
     public function __construct(array $config, array $entityData)
     {
         $this->config = $config;
@@ -220,5 +222,15 @@ abstract class BaseEntity
     {
         $urlBuildPattern = $this->config['routes'][$this->key]['buildPattern'];
         return sprintf($urlBuildPattern, $this->getSlug());
+    }
+
+    public function setPublished(bool $published)
+    {
+        $this->published = $published;
+    }
+
+    public function getPublished(): bool
+    {
+        return $this->published;
     }
 }

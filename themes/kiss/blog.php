@@ -1,3 +1,4 @@
+
 <section class="blog">
     <?php if ($showTitle === true): ?>
         <h1>Blog <small>Articles on DDD, Event Sourcing and software development in general, with a sprinkle of PHP and sarcasm.</small></h1>
