@@ -34,10 +34,10 @@ Done:
 - Single deploy script
 - Make deploy script trigger after push to master
 - Add some way to contact me (LinkedIn link, good enough for now)
+- Use my own image hosting
+    - Make it easy to upload and image and get a URL
 
 Next:
-- Add my own image hosting (can't use dev.to's, it's just not cool to leech)
-    - Do things
 - Add notes to articles
     - http://docs.annotatorjs.org/en/v1.2.x/getting-started.html
     - https://github.com/julien-c/annotator-php/blob/master/index.php

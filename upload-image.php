@@ -52,6 +52,8 @@ class Console
 
         $url = $usecase->run($local_file_path, $image_id);
 
+        exec("printf $url | pbcopy");
+
         echo "\nURL: $url\n";
     }
 
