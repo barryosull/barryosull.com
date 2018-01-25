@@ -104,7 +104,7 @@ class ShinyBlog
      */
     protected function runAction(string $actionName, array $arguments = [])
     {
-        $actionNamespace = "\\Nekudo\\ShinyBlog\\Action";
+        $actionNamespace = "\\Nekudo\\ShinyBlog\\Controller\\Http";
         $actionController = "Show".ucfirst($actionName)."Action";
 
         $actionClassPath = $actionNamespace."\\".$actionController;

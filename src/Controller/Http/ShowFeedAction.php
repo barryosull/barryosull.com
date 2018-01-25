@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace Nekudo\ShinyBlog\Action;
+namespace Nekudo\ShinyBlog\Controller\Http;
 
 use Nekudo\ShinyBlog\Domain\ShowFeedDomain;
 use Nekudo\ShinyBlog\Exception\NotFoundException;
