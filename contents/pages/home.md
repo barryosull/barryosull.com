@@ -1,6 +1,6 @@
 ---
 title: "Welcome"
-metaTitle: "Barryosull.com"
+metaTitle: "Barry O Sullivan online"
 description: "The homepage of my site"
 slug: "welcome"
 date : 2018-01-07

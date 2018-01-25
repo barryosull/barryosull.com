@@ -8,7 +8,7 @@ use Nekudo\ShinyBlog\Exception\NotFoundException;
 use Nekudo\ShinyBlog\Responder\ShowBlogResponder;
 use Nekudo\ShinyBlog\Responder\NotFoundResponder;
 
-class ShowBlogAction extends BaseAction
+class ShowBlog extends BaseAction
 {
     /** @var ShowBlogDomain $domain */
     protected $domain;

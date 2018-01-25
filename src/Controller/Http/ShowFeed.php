@@ -1,12 +1,10 @@
-<?php
-declare(strict_types=1);
-namespace Nekudo\ShinyBlog\Controller\Http;
+<?php namespace Nekudo\ShinyBlog\Controller\Http;
 
 use Nekudo\ShinyBlog\Domain\ShowFeedDomain;
 use Nekudo\ShinyBlog\Exception\NotFoundException;
 use Nekudo\ShinyBlog\Responder\ShowFeedResponder;
 
-class ShowFeedAction extends BaseAction
+class ShowFeed extends BaseAction
 {
     /** @var ShowFeedDomain $domain */
     protected $domain;

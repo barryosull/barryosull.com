@@ -5,7 +5,7 @@ namespace Nekudo\ShinyBlog\Controller\Http;
 use Nekudo\ShinyBlog\Domain\ShowPageDomain;
 use Nekudo\ShinyBlog\Responder\ShowPageResponder;
 
-class ShowPageAction extends BaseAction
+class ShowPage extends BaseAction
 {
     /**
      * @var ShowPageDomain $domain

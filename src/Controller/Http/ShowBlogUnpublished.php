@@ -4,7 +4,7 @@ namespace Nekudo\ShinyBlog\Controller\Http;
 
 use Nekudo\ShinyBlog\Domain\ShowBlogDomain;
 
-class ShowBlogUnpublishedAction extends BaseAction
+class ShowBlogUnpublished extends BaseAction
 {
     protected $domain;
 

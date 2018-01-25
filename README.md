@@ -39,6 +39,7 @@ Done:
 - Move console commands into their own folder, extract out usecases
 
 Next:
+- Add tests for get routes (just make sure they work)
 - Add notes to articles
     - http://docs.annotatorjs.org/en/v1.2.x/getting-started.html
     - https://github.com/julien-c/annotator-php/blob/master/index.php

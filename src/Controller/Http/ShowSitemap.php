@@ -5,7 +5,7 @@ namespace Nekudo\ShinyBlog\Controller\Http;
 use Nekudo\ShinyBlog\Domain\ShowSitemapDomain;
 use Nekudo\ShinyBlog\Responder\ShowSitemapResponder;
 
-class ShowSitemapAction extends BaseAction
+class ShowSitemap extends BaseAction
 {
     /** @var ShowSitemapDomain $domain */
     protected $domain;
