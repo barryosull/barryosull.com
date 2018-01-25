@@ -37,13 +37,14 @@ Done:
 - Use my own image hosting
     - Make it easy to upload and image and get a URL
 - Move console commands into their own folder, extract out usecases
+- Add prototype annotations with no storage
 
 Next:
+- Make annotations persistent
+- Add basic login for annotations feature
 - Add tests for get routes (just make sure they work)
+- Upload image via web UI
 - Resize blog title size
-- Add notes to articles
-    - http://docs.annotatorjs.org/en/v1.2.x/getting-started.html
-    - https://github.com/julien-c/annotator-php/blob/master/index.php
 - Subscribe to mailing list
 - Publish automatically to dev.to
 - Investigate freezes on site, sometimes it just goes really slow
