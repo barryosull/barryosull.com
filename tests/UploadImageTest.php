@@ -1,11 +1,12 @@
 <?php
 
+const SCRIPT_DIR = __DIR__."/../scripts";
+
 function TestCanUploadLocalImage()
 {
-    $parent_dir = __DIR__."/..";
     $test_image = __DIR__."/assets/image.jpg";
 
-    $last_line = system("php $parent_dir/upload-image.php $test_image image-upload-test");
+    $last_line = system("php ".SCRIPT_DIR."/upload-image.php $test_image image-upload-test");
 
     $url = str_replace("URL: ", "", $last_line);
 
@@ -18,10 +19,9 @@ function TestCanUploadLocalImage()
 
 function TestCanUploadRemoteImage()
 {
-    $parent_dir = __DIR__."/..";
     $test_image = "http://barryosull.com/images/image-upload-test.jpg";
 
-    $last_line = system("php $parent_dir/upload-image.php $test_image image-remote-test");
+    $last_line = system("php ".SCRIPT_DIR."/upload-image.php $test_image image-remote-test");
 
     $url = str_replace("URL: ", "", $last_line);
 

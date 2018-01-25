@@ -1,13 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Nekudo\ShinyBlog;
+require __DIR__ . '/../vendor/autoload.php';
 
 use Dotenv\Dotenv;
 
 $dotenv = new Dotenv(__DIR__.'/..');
 $dotenv->load();
-
-$config = require 'config.php';
-$blog = new ShinyBlog($config);
-$blog->run();

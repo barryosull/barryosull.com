@@ -36,6 +36,7 @@ Done:
 - Add some way to contact me (LinkedIn link, good enough for now)
 - Use my own image hosting
     - Make it easy to upload and image and get a URL
+- Move console commands into their own folder, extract out usecases
 
 Next:
 - Add notes to articles
