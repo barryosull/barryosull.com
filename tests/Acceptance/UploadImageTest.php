@@ -1,10 +1,10 @@
 <?php
 
-const SCRIPT_DIR = __DIR__."/../scripts";
+const SCRIPT_DIR = __DIR__ . "/../scripts";
 
 function TestCanUploadLocalImage()
 {
-    $test_image = __DIR__."/assets/image.jpg";
+    $test_image = __DIR__ . "/assets/image.jpg";
 
     $last_line = system("php ".SCRIPT_DIR."/upload-image.php $test_image image-upload-test");
 
