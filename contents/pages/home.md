@@ -22,4 +22,4 @@ If you'd like to contact me about opportunities, drop me a message on LinkedIn.
 
 | Featured Article | Featured OpenSource Project |
 | ---------------- | ------------------------- |
-| [Developer Deprogramming: Getting started in Event Sourcing](/blog/developer-deprogramming-getting-started-in-event-sourcing) | [The Projectionist: System for running projectors and keeping track of their position](https://github.com/barryosull/the-projectionist) |
+| [Projection Building Blocks: What you'll need to build projections](/blog/projection-building-blocks-what-you-ll-need-to-build-projections) | [The Projectionist: System for running projectors and keeping track of their position](https://github.com/barryosull/the-projectionist) |
