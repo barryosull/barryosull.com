@@ -27,7 +27,7 @@ date : 2018-01-07
 | [Projection Building Blocks: What you'll need to build projections](/blog/projection-building-blocks-what-you-ll-need-to-build-projections) | [The Projectionist: System for running projectors and keeping track of their position](https://github.com/barryosull/the-projectionist) |
 
 # About me
-I am a software developer and solutions architect. I work with startups that want to stabilise their product and grow their team, all while maintaining development momentum.
+I am a software developer and solutions architect. I work with growth stage startups that want to stabilise their product and grow their team, all while maintaining development momentum.
 
 My development/leading/training style is centered around best practices, such as automated tests, continuous integration, code reviews, documentation, clean architecture and consistent, maintainable code. 
 
