@@ -39,7 +39,7 @@
             <?php echo $template; ?>
         </div>
         <div class="footer">
-            <p>barryosull.com - because I need a blog and this will do</p>
+            <p>barryosull.com &copy; 2018</p>
         </div>
         <script src="/themes/kiss/js/prism.js"></script>
     </body>
