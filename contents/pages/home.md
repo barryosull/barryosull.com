@@ -13,7 +13,7 @@ date : 2018-01-07
     ● Is your dev team struggling to hit their targets?<br>
     ● Are you constantly fire-fighting?<br>
     ● Is your code hard to modify?<br>
-    ● Are you going slower, even though the team is bigger?<br>
+    ● Are you going slower, even though your team is larger?<br>
     <br>
     <a class="btn" style="font-size:20px" href="mailto:contact@barryosull.com">I can help</a>
 
