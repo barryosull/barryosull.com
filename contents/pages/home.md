@@ -8,7 +8,9 @@ date : 2018-01-07
 <div style="padding:20px;color:#fff;background: linear-gradient(#1f4784, #2870bf);margin: -20px -60px 0px;">
 
     <img class="face" style="float:left; width:150px; height:150px; margin: 20px 20px 50px 0px;" src="http://barryosull.com/images/cfdbf55a-dbe0-4e33-866f-efa951160a7a.jpg">
-    <div style="font-weight:bold; font-size:24px">Enabling growing companies to improve their development momentum</div>
+    <div style="font-weight:bold; font-size:24px">
+        Grow your dev team without losing momentum
+    </div>
     <br>
     ● Is your dev team struggling to hit their targets?<br>
     ● Are you constantly fire-fighting?<br>
