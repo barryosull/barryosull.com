@@ -5,20 +5,17 @@ description: "The homepage of my site"
 slug: "welcome"
 date : 2018-01-07
 ---
-<div style="padding:20px;color:#fff;background: linear-gradient(#1f4784, #2870bf);margin: -20px -60px 0px;">
+<div style="padding:20px;color:#fff;background: linear-gradient(#1f4784, #2870bf);margin: -30px -60px 0px;">
 
     <img class="face" style="float:left; width:150px; height:150px; margin: 20px 20px 50px 0px;" src="http://barryosull.com/images/cfdbf55a-dbe0-4e33-866f-efa951160a7a.jpg">
     <div style="font-weight:bold; font-size:24px">
-        Grow your dev team without losing momentum
+        Grow your business through quality code
     </div>
     <br>
-    ● Is your dev team struggling to hit their targets?<br>
-    ● Are you constantly fire-fighting?<br>
-    ● Is your code hard to modify?<br>
-    ● Are you going slower, even though your team is larger?<br>
-    <br>
-    <a class="btn" style="font-size:20px" href="mailto:contact@barryosull.com">I can help</a>
-
+    Writing good code isn't about craftmanship, it's about delivering a stable product that your team can adapt as the business changes. <br> <br>
+    I work with teams to build simple, quality software that enables the business. If you're having quality issues, I'm here to help.
+    <br><br>
+    <a class="btn" style="font-size:20px" href="mailto:contact@barryosull.com">Get in Contact</a>
     <div style="clear:both"></div>
 </div>
 
