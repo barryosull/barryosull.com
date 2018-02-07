@@ -223,6 +223,10 @@ table {
 .content img {
 	left: -6px;
 	max-width: calc(100% + 12px);
+	height: auto;
+	position: relative;
+	display: block;
+	margin: auto;
 }
 
 .content blockquote {
