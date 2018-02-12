@@ -51,7 +51,7 @@ class ArticleEntity extends BaseEntity
         }
         $moreMarkerPosition = strpos($this->content, '<!--more-->');
         if (empty($moreMarkerPosition)) {
-            return substr($this->content, 0, 500).'...';
+            return substr($this->content, 0, 600).'...';
         }
         $excerpt = substr($this->content, 0, $moreMarkerPosition);
         if ($addReadMoreLink === true) {
