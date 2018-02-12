@@ -1,17 +1,18 @@
 ---
 title: Writing a DSL parser using PegJS
-published: false
+published: true
 description: Write a simple parser using PegJS
 tags: DSL, parsing, pegjs
+cover_image: http://barryosull.com/images/0bd858fa-5347-4b09-9f5f-2ec5f0bd1de4.png
 ---
 
-In the [previous article](/blog/write-dsls-and-code-faster/) I wrote about Domain Specific Language (DSL) and how useful they are, but I didn't get into the details of parsing them. That's because it's a complex topic, so I wanted to explain it properly. Thus, here's a full article, detailing the parser and how it was built.
+In the [previous article](/blog/write-dsls-and-code-faster/) I wrote about Domain Specific Languages (DSLs) and how useful they are, but I didn't get into the details of parsing them, that's where this article comes in.
 
 Previously we made this DSL:
-```
+```javascript
 User.ScheduleAppointment has { 
   a UserId userId 
-  an Appointmentatetime appointmentDatetime
+  an AppointmentDatetime appointmentDatetime
   a Location location from {
     a LocationName locationName from location
     a Latitude latitude
@@ -20,187 +21,173 @@ User.ScheduleAppointment has {
 }
 ```
 
-Now we want to parse it and turn into an Abstract Syntax Tree (AST). This is a structure that turns the above text into a tree structure that's easy to navigate and interpret. Think of it as the first stage in interpreting the DSL.
+We want to take the above, and parse it. That means turning the text into an Abstract Syntax Tree (AST). An AST is a tree structure that's easy to navigate and interpret. Once we have an AST, we can interpret it.
 
-To do this, I used [PegJS](http://pegjs.org/), a PEG parser written in Javascript. PegJS (like most parsers) is based on regular expressions, they allow you to build named regexes (rules) that you combine together to form a tree. The results of your rules can be turned into data structures, letting you build up your AST.
+To do this, we're going to use [PegJS](http://pegjs.org/), a Parsing Expression Grammar (PEG) parser written in Javascript. PegJS (like most parsers) is based on regular expressions, they allow you to build named regexes (rules) that you combine together to form a tree. The results of your rules can be turned into data structures, letting you build up your AST.
 
-### Regexs are hard
-If you're like me, then you're regex-fu is probably a bit weak, so writing a parser can seem like a daunting task. Thaknfully, there are easy ways to learn regexes. I'd recommend playing this [regex crossword game](https://regexcrossword.com/). Once you've completed the "experienced" level crossword, you'll understand regexes well enough that you'll be able to write a parser without looking up regex documentation. I'd highly recommend this game to anyone that wants to learn regexes.
+# The AST
+The first thing we need to do is design our AST, as we need to know what the end result looks like. Once we know this, we can reverse engineer the rules. 
 
-Assuming we understand Regular Expressions, here's an example of single simple rule.
-
-### Sample PegJS rule
-```
-Var = name:[A-Za-z0-9_]*
-  {
-    return name.join("");
-  }
-```
-
-The above is a PegJS rule that matches variable names like the following "positionId", "canidateId", "variable_name".
-It then returns the result as a string. Here this is defined as a "rule" called `Var` that can be reused throughout the parser, that way I don't have to repeat code, making the parser easier to read and use.
-
-### The rules
-A PegJS parser is made up of rules. In the DSL above, there are distinct components, some are simple strings, others are a composite of other components.
-
-0. Whitespace: match all the spaces, newlines and tabs.
-0. Var: match valid variable names
-0. Command: which are made from the sub-domain, the command name (which are both vars) and the inputs
-0. SingleLineInput, an input that only needs a single request value, made up a valueobject, an input name and a possible alias
-0. MultiLineInput, same as the above (excluding alias) with multiple child inputs.
-0. Alias, an aliased request name that may not exist, for when the param name is different to the input name
-0. Input: a collection of SingleLineInputs and MultiLineInputs
-
-That's the rule set, based on the above, we can now write our parser.
-
-### The full parser
-
-```
-// Starting rule
-// "subDomain:Var" defines the rule type on the right, and the resulting value on the left
-// These are then referenced in the return statement (defined below the regex) to create the outputted parser tree.
-Command = subDomain:Var "." name:Var _ "has" _ "nothing"* _ inputs:Inputs* _
-  {
-    // Handle case that there are no inputs
-    inputs = inputs.length === 0 ? [] : inputs[0];
-
-    // Return the matched results with this object structure
-    return {
-      subDomain: subDomain,
-      command: name,
-      inputs: inputs
-    }
-  }
- 
-//Matches a collection of inputs, 0 to many, that are wrapped in parentheses
-Inputs = "{" _ inputs:(MultiLineInput/SingleLineInput)* _ "}"
-  {
-    return inputs;
-  }
-
-//Single and Multi line inputs always have the same initial shape, so I extracted this into a partial result that is extended
-InputPartial = _ "a" [n]? _ valueObject:Var _ name:Var _
-  {
-    return {
-      type: "valueObject",
-      valueObject: valueObject,
-      name: name
-    }
-  }
-
-SingleLineInput = input:InputPartial alias:(Alias)? _
-  {
-    var alias = (alias) ? alias[0] : input.name;
-    input.inputs = [
-      {
-        type: "parameter",
-        name: alias
-      }	
-    ];
-    return input;
-  }
-    
-Alias = _ "from" _ alias:Var 
-  {
-    return alias;
-  }
-  
-//The same inputs rule is used again to allow for recursive parsing inputs
-MultiLineInput = input:InputPartial "from" _ inputs:Inputs
-  {
-    input.inputs = inputs;
-    return input;
-  }
-
-Var = name:[A-Za-z0-9_]*
-  {
-    return name.join("");
-  }
-
-_ = [ \t\n\r]*
-```
-
-That's the full parser. The above will turn our DSL into the following.
-
-```
+So in our perfect world, we want to take the DSL above and turn it into the following.
+```json
 {
-   "subDomain": "User",
+   "entity": "User",
    "command": "ScheduleAppointment",
-   "inputs": [
+   "values": [
       {
-         "type": "valueObject",
-         "valueObject": "UserId",
-         "name": "userId",
-         "inputs": [
-            {
-               "type": "parameter",
-               "name": "userId"
-            }
-         ]
+         "class": "UserId",
+         "param": "userId",
+         "alias": null,
+         "type": "value"
       },
       {
-         "type": "valueObject",
-         "valueObject": "Appointmentatetime",
-         "name": "appointmentDatetime",
-         "inputs": [
-            {
-               "type": "parameter",
-               "name": "appointmentDatetime"
-            }
-         ]
+         "class": "AppointmentDatetime",
+         "param": "appointmentDatetime",
+         "alias": null,
+         "type": "value"
       },
       {
-         "type": "valueObject",
-         "valueObject": "Location",
-         "name": "location",
-         "inputs": [
+         "class": "Location",
+         "param": "location",
+         "type": "composite",
+         "values": [
             {
-               "type": "valueObject",
-               "valueObject": "LocationName",
-               "name": "locationName",
-               "inputs": [
-                  {
-                     "type": "parameter",
-                     "name": "l"
-                  }
-               ]
+               "class": "LocationName",
+               "param": "locationName",
+               "alias": "location",
+               "type": "value"
             },
             {
-               "type": "valueObject",
-               "valueObject": "Latitude",
-               "name": "latitude",
-               "inputs": [
-                  {
-                     "type": "parameter",
-                     "name": "latitude"
-                  }
-               ]
+               "class": "Latitude",
+               "param": "latitude",
+               "alias": null,
+               "type": "value"
             },
             {
-               "type": "valueObject",
-               "valueObject": "Longitude",
-               "name": "longitude",
-               "inputs": [
-                  {
-                     "type": "parameter",
-                     "name": "longitude"
-                  }
-               ]
+               "class": "Longitude",
+               "param": "longitude",
+               "alias": null,
+               "type": "value"
             }
          ]
       }
    ]
 }
 ```
+This structure is easy to navigate and interpret, so it's a great end goal for our parser. Now we know what we want, let's figure out how to get there. 
 
+# Writing a PEG 
+PEGs (and most parsers) work via regular expressions (regexes). If you're like me, then your regex-fu is probably a bit weak, so writing a parser can seem like a daunting task. Thankfully, there are easy ways to learn regexes. I'd recommend playing this [regex crossword game](https://regexcrossword.com/). Once you've completed the "experienced" level crossword, you'll understand regexes well enough that you'll be able to write a parser without looking up regex documentation. I'd highly recommend this game to anyone that wants to learn regexes.
+
+Assuming we understand Regular Expressions, here's an example of single simple rule.
+
+## Sample PegJS rule
+```javascript
+Var = name:[A-Za-z0-9_]*
+  {
+    return name.join("");
+  }
+```
+
+The above is a PegJS rule that matches variable names like the following "positionId", "canidateId", "variable_name", etc... .
+It then returns the result as a string. Here this is defined as a "rule" called `Var` that can be reused throughout the parser, that way we don't have to repeat code, making the parser easier to read and use.
+
+## The rules
+A PegJS parser is made up of rules. Our goal is to take the above DSL and figure out the rules for each type of AST structure. Rules are composable, so once we have a few basic rules, we can start building more complex ones. 
+
+1. Whitespace (_): match all the spaces, newlines and tabs, usually ignored
+1. Var: match valid variable names
+1. Alias: An alias (Var) for a request parameter, optional
+1. Value: A composite of a class (Var), a param name (Var) and an optional alias (Var)
+1. CompositeValue: A composite of a class (Var), a param name (Var) and a collection of values
+1. Values: a collection of Values and CompositeValues
+1. Command: a composite of an entity (Var), a command (Var) and a collection of values (Values)
+
+Now we know what the object types are, we can write the PEGJs rules to parse the DSL and create the AST.
+
+# The full PEG
+
+```javascript
+/**********
+ Starting rule, our entry point to the parser.
+ The first part of the PEG extracts the entity name as a string, 
+ and makes the "entity" accessible in the JS below, allowing us to the AST and return it. 
+ It matches certain expected keywords, eg. "has", but does nothing with them. 
+ Finally it extracts the values, which have already been turned into a Values AST. 
+ You'll see the "_" rule used here, this means "accept/skip whitespace", it's defined below.
+**********/
+Command = entity:Var "." command:Var _ "has" _ "nothing"* _ values:Values* _
+  {
+    // Handle case that there are no values
+    values = values.length === 0 ? [] : values[0];
+
+    // Return the matched results with this object structure
+    return {
+      entity: entity,
+      command: command,
+      values: values
+    }
+  }
+ 
+/**********
+ Matches a collection of inputs, 0 to many, that are wrapped in parentheses
+**********/
+Values = "{" _ values:(CompositeValue/Value)* _ "}"
+  {
+    return values;
+  }
+
+/**********
+ Value and CompositeValues always have the same initial shape, so I extracted 
+ this into a partial result that is extended by both Value and Composite
+**********/
+ValuePartial = _ "a" [n]? _ cls:Var _ name:Var _
+  {
+    return {
+      class: cls,
+      param: name
+    }
+  }
+
+Value = value:ValuePartial alias:(Alias)? _
+  {
+    value.requestParam = (alias) ? alias: value.param;
+    value.type = 'value';
+    return value;
+  }
+ 
+/**********
+ Extract the alias value, ignore the "from" string
+**********/   
+Alias = _ "from" _ alias:Var 
+  {
+    return alias;
+  }
+  
+CompositeValue = value:ValuePartial "from" _ values:Values
+  {
+  	value.type = 'composite';
+    value.values = values;
+    return value;
+  }
+
+Var = name:[A-Za-z0-9_]*
+  {
+    return name.join("");
+  }
+
+/**********
+ Match any sequence of "whitespace" characters
+**********/   
+_ = [ \t\n\r]*
+```
+
+That's the full parser. The above will turn our DSL into the AST above.
 You can check this out yourself. Simply go to the PegJS, open their [online editor](http://pegjs.org/online) and paste the above DSL and parser in. You'll see the results straight away.
-
-### Using the AST
-Now that we have a parser, it's very easy to write the code that loops through the following and builds up our commands. The above structure is incredibly simple to navigate. You could put the results into a NoSQL DB if you'd like, allowing for complex searches and views on the data.
 
 As a side note, we're using a PegJS extension that outputs a PHP version of the parser, so we can use the same parser on the server as well as the client.
 
-### That's that
-As you can see, writing a parser isn't that hard, it's nowhere near as daunting and scary as I first imagined. Using that simple parser grammar, I'm able to automate large chunks of my team's workload, at very little up front dev costs.
+## Conclusion
+As you can see writing a parser isn't that hard. Using that simple parser grammar, I'm able to automate part of my teams workload, ie, writing boilerplate (and error prone) adapters that turns HTTP requests into commands. These simple DSLs make that trivial.
 
-After seeing that, I hope you're thinking of all the things you could define and automate with a DSL. So why not write a simple DSL and parser, and try it out?
+After seeing the above in action, I hope you're thinking of all the things you could define and automate with a DSL. So why not write a simple DSL and parser, and try it out?
