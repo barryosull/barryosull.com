@@ -43,6 +43,7 @@ Done:
 - Resized blog title size
 
 Next:
+- Add favicon
 - Make annotations persistent
 - Add basic login for annotations feature
 - Add tests for get routes (just make sure they work)
