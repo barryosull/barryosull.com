@@ -38,16 +38,18 @@ Done:
     - Make it easy to upload and image and get a URL
 - Move console commands into their own folder, extract out usecases
 - Add prototype annotations with no storage
+- Investigated freezes on site
+    - It was apache, switched to Nginx, problem has gone away
+- Resized blog title size
 
 Next:
 - Make annotations persistent
 - Add basic login for annotations feature
 - Add tests for get routes (just make sure they work)
 - Upload image via web UI
-- Resize blog title size
 - Subscribe to mailing list
 - Publish automatically to dev.to
-- Investigate freezes on site, sometimes it just goes really slow
+
 
 ## License
 
