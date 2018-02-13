@@ -41,10 +41,11 @@ Done:
 - Investigated freezes on site
     - It was apache, switched to Nginx, problem has gone away
 - Resized blog title size
-- Add categories to blog
+- Added categories to blog
+- Added favicon
 
 Next:
-- Add favicon
+- Switch to HTTPs
 - Make annotations persistent
 - Add basic login for annotations feature
 - Add tests for get routes (just make sure they work)
