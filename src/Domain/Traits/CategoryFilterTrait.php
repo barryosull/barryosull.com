@@ -2,6 +2,8 @@
 declare(strict_types=1);
 namespace Nekudo\ShinyBlog\Domain\Traits;
 
+use Nekudo\ShinyBlog\Domain\SlugFactory;
+
 trait CategoryFilterTrait
 {
     /**
@@ -39,7 +41,7 @@ trait CategoryFilterTrait
         $categoryNames = explode(',', $categories);
         $categorySlugs = [];
         foreach ($categoryNames as $categoryName) {
-            $categorySlug = $this->makeSlug($categoryName);
+            $categorySlug = SlugFactory::makeSlug($categoryName);
             array_push($categorySlugs, $categorySlug);
         }
         return $categorySlugs;

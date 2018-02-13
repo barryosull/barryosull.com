@@ -2,7 +2,7 @@
 title: "Messy Event Flows: Part 2 - What it should be"
 published: true
 description: We updated our domain model, exploring potential solutions to existing problems
-tags: event sourcing, event storming, re-modelling, constraints
+tags: event sourcing, event storming, ddd
 cover_image: https://thepracticaldev.s3.amazonaws.com/i/t7z6n9z0uoggwz24d10j.png
 ---
 

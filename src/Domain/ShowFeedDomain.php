@@ -3,12 +3,10 @@ declare(strict_types=1);
 namespace Nekudo\ShinyBlog\Domain;
 
 use Nekudo\ShinyBlog\Domain\Traits\CategoryFilterTrait;
-use Nekudo\ShinyBlog\Domain\Traits\SlugableTrait;
 use Nekudo\ShinyBlog\Exception\NotFoundException;
 
 class ShowFeedDomain extends ContentDomain
 {
-    use SlugableTrait;
     use CategoryFilterTrait;
 
     /** @var int $articleCount */

@@ -5,7 +5,6 @@ namespace Nekudo\ShinyBlog\Domain;
 use DirectoryIterator;
 use Nekudo\ShinyBlog\Domain\Entity\ArticleEntity;
 use RuntimeException;
-use ParsedownExtra;
 use Symfony\Component\Yaml\Yaml;
 use Cocur\Slugify\Slugify;
 
@@ -13,9 +12,6 @@ class ContentDomain extends BaseDomain
 {
     /** @var string $contentRaw */
     protected $contentRaw = '';
-
-    /** @var ParsedownExtra $markdownParser */
-    protected $markdownParser;
 
     /** @var array $articleMeta */
     protected $articleMeta = [];
@@ -26,7 +22,6 @@ class ContentDomain extends BaseDomain
     public function __construct(array $config)
     {
         parent::__construct($config);
-        $this->markdownParser = new ParsedownExtra;
     }
 
     /**
@@ -177,7 +172,6 @@ class ContentDomain extends BaseDomain
             return $data;
         }
         $data['content'] = $content;
-        $this->parseMarkdownContent($data['content']);
         return $data;
     }
 
@@ -234,21 +228,5 @@ class ContentDomain extends BaseDomain
     {
         $sections = explode('---', $this->contentRaw);
         return count($sections) > 1;
-    }
-
-
-    /**
-     * Translates markdown to html.
-     *
-     * @param string $content
-     * @return bool
-     */
-    public function parseMarkdownContent(string &$content) : bool
-    {
-        if (empty($content)) {
-            return false;
-        }
-        $content = $this->markdownParser->text($content);
-        return true;
     }
 }

@@ -3,7 +3,7 @@ title: Cleaning up your codebase with a clean architecture
 published: true
 cover_image: https://thepracticaldev.s3.amazonaws.com/i/kd02wzjkn28r3r5ya579.jpg
 description: A practical example of using a clean architecture to separate your code across layers while using design patterns effectively.
-tags: clean code, layered architecture, php, design
+tags: php, architecture
 ---
 
 Let's talk software architecture. Most of us know [MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller), it's the foundation for pretty much every web framework. As your product grows though, problems with MVC will start to appear. Even a relatively simple product can end up with a bloated and messy codebase. MVC is where we start, but what do you do when you need to evolve past it?

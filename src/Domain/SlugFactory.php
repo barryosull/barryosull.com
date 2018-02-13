@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
-namespace Nekudo\ShinyBlog\Domain\Traits;
+namespace Nekudo\ShinyBlog\Domain;
 
-trait SlugableTrait
+class SlugFactory
 {
     /**
      * Generates slug from input string.
@@ -10,7 +10,7 @@ trait SlugableTrait
      * @param string $str
      * @return string
      */
-    protected function makeSlug(string $str) : string
+    public static function makeSlug(string $str) : string
     {
         $chars = ['ä', 'ö', 'ü', 'ß', ' '];
         $replacements = ['ae', 'oe', 'ue', 'ss', '-'];

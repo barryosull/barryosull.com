@@ -2,7 +2,7 @@
 title: Writing a DSL parser using PegJS
 published: true
 description: Write a simple parser using PegJS
-tags: DSL, parsing, pegjs
+tags: DSL
 cover_image: http://barryosull.com/images/0bd858fa-5347-4b09-9f5f-2ec5f0bd1de4.png
 ---
 

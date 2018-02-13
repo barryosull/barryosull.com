@@ -2,7 +2,7 @@
 title: Notes from "Growing Object Oriented Software, Guided by Tests"
 published: true
 description: My collection of notes from an excellent book
-tags: testing, tdd, software, book
+tags: tdd, book
 cover_image: https://thepracticaldev.s3.amazonaws.com/i/u5vhdlmp8u9ssqsdzwt4.jpg
 ---
 

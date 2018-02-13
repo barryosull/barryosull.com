@@ -2,7 +2,7 @@
 title: Write DSLs and Code Faster
 published: true
 description: An introduction to DSLs and how powerful they can be.
-tags: DSL, parsing, custom language 
+tags: DSL
 ---
 
 # What is a DSL

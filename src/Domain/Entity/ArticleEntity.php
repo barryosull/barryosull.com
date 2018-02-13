@@ -75,7 +75,7 @@ class ArticleEntity extends BaseEntity
         }
         $categoryNames = explode(',', $categories);
         foreach ($categoryNames as $categoryName) {
-            $categorySlug = $this->makeSlug($categoryName);
+            $categorySlug = \Nekudo\ShinyBlog\Domain\SlugFactory::makeSlug($categoryName);
             $categoryLink = sprintf($this->config['routes']['category']['buildPattern'], $categorySlug);
             array_push($this->categories, [
                 'name' => trim($categoryName),

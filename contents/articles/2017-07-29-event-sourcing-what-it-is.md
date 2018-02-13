@@ -3,7 +3,7 @@ title: "Event Sourcing: What it is and why it's awesome"
 published: true
 description: An overview of Event Sourcing, it's pros, cons, and why it's so awesome
 cover_image: https://thepracticaldev.s3.amazonaws.com/i/02ln9f0zkcssv5iqd9ws.png
-tags: Event Sourcing, powerful, web dev, projections
+tags: event sourcing, architecture
 ---
 
 At the last [PHPDublin meetup](https://www.meetup.com/PHP-Dublin/events/242463770/) I was asked "What do you do?" and as usual the answer boiled down to "I design and build event sourced applications". Which leads to the following question. "What is Event Sourcing?".

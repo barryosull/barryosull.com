@@ -2,17 +2,17 @@
 declare(strict_types=1);
 namespace Nekudo\ShinyBlog\Domain;
 
-use Nekudo\ShinyBlog\Domain\Traits\SlugableTrait;
 use Nekudo\ShinyBlog\Domain\Traits\CategoryFilterTrait;
 use Nekudo\ShinyBlog\Exception\NotFoundException;
 
 class ShowBlogDomain extends ContentDomain
 {
-    use SlugableTrait;
     use CategoryFilterTrait;
 
     /** @var int $articleCount */
     protected $articleCount = 0;
+
+    protected $categories;
 
     /**
      * Fetches a list of articles ordered by date.
@@ -25,6 +25,7 @@ class ShowBlogDomain extends ContentDomain
     public function getArticles(int $page = 0, string $categorySlug = '') : array
     {
         $this->loadArticlesMeta('date')->filterOutUnpublished();
+        $this->extractCategories($this->articleMeta);
         if (!empty($categorySlug)) {
             $this->filterArticlesByCategorySlug($categorySlug);
         }
@@ -33,12 +34,12 @@ class ShowBlogDomain extends ContentDomain
 
         // throw 404 for empty categories:
         if ($this->articleCount === 0 && !empty($categorySlug)) {
-            throw new NotFoundException('Sry. The requested Category seems to be lost in space.');
+            throw new NotFoundException('Sorry. The requested Category seems to be lost in space.');
         }
 
         // check if page number is valid:
         if ($this->pageIsValid($page) === false) {
-            throw new NotFoundException('Sry. This page seems to be out of range.');
+            throw new NotFoundException('Sorry. This page seems to be out of range.');
         }
 
         // convert page to start/end index:
@@ -50,6 +51,26 @@ class ShowBlogDomain extends ContentDomain
         // get articles:
         $articles = $this->getArticlesFromMeta($start, $end);
         return $articles;
+    }
+
+    private function extractCategories($articles_meta)
+    {
+        $categories = [];
+        foreach ($articles_meta as $meta) {
+            $article_categories = array_map(function($category){
+                return trim($category);
+            }, explode(",", $meta['categories']));
+
+            $categories = array_merge($categories, $article_categories);
+        }
+        $categories = array_unique($categories);
+        natcasesort($categories);
+        $this->categories = $categories;
+    }
+
+    public function getCategories()
+    {
+        return $this->categories;
     }
 
     public function getUnpublishedArticles(): array

@@ -32,7 +32,7 @@
 
     </header>
     <div class="entry-content">
-        <?php echo $article->getContent(); ?>
+        <?php echo (new ParsedownExtra)->parse($article->getContent()); ?>
 
         <a href="https://twitter.com/intent/tweet?text=<?php echo $article->getTitle()?>&url=http%3A%2F%2Fbarryosull.com%2Fblog%2F<?php echo $article->getSlug()?>&via=barryosull" class="twitter-share-button" data-size="large" data-show-count="false">Tweet</a>
 

@@ -43,6 +43,7 @@ class ShowBlog extends BaseAction
             $this->responder->setIndex($this->domain->getIndex($page, $category));
             $this->responder->setFeedUrl($this->feedDomain->getFeedUrlPath($category));
             $this->responder->assign('articles', $this->domain->getArticles($page, $category));
+            $this->responder->assign('categories', $this->domain->getCategories());
             $this->responder->assign('urlNextPage', $this->domain->getUrlNextPage($page, $category));
             $this->responder->assign('urlPrevPage', $this->domain->getUrlPrevPage($page, $category));
             $this->responder->assign('navActive', 'blog');

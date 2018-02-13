@@ -41,6 +41,7 @@ Done:
 - Investigated freezes on site
     - It was apache, switched to Nginx, problem has gone away
 - Resized blog title size
+- Add categories to blog
 
 Next:
 - Add favicon

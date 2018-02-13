@@ -2,7 +2,7 @@
 title: Why I don't like traits
 published: true
 description: Avoid using Traits in PHP, they lead to bad code 
-tags: php, traits, anti-pattern
+tags: php, software-design
 cover_image: https://thepracticaldev.s3.amazonaws.com/i/mdufkfeb46p3xtxmtpjv.jpg
 ---
 
