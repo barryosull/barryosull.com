@@ -46,6 +46,9 @@ Done:
 - Switched to HTTPs
 
 Next:
+- Add page caching
+    - Convert action/responder so they return a response OBJ, instead of echoing headers/content
+    - Add caching to dispatcher layer
 - Make annotations persistent
 - Add basic login for annotations feature
 - Add tests for get routes (just make sure they work)
