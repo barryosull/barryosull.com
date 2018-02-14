@@ -43,9 +43,9 @@ Done:
 - Resized blog title size
 - Added categories to blog
 - Added favicon
+- Switched to HTTPs
 
 Next:
-- Switch to HTTPs
 - Make annotations persistent
 - Add basic login for annotations feature
 - Add tests for get routes (just make sure they work)
