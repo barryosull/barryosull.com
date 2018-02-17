@@ -3,6 +3,13 @@
 class UploadImageTest extends \PHPUnit\Framework\TestCase
 {
     const SCRIPT_DIR = __DIR__ . "/../../scripts";
+
+    public function test_pass()
+    {
+        // Just pass for now
+        $this->assertTrue(true);
+    }
+
 /*
     function test_can_upload_local_image()
     {
