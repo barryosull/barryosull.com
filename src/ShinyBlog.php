@@ -17,8 +17,7 @@ use FastRoute;
 use FastRoute\RouteCollector;
 use Nekudo\ShinyBlog\Responder\HttpResponder;
 use Nekudo\ShinyBlog\Responder\NotFoundResponder;
-use Psr\SimpleCache\CacheInterface;
-use Symfony\Component\Cache\Simple\FilesystemCache;
+use Psr\SimpleCache\CacheInterface;;
 
 class ShinyBlog
 {
@@ -38,11 +37,11 @@ class ShinyBlog
      * Dispatches and handles requests.
      * @param CacheInterface $cache
      */
-    public function run(CacheInterface $cache)
+    public function run()
     {
         try {
             $this->setRoutes();
-            $this->dispatch($cache);
+            $this->dispatch();
         } catch (Exception $e) {
             $responder = new HttpResponder($this->config);
             $responder->error($e->getMessage());
@@ -72,7 +71,7 @@ class ShinyBlog
     /**
      * Tries to find a route matching the current request. If found the defined action is called.
      */
-    protected function dispatch(CacheInterface $cache)
+    protected function dispatch()
     {
         $httpMethod = $_SERVER['REQUEST_METHOD'];
         $uri = rawurldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
