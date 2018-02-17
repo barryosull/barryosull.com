@@ -80,4 +80,9 @@ class HttpResponder extends Responder
             echo $this->payload;
         }
     }
+
+    public function getStatusCode(): int
+    {
+        return $this->statusCode;
+    }
 }
