@@ -8,4 +8,4 @@ require __DIR__ . '/../src/bootstrap.php';
 
 $config = require __DIR__.'/../src/config.php';
 $blog = new Nekudo\ShinyBlog\ShinyBlog($config);
-$blog->run();
+$blog->run()->respond();

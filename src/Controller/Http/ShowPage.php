@@ -40,5 +40,6 @@ class ShowPage extends BaseAction
         $this->responder->assign('page', $page);
         $this->responder->assign('navActive', $pageAlias);
         $this->responder->__invoke();
+        return $this->responder;
     }
 }

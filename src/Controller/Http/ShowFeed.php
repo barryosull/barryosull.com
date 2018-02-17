@@ -39,8 +39,10 @@ class ShowFeed extends BaseAction
             $this->responder->setChannelLink($this->domain->getFeedUrlPath($category));
             $this->responder->addArticles($articles);
             $this->responder->__invoke();
+            return $this->responder;
         } catch (NotFoundException $e) {
             $this->responder->notFound($e->getMessage());
+            return $this->responder;
         }
     }
 }

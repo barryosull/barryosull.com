@@ -33,7 +33,6 @@ class HttpResponder extends Responder
     {
         $this->payload = $payload;
         $this->statusCode = 200;
-        $this->respond();
     }
 
     /**
@@ -45,7 +44,6 @@ class HttpResponder extends Responder
     {
         $this->payload = $payload;
         $this->statusCode = 404;
-        $this->respond();
     }
 
     /**
@@ -57,7 +55,6 @@ class HttpResponder extends Responder
     {
         $this->payload = $payload;
         $this->statusCode = 405;
-        $this->respond();
     }
 
     /**
@@ -69,13 +66,12 @@ class HttpResponder extends Responder
     {
         $this->payload = $payload;
         $this->statusCode = 500;
-        $this->respond();
     }
 
     /**
      * Echos out the response header and content.
      */
-    protected function respond()
+    public function respond()
     {
         $statusMessage = $this->statusMessages[$this->statusCode];
         $header = sprintf('HTTP/1.1 %d %s', $this->statusCode, $statusMessage);

@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Nekudo\ShinyBlog;
 
 use Exception;
+use Nekudo\ShinyBlog\Responder\Responder;
 use RuntimeException;
 use FastRoute;
 use FastRoute\RouteCollector;
@@ -35,16 +36,17 @@ class ShinyBlog
     /**
      * ShinyBlog main method.
      * Dispatches and handles requests.
-     * @param CacheInterface $cache
+     * @return HttpResponder
      */
-    public function run()
+    public function run(): HttpResponder
     {
         try {
             $this->setRoutes();
-            $this->dispatch();
+            return $this->dispatch();
         } catch (Exception $e) {
             $responder = new HttpResponder($this->config);
             $responder->error($e->getMessage());
+            return $responder;
         }
     }
 
@@ -71,7 +73,7 @@ class ShinyBlog
     /**
      * Tries to find a route matching the current request. If found the defined action is called.
      */
-    protected function dispatch()
+    protected function dispatch(): HttpResponder
     {
         $httpMethod = $_SERVER['REQUEST_METHOD'];
         $uri = rawurldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
@@ -82,20 +84,21 @@ class ShinyBlog
         switch ($routeInfo[0]) {
             case FastRoute\Dispatcher::NOT_FOUND:
                 $responder = new NotFoundResponder($this->config);
-                $responder->__invoke();
+                $response = $responder->__invoke();
                 break;
             case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
                 $responder = new HttpResponder($this->config);
-                $responder->methodNotAllowed();
+                $response = $responder->methodNotAllowed();
                 break;
             case FastRoute\Dispatcher::FOUND:
                 $handler = $routeInfo[1];
                 $arguments = $routeInfo[2];
-                $this->runAction($handler, $arguments);
+                $response = $this->runAction($handler, $arguments);
                 break;
             default:
                 throw new RuntimeException('Could not dispatch request.');
         }
+        return $response;
     }
 
     /**
@@ -103,8 +106,9 @@ class ShinyBlog
      *
      * @param string $actionName
      * @param array $arguments
+     * @return Responder
      */
-    protected function runAction(string $actionName, array $arguments = [])
+    protected function runAction(string $actionName, array $arguments = []): HttpResponder
     {
         $actionNamespace = "\\Nekudo\\ShinyBlog\\Controller\\Http";
         $actionController = "Show".ucfirst($actionName);
@@ -116,6 +120,6 @@ class ShinyBlog
         }
 
         $action = new $actionClassPath($this->config);
-        $action->__invoke($arguments);
+        return $action->__invoke($arguments);
     }
 }

@@ -49,6 +49,7 @@ class ShowBlog extends BaseAction
             $this->responder->assign('navActive', 'blog');
             $this->responder->assign('showTitle', ($page < 2));
             $this->responder->__invoke();
+            return $this->responder;
         } catch (NotFoundException $e) {
             $responder = new NotFoundResponder($this->config);
             $responder->assign('info', $e->getMessage());

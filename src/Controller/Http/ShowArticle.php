@@ -44,10 +44,12 @@ class ShowArticle extends BaseAction
             $this->responder->assign('article', $article);
             $this->responder->assign('navActive', 'blog');
             $this->responder->__invoke();
+            return $this->responder;
         } catch (NotFoundException $e) {
             $responder = new NotFoundResponder($this->config);
             $responder->assign('info', $e->getMessage());
             $responder->__invoke();
+            return $responder;
         }
     }
 }

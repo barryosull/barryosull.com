@@ -31,6 +31,7 @@ class ShowSitemap extends BaseAction
         $this->addArticlesToSitemap();
         $this->addPagesToSitemap();
         $this->responder->__invoke();
+        return $this->responder;
     }
 
     /**
