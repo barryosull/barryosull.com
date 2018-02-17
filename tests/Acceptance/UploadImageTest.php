@@ -1,36 +1,34 @@
-<?php
+<?php namespace Tests\Acceptance;
 
-const SCRIPT_DIR = __DIR__ . "/../scripts";
-
-function TestCanUploadLocalImage()
+class UploadImageTest extends \PHPUnit\Framework\TestCase
 {
-    $test_image = __DIR__ . "/assets/image.jpg";
+    const SCRIPT_DIR = __DIR__ . "/../../scripts";
 
-    $last_line = system("php ".SCRIPT_DIR."/upload-image.php $test_image image-upload-test");
+    function test_can_upload_local_image()
+    {
+        $test_image = __DIR__ . "/../assets/image.jpg";
 
-    $url = str_replace("URL: ", "", $last_line);
+        $last_line = system("php ".self::SCRIPT_DIR."/upload-image.php $test_image image-upload-test");
 
-    if (file_get_contents($url) === false) {
-        throw new \Exception("UploadLocalImage: Cannot read image '$url', inaccessible");
+        $url = str_replace("URL: ", "", $last_line);
+
+        $this->assertTrue(
+            file_get_contents($url) !== false,
+            "UploadLocalImage: Cannot read image '$url', inaccessible"
+        );
     }
 
-    echo "Image is URL readable\n";
-}
+    function test_can_upload_remote_image()
+    {
+        $test_image = "http://barryosull.com/images/image-upload-test.jpg";
 
-function TestCanUploadRemoteImage()
-{
-    $test_image = "http://barryosull.com/images/image-upload-test.jpg";
+        $last_line = system("php ".self::SCRIPT_DIR."/upload-image.php $test_image image-remote-test");
 
-    $last_line = system("php ".SCRIPT_DIR."/upload-image.php $test_image image-remote-test");
+        $url = str_replace("URL: ", "", $last_line);
 
-    $url = str_replace("URL: ", "", $last_line);
-
-    if (file_get_contents($url) === false) {
-        throw new \Exception("TestCanUploadRemoteImage: Cannot read image '$url', inaccessible");
+        $this->assertTrue(
+            file_get_contents($url) !== false,
+            "TestCanUploadRemoteImage: Cannot read image '$url', inaccessible"
+        );
     }
-
-    echo "Image is URL readable\n";
 }
-
-TestCanUploadLocalImage();
-TestCanUploadRemoteImage();
