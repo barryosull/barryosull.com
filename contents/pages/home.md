@@ -34,6 +34,9 @@ date : 2018-01-07
 | ---------------- | ------------------------- |
 | [Projection Building Blocks: What you'll need to build projections](/blog/projection-building-blocks-what-you-ll-need-to-build-projections) | [The Projectionist: System for running projectors and keeping track of their position](https://github.com/barryosull/the-projectionist) |
 
+# Next Event
+[PHPDublin Feb 2018 - Workshop on Using Interfaces Effectively](https://www.meetup.com/PHP-Dublin/events/247509662/)
+
 # About me
 I am a software developer and solutions architect from Ireland, I enjoy writing software and designing solutions to real problems.
 
