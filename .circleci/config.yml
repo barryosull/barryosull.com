@@ -29,5 +29,7 @@ jobs:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
 
+      - run: cp .env.example .env
+
       # run tests!
       - run: ./vendor/bin/phpunit tests
