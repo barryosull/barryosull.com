@@ -18,7 +18,7 @@ use FastRoute;
 use FastRoute\RouteCollector;
 use Nekudo\ShinyBlog\Responder\HttpResponder;
 use Nekudo\ShinyBlog\Responder\NotFoundResponder;
-use Psr\SimpleCache\CacheInterface;;
+use Symfony\Component\Cache\Simple\FilesystemCache;
 
 class ShinyBlog
 {
@@ -42,12 +42,13 @@ class ShinyBlog
     {
         try {
             $this->setRoutes();
-            return $this->dispatch();
+            $response =  $this->dispatch();
         } catch (Exception $e) {
-            $responder = new HttpResponder($this->config);
-            $responder->error($e->getMessage());
-            return $responder;
+            $response = new HttpResponder($this->config);
+            $response->error($e->getMessage());
         }
+
+        return $response;
     }
 
     /**
@@ -77,6 +78,25 @@ class ShinyBlog
     {
         $httpMethod = $_SERVER['REQUEST_METHOD'];
         $uri = rawurldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+
+        $cache = new FilesystemCache();
+
+        $key = "$httpMethod ".str_replace("/", ".", $uri);
+
+        if ($cache->has($key)) {
+            $serialised = $cache->get($key);
+            return unserialize($serialised);
+        }
+
+        $response = $this->dispathUri($httpMethod, $uri);
+
+        $cache->set($key, serialize($response));
+
+        return $response;
+    }
+
+    private function dispathUri($httpMethod, $uri): HttpResponder
+    {
         $routeInfo = $this->dispatcher->dispatch($httpMethod, $uri);
         if (!isset($routeInfo[0])) {
             throw new RuntimeException('Could not dispatch request.');
