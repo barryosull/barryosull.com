@@ -42,7 +42,9 @@ class ShinyBlog
     {
         try {
             $this->setRoutes();
-            $response =  $this->dispatch();
+            $httpMethod = $_SERVER['REQUEST_METHOD'];
+            $uri = rawurldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+            $response =  $this->dispatch($httpMethod, $uri);
         } catch (Exception $e) {
             $response = new HttpResponder($this->config);
             $response->error($e->getMessage());
@@ -71,15 +73,11 @@ class ShinyBlog
         });
     }
 
-    /**
-     * Tries to find a route matching the current request. If found the defined action is called.
-     */
-    protected function dispatch(): HttpResponder
+    // Not currently used
+    // TODO: Figure out why cache clearning isn't working
+    protected function dispatchWithCache(string $httpMethod, string $uri): HttpResponder
     {
-        $httpMethod = $_SERVER['REQUEST_METHOD'];
-        $uri = rawurldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
-
-        $cache = new FilesystemCache();
+        $cache = new FilesystemCache('http.response');
 
         $key = "$httpMethod ".str_replace("/", ".", $uri);
 
@@ -88,14 +86,14 @@ class ShinyBlog
             return unserialize($serialised);
         }
 
-        $response = $this->dispathUri($httpMethod, $uri);
+        $response = $this->dispatch($httpMethod, $uri);
 
         $cache->set($key, serialize($response));
 
         return $response;
     }
 
-    private function dispathUri($httpMethod, $uri): HttpResponder
+    protected function dispatch(string $httpMethod, string $uri): HttpResponder
     {
         $routeInfo = $this->dispatcher->dispatch($httpMethod, $uri);
         if (!isset($routeInfo[0])) {

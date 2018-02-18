@@ -2,7 +2,7 @@
 title: "Event Granularity: Modelling events in event driven applications"
 published: true
 description: An exploration of event granularity, with some examples of how we can get it wrong, and figured out how to make it right.
-tags: event driven, architecture2
+tags: event driven, architecture
 cover_image: https://thepracticaldev.s3.amazonaws.com/i/fyx1lmzg95nn3q36dthj.jpg
 ---
 Interested in building an event driven application? If so there's one problem that will rear it's head pretty early; how big or small do you make your events?
