@@ -13,7 +13,6 @@ namespace Nekudo\ShinyBlog;
 
 use Exception;
 use Nekudo\ShinyBlog\Responder\Responder;
-use Nekudo\ShinyBlog\Services\FileCache;
 use RuntimeException;
 use FastRoute;
 use FastRoute\RouteCollector;
@@ -28,12 +27,9 @@ class ShinyBlog
     /** @var FastRoute\Dispatcher $dispatcher */
     protected $dispatcher;
 
-    private $cache;
-
     public function __construct(array $config)
     {
         $this->config = $config;
-        $this->cache = new FileCache();
     }
 
     /**
