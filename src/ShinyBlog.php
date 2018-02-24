@@ -47,7 +47,7 @@ class ShinyBlog
             $this->setRoutes();
             $httpMethod = $_SERVER['REQUEST_METHOD'];
             $uri = rawurldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
-            $response =  $this->dispatchWithCache($httpMethod, $uri);
+            $response =  $this->dispatch($httpMethod, $uri);
         } catch (Exception $e) {
             $response = new HttpResponder($this->config);
             $response->error($e->getMessage());
@@ -76,8 +76,6 @@ class ShinyBlog
         });
     }
 
-    // Not currently used
-    // TODO: Figure out why cache clearning isn't working
     protected function dispatchWithCache(string $httpMethod, string $uri): HttpResponder
     {
         $key = "[$httpMethod]".str_replace("/", ".", $uri);
