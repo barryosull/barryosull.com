@@ -76,23 +76,6 @@ class ShinyBlog
         });
     }
 
-    protected function dispatchWithCache(string $httpMethod, string $uri): HttpResponder
-    {
-        $key = "[$httpMethod]".str_replace("/", ".", $uri);
-
-        $cached = $this->cache->get($key);
-
-        if ($cached) {
-            return $cached;
-        }
-
-        $response = $this->dispatch($httpMethod, $uri);
-
-        $this->cache->set($key, $response);
-
-        return $response;
-    }
-
     protected function dispatch(string $httpMethod, string $uri): HttpResponder
     {
         $routeInfo = $this->dispatcher->dispatch($httpMethod, $uri);
