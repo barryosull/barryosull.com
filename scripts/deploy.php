@@ -1,8 +1,8 @@
 <?php
 
-use Symfony\Component\Cache\Simple\FilesystemCache;
-
 require __DIR__ . '/../src/bootstrap.php';
+
+use Symfony\Component\Cache\Simple\FilesystemCache;
 
 $host = getenv('REMOTE_HOST');
 

@@ -2,15 +2,10 @@
 
 require_once __DIR__."/vendor/autoload.php";
 
-use Symfony\Component\Cache\Simple\FilesystemCache;
+use Nekudo\ShinyBlog\Services\FileCache;
 
-$is_cleared = (new FilesystemCache('http.response'))->clear();
+(new FileCache())->clear();
 
-if ($is_cleared) {
-    echo "FileCache cleared\n";
-    return 0;
-}
-
-echo "Error: FileCache clearing failed, please check log";
-return 1;
+echo "FileCache cleared\n";
+return 0;
 

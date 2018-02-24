@@ -16,6 +16,9 @@
 **.DS_Store
 /vendor/
 
+/storage/*
+!/storage/.gitkeep
+
 .env
 
 inprogress-upload.jpg

@@ -13,12 +13,12 @@ namespace Nekudo\ShinyBlog;
 
 use Exception;
 use Nekudo\ShinyBlog\Responder\Responder;
+use Nekudo\ShinyBlog\Services\FileCache;
 use RuntimeException;
 use FastRoute;
 use FastRoute\RouteCollector;
 use Nekudo\ShinyBlog\Responder\HttpResponder;
 use Nekudo\ShinyBlog\Responder\NotFoundResponder;
-use Symfony\Component\Cache\Simple\FilesystemCache;
 
 class ShinyBlog
 {
@@ -28,9 +28,12 @@ class ShinyBlog
     /** @var FastRoute\Dispatcher $dispatcher */
     protected $dispatcher;
 
+    private $cache;
+
     public function __construct(array $config)
     {
         $this->config = $config;
+        $this->cache = new FileCache();
     }
 
     /**
@@ -44,7 +47,7 @@ class ShinyBlog
             $this->setRoutes();
             $httpMethod = $_SERVER['REQUEST_METHOD'];
             $uri = rawurldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
-            $response =  $this->dispatch($httpMethod, $uri);
+            $response =  $this->dispatchWithCache($httpMethod, $uri);
         } catch (Exception $e) {
             $response = new HttpResponder($this->config);
             $response->error($e->getMessage());
@@ -77,18 +80,17 @@ class ShinyBlog
     // TODO: Figure out why cache clearning isn't working
     protected function dispatchWithCache(string $httpMethod, string $uri): HttpResponder
     {
-        $cache = new FilesystemCache('http.response');
+        $key = "[$httpMethod]".str_replace("/", ".", $uri);
 
-        $key = "$httpMethod ".str_replace("/", ".", $uri);
+        $cached = $this->cache->get($key);
 
-        if ($cache->has($key)) {
-            $serialised = $cache->get($key);
-            return unserialize($serialised);
+        if ($cached) {
+            return $cached;
         }
 
         $response = $this->dispatch($httpMethod, $uri);
 
-        $cache->set($key, serialize($response));
+        $this->cache->set($key, $response);
 
         return $response;
     }
