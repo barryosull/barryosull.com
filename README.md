@@ -44,11 +44,9 @@ Done:
 - Added categories to blog
 - Added favicon
 - Switched to HTTPs
+- Converted action/responder so they return a response OBJ, instead of echoing headers/content
 
 Next:
-- Add page caching
-    - Convert action/responder so they return a response OBJ, instead of echoing headers/content
-    - Add caching to dispatcher layer
 - Better deploy scripts, what I have currently is crap
 - Make annotations persistent
 - Add basic login for annotations feature

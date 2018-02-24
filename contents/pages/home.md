@@ -34,15 +34,17 @@ date : 2018-01-07
 | ---------------- | ------------------------- |
 | [Projection Building Blocks: What you'll need to build projections](/blog/projection-building-blocks-what-you-ll-need-to-build-projections) | [The Projectionist: System for running projectors and keeping track of their position](https://github.com/barryosull/the-projectionist) |
 
-# Next Event
+# Last Event
 [PHPDublin Feb 2018 - Workshop on Using Interfaces Effectively](https://www.meetup.com/PHP-Dublin/events/247509662/)
+I ran a workshop on using interfaces effectively. Went very smoothly and attendees got a lot of value from it. 
+> "Wow, Barry had much to share and the workshop was a great learning experience." - André Breier
 
 # About me
 I am a software developer and solutions architect from Ireland, I enjoy writing software and designing solutions to real problems.
 
 My development/leading/training style is centered around best practices, such as automated tests, continuous integration, code reviews, documentation, clean architecture and consistent, maintainable code. I believe that a culture focussed on training and upskilling leads to a better dev team and a better product.
 
-In my spare time I contribute to open source, [write articles](/blog), give [talks](/talks) on software dev, and also run [PHPDublin](https://www.meetup.com/PHP-Dublin/).
+In my spare time I contribute to open source, [write articles](/blog), [give talks](/talks) on software dev, and also run [PHPDublin](https://www.meetup.com/PHP-Dublin/).
 
 If you'd like to contact me about opportunities, drop me <a href="mailto:contact@barryosull.com">an email.</a>
 
