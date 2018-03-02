@@ -30,9 +30,10 @@ date : 2018-01-07
     <div style="clear:both"></div>
 </div>
 
-| Featured Article | Featured Project |
-| ---------------- | ------------------------- |
-| [Projection Building Blocks: What you'll need to build projections](/blog/projection-building-blocks-what-you-ll-need-to-build-projections) | [The Projectionist: System for running projectors and keeping track of their position](https://github.com/barryosull/the-projectionist) |
+# Featured
+| Talk | Article | Project | 
+| ---------------- | | ---------------- | ------------------------- |
+| [Using Interfaces Effectively](https://www.youtube.com/watch?v=5ZsTXTE52mE&t=16s) | [Projection Building Blocks: What you'll need to build projections](/blog/projection-building-blocks-what-you-ll-need-to-build-projections) | [The Projectionist: System for running projectors and keeping track of their position](https://github.com/barryosull/the-projectionist) |
 
 # Last Event
 [PHPDublin Feb 2018 - Workshop on Using Interfaces Effectively](https://www.meetup.com/PHP-Dublin/events/247509662/)
