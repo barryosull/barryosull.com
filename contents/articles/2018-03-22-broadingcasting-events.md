@@ -1,12 +1,9 @@
 ---
 title: "Broadcasting events in PHP"
 published: false
-description: When it comes to building and playing projetors, how quickly should you process events and what are the tradeoffs
+description: "When it comes to building and playing projetors, how quickly should you process events and what are the trade-offs"
 tags: event sourcing
-
-
-Worse, if 
-(Ok, technially they can, but it makes the entire system brittle).
+---
 
 Blocking:
 Immediate is blocking, and eventual is non blocking. Ie. With immediate you have to wait for all events to be processed before you can complete a request, with eventual you only care about storing the eve

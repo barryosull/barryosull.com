@@ -1,7 +1,7 @@
 ---
 title: "Immediate vs eventual consistency"
 published: false
-description: When it comes to building and playing projetcors, how quickly should you process events and what are the tradeoffs
+description: "When it comes to building and playing projectors, how quickly should you process events and what are the trade-offs"
 tags: event sourcing
 ---
 In the last article we looked at the building blocks of projectors. So assuming we have events, projectors, and a projectionist, how do we trigger the projectionist to play events into the projectors? Well, before we can dig into the technologies, we need to understand how we want this system to work. The biggest consideration being, are events processed immediately or not?
@@ -50,5 +50,7 @@ At this stage it should be clear that there's a tradeoff between the two. Immedi
 
 > Protip: When running acceptance tests, make all your projectors immediately consistent, this makes it easier to spot errors during tests and makes things a lot less complicated to debug
 
-Personally, I opt for Immediate Consistency when dealing with domain projections (i.e. projections required to validate domain wide business constraints). To do this, I store the events and the domain projection dataset in the same type of datastore, wrapping the entire process in a transaction to make rollbacks trivial. For everything I use Eventual Consistency as it's makes building and maintaining the system much easier.
+Personally, I opt for Immediate Consistency when dealing with domain projections (i.e. projections required to validate domain wide business constraints). To do this, I store the events and the domain projection in the same datastore, wrapping the entire process in a transaction to make rollbacks trivial. For everything else I use mastercard, I mean Eventual Consistency, as it's makes building and maintaining the system easier to manage.
+
+What about you, do you opt for immediate or eventual consistency? What kind of issues have you had and how have you solved them? Let me know in the comments!
 
