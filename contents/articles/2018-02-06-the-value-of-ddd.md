@@ -1,7 +1,7 @@
 ---
 title: "The value of DDD"
 published: false
-description: 
+description: ""
 tags: management, design patterns, growth
 cover_image: http://barryosull.com/images/ff21e4a8-0140-4d27-9172-46e19b3dcd33.jpg
 ---
