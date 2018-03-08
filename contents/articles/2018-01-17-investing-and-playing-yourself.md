@@ -7,9 +7,10 @@ tags:
 
 This article is the extension of a rant I had with some friends recently.
 
+This article is about a culture I've seen in the startup world. It's one that's not properly addressed, it's mostly danced around, and I think it's responsible for a lot of the dead companies out there.
+
 It's about the game of investment, why it's played, and how it's eating itself. This article focuses on what it's like to invest in Ireland and England, but I'd wager it's applicable everywhere, as the problem is emergent in any investment system.
 
-This article is about a cultur I've seen in the startup world. It's one that's not properly addressed, it's mostly danced around, and I think it's responsible for a lot of the dead companies out there.
 
 # Let's talk about building a B2B business:
 If you want to build a scalable business from scratch, there are a couple of steps that you pretty much have to follow. 

@@ -39,11 +39,12 @@ class ShinyBlog
      */
     public function run(): HttpResponder
     {
+        $httpMethod = $_SERVER['REQUEST_METHOD'];
+        $uri = rawurldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+
         try {
             $this->setRoutes();
-            $httpMethod = $_SERVER['REQUEST_METHOD'];
-            $uri = rawurldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
-            $response =  $this->dispatch($httpMethod, $uri);
+            $response = $this->dispatch($httpMethod, $uri);
         } catch (Exception $e) {
             $response = new HttpResponder($this->config);
             $response->error($e->getMessage());
@@ -96,6 +97,11 @@ class ShinyBlog
                 throw new RuntimeException('Could not dispatch request.');
         }
         return $response;
+    }
+
+    private function isAnnotationsCall()
+    {
+
     }
 
     /**

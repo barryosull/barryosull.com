@@ -4,9 +4,18 @@
     <link rel="stylesheet" href="http://assets.annotateit.org/annotator/v1.1.0/annotator.min.css">
 
     <script type="text/javascript">
+
+        var articleSlug = "<?=$article->getSlug()?>";
+
         jQuery(function ($) {
-            $('.article').annotator();
+            var annotator = $('.article').annotator();
+
+            annotator.annotator('addPlugin', 'Store', {
+                prefix: '/api/annotator/'+articleSlug,
+            });
         });
+
+
     </script>
 
 <?php endif; ?>
