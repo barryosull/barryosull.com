@@ -4,7 +4,7 @@ published: false
 description: "When it comes to building and playing projectors, how quickly should you process events and what are the trade-offs"
 tags: event sourcing
 ---
-In the last article we looked at the building blocks of projectors. So assuming we have events, projectors, and a projectionist, how do we trigger the projectionist to play events into the projectors? Well, before we can dig into the technologies, we need to understand how we want this system to work. The biggest consideration being, are events processed immediately or not?
+In the last article we looked at the building blocks of projectors. So assuming we have events, projectors, and a projectionist, how do we trigger the projectionist to play events into the projectors? Well not so fast! Before we can dig into the technologies, we need to understand how we want this system to work. The biggest consideration being, are events processed immediately or eventually?
 
 # Immediate vs Eventual Consistency
 When it comes to projections there are two options, immediate or eventual consistency. With immediate, events are processed by projectors as soon as they happen. With eventual, events get processed in a different transaction by a different process at a later time (usually a split second later). Immediate is an all or nothing operation, if anything goes wrong then the entire process is halted, no events are stored and no events are processed. Eventual is a staggered operation, events can get stored successfully, but each projector can fail independently of each other at a later time.
