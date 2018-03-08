@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryosull/annotator-php",
-                "reference": "bfca9956fbdb27b26931f2267f36521c73b8146e"
+                "reference": "f649425d46584d7d7b3009d8807ad1164ab3da35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryosull/annotator-php/zipball/bfca9956fbdb27b26931f2267f36521c73b8146e",
-                "reference": "bfca9956fbdb27b26931f2267f36521c73b8146e",
+                "url": "https://api.github.com/repos/barryosull/annotator-php/zipball/f649425d46584d7d7b3009d8807ad1164ab3da35",
+                "reference": "f649425d46584d7d7b3009d8807ad1164ab3da35",
                 "shasum": ""
             },
             "require": {
@@ -53,7 +53,7 @@
                 }
             ],
             "description": "Annotator store built on Silex and Flysystem",
-            "time": "2018-03-08 16:42:24"
+            "time": "2018-03-08 16:54:26"
         },
         {
             "name": "cocur/slugify",
