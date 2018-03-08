@@ -4,16 +4,22 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "72b96f57dda2602a3c5af18efb8c2e7b",
-    "content-hash": "c9371d337ca80ccb46deb4a95270491b",
+    "hash": "b991c94d285b97d6520e1931530f7c88",
+    "content-hash": "42ef8b8305aebb20d79fbc1b59ee7301",
     "packages": [
         {
             "name": "barryosull/annotator-php",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git@github.com:barryosull/annotator-php.git",
-                "reference": "4d7cfd77ff98ed18b6cc016949249d5378aed1e5"
+                "url": "https://github.com/barryosull/annotator-php",
+                "reference": "bfca9956fbdb27b26931f2267f36521c73b8146e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/barryosull/annotator-php/zipball/bfca9956fbdb27b26931f2267f36521c73b8146e",
+                "reference": "bfca9956fbdb27b26931f2267f36521c73b8146e",
+                "shasum": ""
             },
             "require": {
                 "f21/jwt": "*",
@@ -47,7 +53,7 @@
                 }
             ],
             "description": "Annotator store built on Silex and Flysystem",
-            "time": "2018-03-08 15:36:56"
+            "time": "2018-03-08 16:42:24"
         },
         {
             "name": "cocur/slugify",

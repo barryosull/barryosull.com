@@ -16,8 +16,8 @@
     },
     "repositories": [
         {
-            "type": "git",
-            "url": "git@github.com:barryosull/annotator-php.git",
+            "type": "vcs",
+            "url": "https://github.com/barryosull/annotator-php",
             "no-api": true
         }
     ],
