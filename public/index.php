@@ -9,7 +9,15 @@ function isAnnotationsApiCall()
     return strpos($_SERVER['REQUEST_URI'], ANNOTATION_API_URI) === 0;
 }
 
-if (isAnnotationsApiCall()) {
+function bootBlog()
+{
+    $config = require __DIR__.'/../src/config.php';
+    $blog = new Nekudo\ShinyBlog\ShinyBlog($config);
+    $blog->run()->respond();
+}
+
+function bootAnnotationAPI()
+{
     $annotationApi = new \Annotator\Flysystem\App(
         ANNOTATION_API_URI,
         __DIR__."/../storage/annotations"
@@ -18,6 +26,11 @@ if (isAnnotationsApiCall()) {
     return;
 }
 
-$config = require __DIR__.'/../src/config.php';
-$blog = new Nekudo\ShinyBlog\ShinyBlog($config);
-$blog->run()->respond();
+if (isAnnotationsApiCall()) {
+    bootAnnotationAPI();
+} else {
+    bootBlog();
+}
+
+
+
