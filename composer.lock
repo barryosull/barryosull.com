@@ -13,16 +13,15 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryosull/annotator-php",
-                "reference": "f649425d46584d7d7b3009d8807ad1164ab3da35"
+                "reference": "04e6a0af37feabc577680123bb245bbf7d65234b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryosull/annotator-php/zipball/f649425d46584d7d7b3009d8807ad1164ab3da35",
-                "reference": "f649425d46584d7d7b3009d8807ad1164ab3da35",
+                "url": "https://api.github.com/repos/barryosull/annotator-php/zipball/04e6a0af37feabc577680123bb245bbf7d65234b",
+                "reference": "04e6a0af37feabc577680123bb245bbf7d65234b",
                 "shasum": ""
             },
             "require": {
-                "f21/jwt": "*",
                 "league/flysystem": "^1.0",
                 "league/flysystem-memory": "^1.0",
                 "ramsey/uuid": "^3.7",
@@ -53,7 +52,7 @@
                 }
             ],
             "description": "Annotator store built on Silex and Flysystem",
-            "time": "2018-03-08 16:54:26"
+            "time": "2018-03-08 17:03:28"
         },
         {
             "name": "cocur/slugify",
@@ -278,49 +277,6 @@
             "time": "2015-11-01 10:19:22"
         },
         {
-            "name": "f21/jwt",
-            "version": "2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/F21/jwt.git",
-                "reference": "a327cf9052df8f9f97728ca0b5fa78a8231b79b6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/F21/jwt/zipball/a327cf9052df8f9f97728ca0b5fa78a8231b79b6",
-                "reference": "a327cf9052df8f9f97728ca0b5fa78a8231b79b6",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.8"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "JWT": "JWT/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Francis Chuang",
-                    "email": "francis.chuang@gmail.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "JWT (JSON Web Tokens) for PHP",
-            "homepage": "https://github.com/F21/jwt",
-            "keywords": [
-                "json web tokens",
-                "jwt"
-            ],
-            "abandoned": "lcobucci/jwt",
-            "time": "2015-05-01 12:21:32"
-        },
-        {
             "name": "guzzlehttp/guzzle",
             "version": "6.3.0",
             "source": {
@@ -503,7 +459,7 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v5.6.9",
+            "version": "v5.6.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
@@ -547,16 +503,16 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v5.6.9",
+            "version": "v5.6.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "c74e5a0a4cdd599f65a615398041cc1be19cc86f"
+                "reference": "259f6f17a11b0379340ec5311fcba27bc2a04070"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/c74e5a0a4cdd599f65a615398041cc1be19cc86f",
-                "reference": "c74e5a0a4cdd599f65a615398041cc1be19cc86f",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/259f6f17a11b0379340ec5311fcba27bc2a04070",
+                "reference": "259f6f17a11b0379340ec5311fcba27bc2a04070",
                 "shasum": ""
             },
             "require": {
@@ -600,7 +556,7 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
-            "time": "2018-03-04 15:11:54"
+            "time": "2018-03-09 16:52:54"
         },
         {
             "name": "league/flysystem",
@@ -739,20 +695,20 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.23.0",
+            "version": "1.24.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "4a874a39b2b00d7e0146cd46fab6f47c41ce9e65"
+                "reference": "ef12cbd8ba5ce624f0a6a95e0850c4cc13e71e41"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/4a874a39b2b00d7e0146cd46fab6f47c41ce9e65",
-                "reference": "4a874a39b2b00d7e0146cd46fab6f47c41ce9e65",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/ef12cbd8ba5ce624f0a6a95e0850c4cc13e71e41",
+                "reference": "ef12cbd8ba5ce624f0a6a95e0850c4cc13e71e41",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0",
+                "php": ">=5.3.9",
                 "symfony/translation": "~2.6 || ~3.0 || ~4.0"
             },
             "require-dev": {
@@ -788,7 +744,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2018-02-28 09:22:05"
+            "time": "2018-03-09 15:49:34"
         },
         {
             "name": "nikic/fast-route",
