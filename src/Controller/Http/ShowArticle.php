@@ -37,7 +37,7 @@ class ShowArticle extends BaseAction
         try {
             $slug = $arguments['slug'];
             $article = $this->domain->getArticleBySlug($slug);
-            $this->responder->setTitle($article->getMetaTitle());
+            $this->responder->setTitle($article->getTitle());
             $this->responder->setDescription($article->getDescription());
             $this->responder->setFeedUrl($this->feedDomain->getFeedUrlPath());
             $this->responder->setIndex($this->domain->getIndex());
