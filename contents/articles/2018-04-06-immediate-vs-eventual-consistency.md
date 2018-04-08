@@ -5,7 +5,7 @@ description: "When it comes to building and playing projectors, when should you 
 tags: event sourcing, architecture, event driven
 cover_image: http://barryosull.com/images/1e92472a-f6d6-444a-ab64-5ba3d659820c.png
 ---
-In the [last article](https://barryosull.com/blog/projection-building-blocks-what-you-ll-need-to-build-projections) we looked at the building blocks of projectors, the backbone of any CQRS/Event Driven system. This article was originally meant to be about implementing projectors, but I realised there was an important question to answer first, one that would shape the solution, "When do we project the events, now, or later?". Turns out this question has far reaching effects, so it's important to dig into it before we go further.
+In the [last article](https://barryosull.com/blog/projection-building-blocks-what-you-ll-need-to-build-projections) we looked at projectors, the backbone of any CQRS/Event Driven system. This article was originally meant to be about implementing projectors, but I realised there was an important question to answer first, one that would shape the solution, "When do we project the events, now, or later?". Turns out this question has far reaching effects, so it's important we dig into it before moving onward.
 
 # Immediate vs Eventual Consistency
 When it comes to projectors there are two choices, immediate or eventual consistency. With immediate, events are processed by projectors as soon as they happen. With eventual, events get processed in a different process at a later time (usually a split second later). 
@@ -16,7 +16,7 @@ Immediate is an all or nothing operation, if anything goes wrong then the entire
 From the above you may think that immediate is the obvious choice, it seems simpler and has less moving parts. Well, that simplicity is an illusion. It turns out immediate is far more complex and the following questions will illustrate why.
 
 ### 1. What happens if one of the projectors has an error?
-Say a projector fails and throws and exception, what do you do? The ideal solution is to roll back all your changes, ie. act like it never happened. This is easy enough if you're using a single DB to store everything (transactions FTW), but if you're using multiple technologies (e.g. Redis/MySQL/MongoDB/etc...) then this problem becomes a lot harder. Do you roll back all of them? How do you manage that? How do you test it? What happens if one of the projectors made an API call that you can't roll back? Hmmm, things just got very complicated.
+Say a projector fails and throws and exception, what do you do? The ideal solution is to roll back all your changes, ie. act like it never happened. This is easy enough if you're using a single DB to store everything (transactions FTW), but if you're using multiple technologies (e.g. Redis/MySQL/MongoDB/etc...) then this problem becomes a lot harder. Do you roll back all of them? How do you manage that? How do you test it? What happens if you make two API calls that you can't roll back? Hmmm, things just got very complicated.
 
 ### 2. What happens if one of the projectors has a temporary error?
 Some errors are temporary. Say you have a projector that connects to an API that's rate limited. 
@@ -26,7 +26,7 @@ Some errors are temporary. Say you have a projector that connects to an API that
 - It makes an API request, you're over the rate limit, so it fails
 - Another user makes a request causing an event
 - The projector tries to process that event
-- It makes an API request, you're now under the limit, so it goes through
+- It makes an API request, you're under the limit, so it goes through
 
 How do you handle this? Do you just accept it and allow processes to fail? Do you force the user to retry the request and hope it works this time? That's not a great user experience and will definitely annoy people.
 
@@ -34,7 +34,7 @@ How do you handle this? Do you just accept it and allow processes to fail? Do yo
 Say one of the projectors performs an expensive process, like connecting to a slow external service (eg. sending an email). With immediate consistency we have to wait for it to complete before we can let the user continue. Worse, if we're using transactions to ensure data integrity across a domain (e.g. email address is unique), then you're potentially slowing down other processes, not just this one. These become bottlenecks that affect the entire system.
 
 ### 4. What happens when you launch a new projector in a running system?
-Even if you opt for immediately consistent projectors, you'll still need some way to play historical events into projectors, otherwise you'll be unable to launch new ones. Once a new projector is added to a running system, it will need to play through all historical events before it can start processing new events. During this time it is eventually consistent, i.e. it's not consistent yet, but it will get there. So no matter what you do, your system will be eventually consistent in some shape or form.
+Even if you opt for immediately consistent projectors, you'll still need some way to play historical events into projectors, otherwise you'll be unable to launch new ones. While new projectors are spinning up, they are not consistent with the live system, but they will be. You can architect the process so that you only release the code when all the projectors have finished (we did this, worked really well), but even so, to do this you had to build the core of an eventually consistent system.
 
 ### 5. What if you need to process events on a different service?
 Ahh, the classic problem of distributed systems. Processing events within a single service can get complicated, but it's nothing compared to immediately processing events on a different service/server. The laziest solution is to force other services to process the events immediately via a synchronous call, but now you've coupled yourself to that system; if it goes down; you go down, and what do you do then? Immediate consistency becomes a lot harder (and next to impossible) once you're communicating with another service, even if it's one you control yourself.
@@ -43,7 +43,7 @@ Ahh, the classic problem of distributed systems. Processing events within a sing
 Now that's we've seen the problems caused by forcing immediate consistency, let's look at how things fare when we take an eventually consistent approach.
 
 ### 1. What happens if one of the projectors has an error?
-That's fine, if there's an error, report it and disable the projector. Once an event has happened, it's happened, so if one projector fails we don't need to roll back the events or the changes to other projectors. Instead we fix the projector, roll out a new release and let it catch up. Once you embrace eventual consistency, problems like this become a lot easier to handle.
+That's fine, if there's an error, report it, maybe disable the projector (depends on the error). Once an event has happened, it's happened, so if one projector fails we don't need to roll back the events or the changes to other projectors. Instead we fix the projector, roll out a new release and let it catch up. Once you embrace eventual consistency, problems like this become a lot easier to handle.
 
 ### 2. What happens if one of the projectors has a temporary error?
 Again, pretty simple. We simply swallow the error and try again. We know the request will eventually get through, we just need to keep sending it. If it's a rate limiting issue, we can throttle the projector, slowing down the speed at which it's processing events. 
@@ -67,7 +67,7 @@ This isn't as crazy as it sounds, in-fact most apps do this all the time and you
 What I'm trying to say is that it really isn't a big deal, apps do this all time and it's very easy to implement, so there's really no reason not to do it.
 
 ## Choosing Immediate or Eventual
-At this stage it should be clear that there's a trade-off between the two. Immediate is easier to reason about, as it's an all or nothing operation, but it opens the door to lots of potential problems, especially once you move to a distributed architecture. Eventual on the other hand gives you more freedom and it scales better, but it makes debugging harder. When deciding which to use, be sure to ask yourself how you'll handle failures. If you're using multiple storage technologies, then you should seriously consider moving to eventual consistency.
+At this stage it should be clear that there's a trade-off between the two. Immediate is easier to reason about, as it's an all or nothing operation, but it opens the door to lots of potential problems, especially once you move to a distributed architecture. Eventual on the other hand gives you more freedom and scalability, but it makes debugging harder. When deciding which to use, be sure to ask yourself how you'll handle failures. If you're using multiple storage technologies or APIs, then you should seriously consider moving to eventual consistency.
 
 > Protip: When running acceptance tests, run all your projectors as immediately consistent, this makes it easier to spot errors during tests and makes things a lot less complicated to debug.
 
