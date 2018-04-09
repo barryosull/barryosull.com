@@ -36,8 +36,12 @@
             <meta name="twitter:card" content="summary" />
             <meta name="twitter:site" content="@barryosull" />
             <meta name="twitter:title" content="<?php echo $article->getTitle() ?>" />
-            <meta name="twitter:description" content="View the full article" />
+            <meta name="twitter:description" content="<?php echo $article->getDescription()?>" />
             <meta name="twitter:image" content="<?php echo $article->getCoverImage() ?>" />
+
+            <meta property="og:title" content="<?php echo $article->getTitle() ?>"/>
+            <meta property="og:image" content="<?php echo $article->getCoverImage() ?>" />
+            <meta property="og:description" content="<?php echo $article->getDescription()?>" />
         <?php endif; ?>
 
     </head>
