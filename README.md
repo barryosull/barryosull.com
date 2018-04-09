@@ -47,6 +47,9 @@ Done:
 - Converted action/responder so they return a response OBJ, instead of echoing headers/content
 
 Next:
+- Add comments section
+- Make preview card for Twitter
+- Make preview card for LinkedIn
 - Better deploy scripts, what I have currently is crap
 - Make annotations persistent
 - Add basic login for annotations feature
