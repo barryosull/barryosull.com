@@ -32,6 +32,14 @@
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="theme-color" content="#ffffff">
 
+        <?php if (isset($article)) :?>
+            <meta name="twitter:card" content="summary" />
+            <meta name="twitter:site" content="@barryosull" />
+            <meta name="twitter:title" content="<?php echo $article->getTitle() ?>" />
+            <meta name="twitter:description" content="View the full article" />
+            <meta name="twitter:image" content="<?php echo $article->getCoverImage() ?>" />
+        <?php endif; ?>
+
     </head>
     <body>
         <nav class="topnav">
