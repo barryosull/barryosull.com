@@ -79,10 +79,11 @@ class ShinyBlog
         if (!isset($routeInfo[0])) {
             throw new RuntimeException('Could not dispatch request.');
         }
+
         switch ($routeInfo[0]) {
             case FastRoute\Dispatcher::NOT_FOUND:
-                $responder = new NotFoundResponder($this->config);
-                $response = $responder->__invoke();
+                $response = new NotFoundResponder($this->config);
+                $response();
                 break;
             case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
                 $responder = new HttpResponder($this->config);
@@ -97,11 +98,6 @@ class ShinyBlog
                 throw new RuntimeException('Could not dispatch request.');
         }
         return $response;
-    }
-
-    private function isAnnotationsCall()
-    {
-
     }
 
     /**

@@ -33,17 +33,22 @@ class WebApp
 
     public function startWebServer()
     {
+        if ($this->isRunning()) {
+            return;
+        }
+                
         $this->launchWebServer();
         $this->waitUntilWebServerAcceptsRequests();
         $this->stopWebserverOnShutdown();
     }
+    
+    private function isRunning(): bool
+    {
+        return isset(self::$localWebServerId);
+    }
 
     private function launchWebServer()
     {
-        if (isset(self::$localWebServerId)) {
-            return;
-        }
-
         $command = sprintf(
             'php -S %s -t %s >/dev/null 2>&1 & echo $!',
             self::HOST,
