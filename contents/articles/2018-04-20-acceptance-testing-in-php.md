@@ -5,12 +5,17 @@ description: "WIP"
 tags: testing, PHP
 ---
 
-Acceptance are core to any stable system, they're how you test that it actually works as expected, start to finish. When writing acceptance tests, you'll want to treat the system as a [blackbox](http://softwaretestingfundamentals.com/acceptance-testing/), inputs go in and output go out, that's it. This allows us to prove the application works as expected.
+Acceptance tests are core to any stable system, they're how you ensure that it actually works as expected, start to finish. Personally, I use them to ensure the feature I'm writing works as expected (TDD FTW*). 
 
-If you're building a webapp, this means you'll need to boot up a webserver, configure it, send it HTTP requests and then check the responses. How do you do this in PHP?
+* I'm going to acronym hell for that combo
+
+When writing acceptance tests, it's best to treat the system as a [blackbox](http://softwaretestingfundamentals.com/acceptance-testing/), inputs go in and outputs go out, that's it. This proves our app works and can be interacted with by other systems.
+
+If you're building a webapp, this means you'll need to test HTTP requests. So you'll need to boot up a webserver, configure it, send it HTTP requests and then check the responses. You'll probably have some console commands as well, so you'll also need to write tests for them. And let's not forget checking the database, that's an output afterall. 
+How do you do all this in PHP?
 
 # PHPs Built-in WebServer
-Turns out the web server part is very easy to do, PHP comes with a [web server built in](http://php.net/manual/en/features.commandline.webserver.php) (as of PHP 5.4), simply run `php -S 127.0.0.1:8000` at the entry point for the application.
+First off, it turns out the web server part is very easy, PHP comes with [one built-in](http://php.net/manual/en/features.commandline.webserver.php) (as of PHP 5.4), simply run `php -S 127.0.0.1:8000` at the entry point for the application and you're good to go.
 
 Of course, there's a little more to it than that. As we're using PHPUnit for our tests (because why would you use anything else?), we want to launch the web server from our acceptance tests and then send it requests. We also want the web server to shut down once the tests have completed. 
 
@@ -26,10 +31,16 @@ use GuzzleHttp\Client;
 
 class WebApp
 {
-    const HOST = '127.0.0.1:8000';
-    const ENTRY_POINT = 'public/';
+    private $host;
+    private $entryPoint;
 
     private static $localWebServerId = null;
+    
+    public function __construct(string $host, string $entryPoint) 
+    {
+        $this->host = $host;
+        $this->entryPoint = $entryPoint;
+    }
 
     public function startWebServer()
     {
@@ -51,8 +62,8 @@ class WebApp
     {
         $command = sprintf(
             'php -S %s -t %s >/dev/null 2>&1 & echo $!',
-            self::HOST,
-            __DIR__.'/../../'.self::ENTRY_POINT
+            $this->host,
+            __DIR__.'/../../'.$this->entryPoint
         );
 
         $output = array();
@@ -62,7 +73,7 @@ class WebApp
 
     private function waitUntilWebServerAcceptsRequests()
     {
-        exec('bash '.__DIR__.'/wait-for-it.sh '.self::HOST);
+        exec('bash '.__DIR__.'/wait-for-it.sh '.$this->host);
     }
 
     private function stopWebServerOnShutdown()
@@ -75,18 +86,18 @@ class WebApp
     public function makeClient(): Client
     {
         return new Client([
-            'base_uri' => 'http://'.self::HOST,
+            'base_uri' => 'http://'.$this->host,
             'http_errors' => false,
         ]);
     }
 }
 ```
-This bit of code launches a web server and waits until the server is running and accepting requests, then it registers a shutdown function to kill the web server once all the tests have completed. We're using a script called 'wait-for-it' ([found here](https://github.com/vishnubob/wait-for-it)) that waits for the web server to go live before continuing. This was added because sometimes the tests would start before the server was actually active. We've also ensured that calling `launchWebServer` multiple times won't cause any issues. If there's a web server currently running it just stops.
+This bit of code launches a web server and waits for it to start accepting requests, then it registers a shutdown function to kill the web server once all the tests have completed. We're using a script called 'wait-for-it' ([found here](https://github.com/vishnubob/wait-for-it)) that waits for the web server to go live before continuing. This was added because sometimes the tests would start before the server was actually active. We've also ensured that calling `launchWebServer` multiple times won't cause any issues. If there's a web server currently running it just stops.
 
-Once the server is running you can call `makeClient`, which will create a GuzzleClient configured to send requests to that server. Now you can begin testing.
+Once the server is running you can call `makeClient`, which gives us a http client, specifically a Guzzle one (again, why would you use anything else), configured to send requests to that server. Now you can begin testing HTTP requests.
 
 # Configuration
-We can launch a webserver and send it requests, but how do we configure that application? What database does it use, where does it log errors? You're most likely using environment variables to configure these details (and .env files to store those values). A solution could be to create different .env files for each environment, then loading the right one depending at runtime. This is a bit of a pain in the ass, and thankfully, it is not required.
+We can launch a webserver and send it requests, but how do we configure it? What database does it use, where does it log errors? You're most likely using environment variables to configure these details (and .env files to store those values). A solution could be to create different .env files for each environment, then loading the right one depending at runtime. This is a bit of a pain in the ass, and thankfully, it is not required.
 
 PHPUnit has a config section for environment vars. This will set the variables in the currently running process and the move on. Here's an example.
 
@@ -97,21 +108,24 @@ PHPUnit has a config section for environment vars. This will set the variables i
     <env name="DB_HOST" value="127.0.0.1"/>
     <env name="DB_USER" value="root"/>
     <env name="DB_PASSWORD" value=""/>
+    <!-- Ohh no, my precious DB credentials, please don't hack me! -->
 </php>
 ```
 
-This is where things get interesting, any sub processes created by the parent test process will have access to these env variables. In other words, the web server we launched from our tests will automatically have all these env variables pre-loaded, so we don't have to worry about setting up these vars. It's super handy and makes testing a breeze.
+This is where things get interesting; any sub processes created by the parent test process will have access to these env variables. In other words, the web server we launched from our tests will automatically have all these env variables pre-loaded, so we don't have to worry about setting up these vars. It's super handy and makes testing a breeze.
 
-# CircleCI
-Now we have a web server that's configured for our local machine (through phpunit.xml). That's fine, but what happens when we want to run these acceptance tests on a CI server, such as CircleCI or TravisCI? They won't have the same config details as our local machine, so how do we configure them to work correctly?
+# Continuous Integration
+At this stage we have a web server that's configured for our local tests (through phpunit.xml). That's fine, but what happens when we want to run these acceptance tests on a CI server, such as CircleCI or TravisCI? They won't have the same config details as our local machine, so how do we configure them to work correctly?
 
-Again, it turns out this pretty simple. CircleCI allows you to define environment variables in your config, which it pre-loads into the server. The thing is, the phpunit.xml env vars will not override these values. I.e. If you've already setup the env vars for the database through the CirlceCI yaml, then PHPUnit will leave them as is. That means the above web server will just work on the CI system, no code modification is required.
+Again, it turns out this pretty simple. CircleCI, for example, allows you to define environment variables in your config, which it pre-loads into the server. You see, phpunit.xml env vars will not override existing env values. I.e. If you've already setup the env vars for the database through the CI boot script, then PHPUnit will leave them as is. That means the above web server will just work on the CI system, no code modification is required.
 
 # Console commands
-Of course, not all requests are HTTP, sometimes you'll want to run commands via the console. Again, this is pretty simple, you just call the command via `exec` from within PHPUnit, as you would any other process. This will run the process with the same PHPUnit env vars as the host process, no changes needed.
+Of course, not all requests are HTTP, sometimes you'll want to run commands via the console. How do we configure that? Again, this is pretty simple, we run the command via `exec` from within our test code. Any process started by our tests will inherit the same env vars as the parent, so our app has everything it needs to run, no changes needed.
 
-# Database access (and other services)
-For acceptance tests, you can't always rely on the response of HTTP requests, sometimes you'll need to check the values in the database and make sure they're correct. This is, yet again, very simple. The PHPUnit process has all the env vars loaded for the test DB, so you can just create a PDO instance and run queries against it directly. Same with any other services, be they file storage (s3) or APIs. You can even use the application code for this, injecting these services into your test code, pre-configured, like any other service. Job done.
+# Data storage
+Checking the response usually isn't enough for an acceptance test, you'll also need to check that right data was sent to the database. How we access the DB from within the tests? 
+
+Yet again, this is very simple. The PHPUnit process has access to the env vars, so you can just create a PDO instance and run queries against it directly. Same with any other services, be they file storage (s3) or APIs (though this is trickier, I may need to write about this at some stage). To things even simpler, use your application container (like PHP-DI) to inject these services into your test code already pre-configured. Job done.
 
 # It's that easy
-So it turns out that launching and testing a PHP web app locally is trivial. Not only that, but it's easy to run that same process on a CI system, with little to no changes. There really is no reason not to test your app like it's a blackbox, it's a cheap and effective way to get stability and confidence in your code.
+So it turns out that testing a PHP web app locally is trivial. Not only that, but it's easy to run the exact same same process on a CI system, with little to no changes. At this stage I hope you're seeing the appeal, its so easy to tests your system like it's a blackbox, which is a great way to get stability and confidence in your code. If not, I'd love to hear why. 
