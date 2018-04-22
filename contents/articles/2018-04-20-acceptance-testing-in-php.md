@@ -1,17 +1,15 @@
 ---
-title: "Acceptance tests made easy in PHP"
+title: "Acceptance testing an API made easy in PHP"
 published: false
 description: "WIP"
 tags: testing, PHP
 ---
 
-Acceptance tests are core to any stable system, they're how you make sure it actually works, start to finish. My preference is to write them first, use them a guideline to make sure the feature I'm writing works as expected (TDD FTW*). 
+Acceptance tests are core to any stable system, they're how you make sure it actually works, start to finish (My preference is to write them first, use them a guideline to make sure the feature I'm writing works as expected).
 
-* I'm going to acronym hell for that combo
+When writing acceptance tests, it's best to treat the system as a [blackbox](http://softwaretestingfundamentals.com/acceptance-testing/), inputs go in and outputs go out, that's it. This proves our app works and can be interacted with by other systems. Some frameworks come with this built in, like Laravel, but not every app is written in those frameworks, infact most are not, and they still need to best tested. How do we do this?
 
-When writing acceptance tests, it's best to treat the system as a [blackbox](http://softwaretestingfundamentals.com/acceptance-testing/), inputs go in and outputs go out, that's it. This proves our app works and can be interacted with by other systems.
-
-If you're building a webapp, this means you'll need to test HTTP requests. So you'll need to boot up a webserver, configure it, send it HTTP requests and then check the responses. You'll probably have some console commands as well, so you'll also need to write tests for them. And let's not forget checking the database, that's an output after-all. 
+If you're app is a HTTP driven API, you'll need to test it accepts HTTP requests. So you'll need to boot up a webserver, configure it, send it HTTP requests and then check the responses. You'll probably have some console commands as well, so you'll also need to write tests for them. And let's not forget checking the database, that's an output after-all. 
 How do you do all this in PHP?
 
 # PHPs Built-in WebServer
