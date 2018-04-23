@@ -121,7 +121,7 @@ Again, it turns out this pretty simple. [CircleCI](https://circleci.com/), for e
 # Console commands
 Of course, not all requests are HTTP, sometimes you'll want to run commands via the console. How do we configure that? Again, this is pretty simple, we run the command via `exec` from within our test code. For instance, here's a symfony style command call.
 
-```
+```php
 exec("php bin/console app:create-user");
 ```
 As I said previously, any process started by our tests will inherit the same env vars as the parent, so our app has everything it needs to run via `exec` (or `system` if you prefer), no changes needed.
