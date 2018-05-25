@@ -85,4 +85,9 @@ class HttpResponder extends Responder
     {
         return $this->statusCode;
     }
+
+    public function getBody(): string
+    {
+        return $this->payload;
+    }
 }
