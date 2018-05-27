@@ -14,7 +14,7 @@ class ArticleTest extends TestCase
         $config = require __DIR__.'/../../src/config.php';
         $app = new ShinyBlog($config);
         $response = $app->run();
-        
+
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertContains("<h1>Acceptance testing your PHP app with ease</h1>", $response->getBody());
     }
