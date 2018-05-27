@@ -22,8 +22,6 @@ jobs:
 
       - run: composer install -n --prefer-dist
 
-      - run: /etc/init.d/redis-server restart
-
       - save_cache:
           paths:
             - ./vendor
