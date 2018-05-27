@@ -18,7 +18,6 @@ jobs:
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "composer.json" }}x
-          - v1-dependencies-
 
       - run: composer install -n --prefer-dist
 
