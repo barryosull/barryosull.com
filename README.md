@@ -1,43 +1,45 @@
 # Barry O Sullivan's Blog
-Welcome one and all. This is my blog.
+Welcome one and all to the codebase for my personal site.
 
-It is a simple site that is based on https://github.com/nekudo/shiny_blog, a nice simple Markdown blog.
+This site is an experiment in adapting an existing PHP markdown based blog codebase (this one => https://github.com/nekudo/shiny_blog) to suit my needs.
+
+Basically, I've written plently of blogs, so instead I wanted to see if I could navigate someone else's code and add functionality to it. The results were mixed. The site works and I've added tests for what's important, but the existing code isn't great and is hard to navigate/modify. If I have the time, I'll rewrite the domain logic to make it simpler, remove all the abstract class noise for example. 
 
 ## TODOs
-The list of things I'd like to do in this blog to make it usable
+The list of things I'd like to do in this blog to make it more usable
 
-Done:
-- Blog listing cuts
-- Get vendor folder working with composer
-- Make date optional
+### Done:
+- Blog listings show an exert of the article
+- `vendor` folder is no longer part of the repo, now uses composer properly
+- Made article date optional
 - Default author to me
-- Jekyll parser
-  -  Clean up 
+- Use Jekyll style document headers (like dev.to)
+  -  Cleaned up code 
 - Code syntax should be dark background 
-- Google Analytics
-  - Disable for development
-- Update production instance to use latest PHP7 version
-    - Release site
-- Blog article cover images
+- Added Google Analytics
+  - Disabled for development
+- Updated production instance to use latest PHP7 version
+    - Released site
+- Added cover images to Blog article's
 - Publish/Unpublish articles via meta meta info
 - Published/Unpublished articles, allows sending links to unpublished articles
-- Put files in a public dir
-- Fix tables in markdown parser, they're not working right (see ES article)
-- Fix HTML title on blog
-- Add sharing links (just twitter for now)
-- Images should auto resize
-- View list of unpublished
-- Add more articles
-- Easy preview of unpublished article
-- Improve homepage
-- Add links to latest article and featured library
+- Put index.php and content in a public dir (fixing security hole)
+- Fixed tables in markdown parser, they weren't working right
+- Fixed HTML title on blog
+- Added sharing links (just twitter for now)
+- Images auto resize
+- View list of unpublished articles via super secret URL
+- Added more articles
+- Easy preview of unpublished articles
+- Improved homepage
+- Added links to latest article and featured library
 - Single deploy script
-- Make deploy script trigger after push to master
-- Add some way to contact me (LinkedIn link, good enough for now)
+- Made deploy script trigger after push to master
+- Added some way to contact me (LinkedIn link, good enough for now)
 - Use my own image hosting
-    - Make it easy to upload and image and get a URL
-- Move console commands into their own folder, extract out usecases
-- Add prototype annotations with no storage
+    - Made it easy to upload and image and get a URL
+- Moved console commands into their own folder, extracted out usecases
+- Added prototype annotations with no storage
 - Investigated freezes on site
     - It was apache, switched to Nginx, problem has gone away
 - Resized blog title size
@@ -48,17 +50,17 @@ Done:
 - Added comments section
 - Made preview card for Twitter
 - Made preview card for LinkedIn
-- Make annotations persistent
-- Add basic login for annotations feature
-- Add tests for get routes (just make sure they work)
+- Made annotations persistent
+- Added basic login for annotations feature
+- Added tests for get routes (just to make sure they work)
 
-Next:
+### Next:
 - Better deploy scripts, what I have currently is crap
 - Upload image via web UI
 - Subscribe to mailing list
 - Publish automatically to dev.to
-
+- Restructure domain code so it's layered in more sensible way
+- Remove use of abstract class/inheritance anti-pattern
 
 ## License
-
 The MIT license
