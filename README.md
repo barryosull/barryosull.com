@@ -48,12 +48,12 @@ Done:
 - Added comments section
 - Made preview card for Twitter
 - Made preview card for LinkedIn
-
-Next:
-- Better deploy scripts, what I have currently is crap
 - Make annotations persistent
 - Add basic login for annotations feature
 - Add tests for get routes (just make sure they work)
+
+Next:
+- Better deploy scripts, what I have currently is crap
 - Upload image via web UI
 - Subscribe to mailing list
 - Publish automatically to dev.to
