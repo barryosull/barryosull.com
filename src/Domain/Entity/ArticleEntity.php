@@ -38,7 +38,7 @@ class ArticleEntity extends BaseEntity
         return $this->author;
     }
 
-    const EXERT_LENGTH = 620;
+    const EXERT_LENGTH = 640;
 
     /**
      * Returns first part of an article if "more separator" is found. Otherwise the whole content is returned.
