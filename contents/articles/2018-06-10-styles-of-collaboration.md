@@ -40,7 +40,8 @@ Say your team needs to come up with a solution to a problem (be it implementing 
 
 5. Once you've done this and you think you've reached the best solution, don't end the conversation, instead be sure to switch back to **connective** style and make sure everyone is on the same page and is in agreement. This ensures that there's no unresolved tension and everyone is agreed on next steps. At the end, everyone should be happy and even feel comfortable saying "Go team!".
 
-Connective -> Competitive -> Connective -> Competitive -> Connective
+This boils down to:
+> Connective -> Competitive -> Connective -> Competitive -> Connective 
 
 ## The feedback loop
 At it's core it's all about the feedback loop. The above can be distilled down to the following, a constant loop where you switch between styles when appropriate, starting and ending at connective.
