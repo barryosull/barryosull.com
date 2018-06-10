@@ -20,7 +20,7 @@ In short, there are two styles of communication:
 
 **Competition style** is about coming out on top. Every statement is viewed as a move in a game, the goal is to say something that "beats" whatever the other players are saying, leading to a constant back of forth until there is a "winner".
 
-**Connection style** is about connecting to the other person. Every statement is viewed as an attempt to empathise and an opportunity to explore a topic with them, creating a shared understanding of the issue and deepening the social connection connection between parties.
+**Connection style** is about connecting to the other person. Every statement is viewed as an attempt to empathise and an opportunity to explore a topic with them, creating a shared understanding of the issue and deepening the social connection between parties.
 
 What's fascinating is that neither style is inherently better than the other, competition is good in certain contexts whereas connection is better in others. Most of the time we're not even aware that we're using a certain style, it's just how we communicate. This can lead to tension, as two people communicating using different styles are not going to reach consensus.
 
