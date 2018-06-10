@@ -38,6 +38,8 @@ class ArticleEntity extends BaseEntity
         return $this->author;
     }
 
+    const EXERT_LENGTH = 620;
+
     /**
      * Returns first part of an article if "more separator" is found. Otherwise the whole content is returned.
      *
@@ -51,7 +53,7 @@ class ArticleEntity extends BaseEntity
         }
         $moreMarkerPosition = strpos($this->content, '<!--more-->');
         if (empty($moreMarkerPosition)) {
-            return substr($this->content, 0, 600).'...';
+            return substr($this->content, 0, self::EXERT_LENGTH).'...';
         }
         $excerpt = substr($this->content, 0, $moreMarkerPosition);
         if ($addReadMoreLink === true) {
