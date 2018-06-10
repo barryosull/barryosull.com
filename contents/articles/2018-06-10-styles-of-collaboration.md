@@ -35,7 +35,7 @@ Once you've done this and you think you've reached the best solution, don't end 
 ### The feedback loop
 At it's core it's all about the feedback loop. You switch between styles when appropriate. 
 
-[Image ehre]
+[Styles of communication](http://barryosull.com/images/bc327b71-c09b-4402-818a-d1e3212a3f2d.png)
 
 If you need to come up with lots of ideas, go competitive, when you need consensus, switch to connective. 
 
@@ -50,6 +50,11 @@ Say you're trying to figure out the fix to a bug, it will follow the same proces
  - Then agree on who will do the work and how it will be verified
  
 What about pair programming? Same thing, it's a constant switch between the two styles. If you need to explore solutions, compete to come up with ideas. When you need to reach consensus on the next step, connect. 
+
+### Choosing the wrong styles
+A little word of warning. I said above about how I've seen it misused? Well, let's quikcly go into that.
+If you choose the wrong style at the wrong time, it leads to sub-optimal results. Say you're trying to create ideas, if you're in a connective communication style, the team will settle on the first solution presented, even if it has glaring flaws that healthy compeition would unearth.
+The same is true with competing at the wrong time. If you're trying to reach consensus and instead of agreeing you're competing, then you'll get nowhere, you'll just end up furstrated and tired.
 
 ## Conclusion
 So that's that. When you're working with others, figure out what is the best style to apply for the given situation.
