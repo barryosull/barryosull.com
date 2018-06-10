@@ -2,7 +2,7 @@
 title: "Acceptance testing your PHP app with ease"
 published: true
 description: "A dive into the various ways you can acceptance test your apps in PHP"
-tags: TDD, PHP, acceptance tests
+tags: tdd, php, acceptance tests
 cover_image: http://barryosull.com/images/b02b4a32-fa43-456b-8b29-40692678376e.jpg
 ---
 
