@@ -63,12 +63,16 @@ Say you're trying to figure out the fix to a bug, it will follow the same proces
 What about pair programming? Same thing, it's a constant switch between the two styles. If you need to explore solutions, compete to come up with ideas. When you need to reach consensus on the next step, connect. 
 
 ## Choosing the wrong styles
-A little word of warning, I said above about how I've seen it misused. Well, let's quickly go into that.
+A little word of warning, I mentioned above that I've seen styles misused. Let's quickly go into that.
+
 If you choose the wrong style at the wrong time, it leads to sub-optimal results. Say you're trying to create ideas, if you're in a connective communication style, the team will settle on the first solution presented, even if it has glaring flaws that healthy competition would unearth.
+
 The same is true with competing at the wrong time. If you're trying to reach consensus and instead of agreeing you're competing, then you'll get nowhere, you'll just end up frustrated and tired. 
 
-A quick guide to spotting it:
-- Are you always agreeing with each other but your solutions fall apart as soon as you implement? Then you're not competing enough.
+Finally you could have team members using different styles at the same time, so it always feels like you're never on the same page and thar your discussions have no momentum, they're always stopping and starting jarringly.
+
+A quick guide to spotting the above:
+- Are you always agreeing with each other but your solutions fall apart as soon as you implement them? Then you're not competing enough.
 - Is your team tense and you always feel like you're never getting your say, you're always doing what someone else says? Then you're not connecting enough.
 - Are you uncomfortable when communicating with certain members of the team? You might be connecting when they are competing, so you may need to switch styles (temporarily).
 
