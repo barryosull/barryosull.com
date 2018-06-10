@@ -9,7 +9,7 @@ return [
     'themeSettings' => [
 
         // Html Markup for read-more button:
-        'readMore' => '<a href="%s" class="btn">Read on &raquo;</a>',
+        'readMore' => '<a href="%s" style="float:right" class="btn">Read on &raquo;</a>',
     ],
 
     /* SEO related settings.
