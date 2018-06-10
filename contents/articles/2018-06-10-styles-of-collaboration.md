@@ -40,8 +40,10 @@ Say your team needs to come up with a solution to a problem (be it implementing 
 
 5. Once you've done this and you think you've reached the best solution, don't end the conversation, instead be sure to switch back to **connective** style and make sure everyone is on the same page and is in agreement. This ensures that there's no unresolved tension and everyone is agreed on next steps. At the end, everyone should be happy and even feel comfortable saying "Go team!".
 
-This boils down to:
+Looking at the above, it's clear there's a pattern, which at it's simplest is the following.
 > Connective -> Competitive -> Connective -> Competitive -> Connective 
+
+It turns out this is a recurring pattern.
 
 ## The feedback loop
 At it's core it's all about the feedback loop. The above can be distilled down to the following, a constant loop where you switch between styles when appropriate, starting and ending at connective.
@@ -69,7 +71,7 @@ If you choose the wrong style at the wrong time, it leads to sub-optimal results
 
 The same is true with competing at the wrong time. If you're trying to reach consensus and instead of agreeing you're competing, then you'll get nowhere, you'll just end up frustrated and tired. 
 
-Finally you could have team members using different styles at the same time, so it always feels like you're never on the same page and thar your discussions have no momentum, they're always stopping and starting jarringly.
+Finally you could have team members using different styles at the same time, so it always feels like you're never on the same page and that your discussions have no momentum, they're always stopping and starting jarringly.
 
 A quick guide to spotting the above:
 - Are you always agreeing with each other but your solutions fall apart as soon as you implement them? Then you're not competing enough.
@@ -83,6 +85,6 @@ Are you exploring ideas? Then compete. Are you trying to reach consensus so you 
 In my mind, everyone is a leader, so if you notice that the team is stuck in an ineffective mode, attempt to switch them out of it.
 (The twitter thread linked above has some great advice on how to switch from competitive to connective, have a read through so you're better prepared).
 
-For myself, I'm going to pay more attention to how I communicate and I'm going to encourage those on my team to do the same. Ultimately, it'll about working together to be effective.
+For myself, I'm going to pay more attention to how I communicate and I'm going to encourage those on my team to do the same. Ultimately, it's about working together to be effective.
 
 
