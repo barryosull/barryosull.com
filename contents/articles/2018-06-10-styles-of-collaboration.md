@@ -1,8 +1,8 @@
 ---
 title: Styles of communication - Working effectively as a team
 published: false
-description: Communicating is easy, communicating effectively is surprisningly hard. This article explore the two keys ways we communicate and how we can use them in tandem to reach the best result.
-tags: management, communication, team, brain storming, ideation 
+description: Communicating is easy, communicating effectively is surprisingly hard. This article explore the two keys ways we communicate and how we can use them in tandem to reach the best result.
+tags: management, communication, team building, brain storming 
 cover_image: http://barryosull.com/images/c0ce12be-09a1-456d-87f9-7a60f02f8db3.jpg
 ---
 
@@ -24,14 +24,14 @@ In short, there are two styles of communication:
 
 What's fascinating is that neither style is inherently better than the other, competition is good in certain contexts whereas connection is better in others. Most of the time we're not even aware that we're using a certain style, it's just how we communicate. This can lead to tension, as two people communicating using different styles are not going to reach consensus.
 
-With the above understanding under my belt, I realised I'd seen both styles used everywhere, in software development and every other aspect of business. Great teams used each style effectively, creating team concensus and better solutions, whereas poor teams used them incorrectly, creating tension and poor results. Let's go through some styles of collaboration and explore when each style works best.
+With the above understanding under my belt, I realised I'd seen both styles used everywhere, in software development and every other aspect of business. Great teams used each style effectively, creating team consensus and better solutions, whereas poor teams used them incorrectly, creating tension and poor results. Let's go through some styles of collaboration and explore when each style works best.
 
 ## Exploring solutions
 Say your team needs to come up with a solution to a problem (be it implementing a new feature or fixing a broken one), the first thing you'll do it brain storm with the team. What's a good way to do this?
 
 Well first off, you should start with a connective style, as you need everyone to be on the same page about the problem at hand. Your goal is to reach consensus, if you can't do that then there's no point in moving forward.
 
-Once you've agreed on what you're there to do, it's time to brainstorm, which means a switch to competitive style. The goal here is to compete with each other to come up with the "best" solution, creating as many as you can. Ego will play a roll here and that's fine. It's also ok to point out flaws in someone elses solution, but don't focus on that, the goal is to come up with solutions, not destroy them.
+Once you've agreed on what you're there to do, it's time to brainstorm, which means a switch to competitive style. The goal here is to compete with each other to come up with the "best" solution, creating as many as you can. Ego will play a roll here and that's fine. It's also ok to point out flaws in someone else's solution, but don't focus on that, the goal is to come up with solutions, not destroy them.
 
 Once you've brain stormed, now is the time to reach consensus, that's where connection style comes into play. Go through each of the ideas and make sure that each one of you has a shared understanding of the pros and cons of each. This isn't about being right, it's about a shared understanding.
 
@@ -70,11 +70,11 @@ A quick guide to spotting it:
 
 ## Conclusion
 So that's that. When you're working with others, figure out what is the best style to apply for the given situation.
-Are you exploring ideas? Then compete. Are you trying to reach concensus so you can move forward? Then connect. 
+Are you exploring ideas? Then compete. Are you trying to reach consensus so you can move forward? Then connect. 
 
 In my mind, everyone is a leader, so if you notice that the team is stuck in an ineffective mode, attempt to switch them out of it.
 (The twitter thread linked above has some great advice on how to switch from competitive to connective, have a read through so you're better prepared)
 
-For myself, I'm going to pay more attention to how we communicate and I'm going to encourage those on my team to be aware of how we're communicating. Ultimately, it'll about being effective.
+For myself, I'm going to pay more attention to how I communicate and I'm going to encourage those on my team to do the same. Ultimately, it'll about working together to be effective.
 
 
