@@ -8,7 +8,7 @@ cover_image: http://barryosull.com/images/c0ce12be-09a1-456d-87f9-7a60f02f8db3.j
 
 This idea for this article came from a twitter thread by [@ErynnBrook](https://twitter.com/ErynnBrook/).
 
-<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">I’ve got some time today, thinking about doing a thread on mansplaining. <br><br>Dude followers, if the word mansplaining makes you a little uneasy, let me know and I’ll unpack it here :)</p>&mdash; Erynn Brook (@ErynnBrook) <a href="https://twitter.com/ErynnBrook/status/1001881209733988352?ref_src=twsrc%5Etfw">May 30, 2018</a></blockquote>
+<blockquote style="margin: 0 auto" class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">I’ve got some time today, thinking about doing a thread on mansplaining. <br><br>Dude followers, if the word mansplaining makes you a little uneasy, let me know and I’ll unpack it here :)</p>&mdash; Erynn Brook (@ErynnBrook) <a href="https://twitter.com/ErynnBrook/status/1001881209733988352?ref_src=twsrc%5Etfw">May 30, 2018</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 The thread explained the concept of man-splaining (which was eye-opening as I am a chronic explainer), but it also delved into communication styles, which is where things got really interesting.
@@ -22,7 +22,7 @@ In short, there are two styles of communication:
 
 **Connection style** is about connecting to the other person. Every statement is viewed as an attempt to empathise and an opportunity to explore a topic with them, creating a shared understanding of the issue and deepening the social connection connection between parties.
 
-What's fascinating is that neither style is inherently better than the other, competition is good in certain contexts whereas connection is better in others. This is what I plan to explore here.
+What's fascinating is that neither style is inherently better than the other, competition is good in certain contexts whereas connection is better in others. Most of the time we're not even aware that we're using a certain style, it's just how we communicate. This can lead to tension, as two people communicating using different styles are not going to reach consensus.
 
 With the above understanding under my belt, I realised I'd seen both styles used everywhere, in software development and every other aspect of business. Great teams used each style effectively, creating team concensus and better solutions, whereas poor teams used them incorrectly, creating tension and poor results. Let's go through some styles of collaboration and explore when each style works best.
 
@@ -31,7 +31,7 @@ Say your team needs to come up with a solution to a problem (be it implementing 
 
 Well first off, you should start with a connective style, as you need everyone to be on the same page about the problem at hand. Your goal is to reach consensus, if you can't do that then there's no point in moving forward.
 
-Once you've agreed on what you're there to do, it's time to brainstorm, which means a switch to competitive style. The goal here is to compete with each other to come up with the "best" solution, creating as many as you can. Ego will play a roll here and that's fine. It's als ok to point out flaws in someone elses solution, but don't focus on that, the goal is to come up with solutions, not destroy them.
+Once you've agreed on what you're there to do, it's time to brainstorm, which means a switch to competitive style. The goal here is to compete with each other to come up with the "best" solution, creating as many as you can. Ego will play a roll here and that's fine. It's also ok to point out flaws in someone elses solution, but don't focus on that, the goal is to come up with solutions, not destroy them.
 
 Once you've brain stormed, now is the time to reach consensus, that's where connection style comes into play. Go through each of the ideas and make sure that each one of you has a shared understanding of the pros and cons of each. This isn't about being right, it's about a shared understanding.
 
@@ -63,9 +63,10 @@ A little word of warning, I said above about how I've seen it misused? Well, let
 If you choose the wrong style at the wrong time, it leads to sub-optimal results. Say you're trying to create ideas, if you're in a connective communication style, the team will settle on the first solution presented, even if it has glaring flaws that healthy competition would unearth.
 The same is true with competing at the wrong time. If you're trying to reach consensus and instead of agreeing you're competing, then you'll get nowhere, you'll just end up frustrated and tired. 
 
-A quick quide to spotting it:
+A quick guide to spotting it:
 - Are you always agreeing with each other but your solutions fall apart as soon as you implement? Then you're not competing enough.
 - Is your team tense and you always feel like you're never getting your say, you're always doing what someone else says? Then you're not connecting enough.
+- Are you uncomfortable when communicating with certain members of the team? You might be connecting they others are competing, so you should switch styles (temporarily).
 
 ## Conclusion
 So that's that. When you're working with others, figure out what is the best style to apply for the given situation.
