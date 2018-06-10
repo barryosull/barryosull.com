@@ -55,7 +55,7 @@ class ArticleEntity extends BaseEntity
         if (empty($moreMarkerPosition)) {
             $moreMarkerPosition = self::EXERT_LENGTH;
         }
-        $excerpt = substr($this->content, 0, $moreMarkerPosition);
+        $excerpt = substr($this->content, 0, $moreMarkerPosition)."... ";
         if ($addReadMoreLink === true) {
             $readMoreLink = sprintf($this->config['themeSettings']['readMore'], $this->getUrl());
             $excerpt .= $readMoreLink;
