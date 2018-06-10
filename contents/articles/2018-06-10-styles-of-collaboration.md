@@ -1,9 +1,9 @@
 ---
-title: Style of communication: Working effectively as a team
+title: Style of communication - Working effectively as a team
 published: false
 description: Communicating is easy, communicating effectively is surprisningly hard. This article explore the two keys ways we communicate and how we can use them in tandem to reach the best result.
 tags: management, communication, team, brain storming, ideation 
-cover_image: http://globalnerdy.com/wordpress/wp-content/uploads/2008/07/technical_difficulties_please_stand_by.jpg
+cover_image: http://barryosull.com/images/c0ce12be-09a1-456d-87f9-7a60f02f8db3.jpg
 ---
 
 This article was spurred by twitter thread by @ErynnBrook, found here. https://twitter.com/ErynnBrook/status/1001881209733988352
