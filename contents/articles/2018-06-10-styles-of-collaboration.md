@@ -13,7 +13,7 @@ This idea for this article came from a twitter thread by [@ErynnBrook](https://t
 
 The thread explained the concept of man-splaining (which was eye-opening as I am a chronic explainer), but it also delved into communication styles, which is where things got really interesting.
 
-## Styles fo communication
+## Styles of communication
 In short, there are two styles of communication:
 1. Competition Style
 1. Connection Style
