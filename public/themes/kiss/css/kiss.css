@@ -244,3 +244,7 @@ table {
 .article {
 	padding-bottom: 20px;
 }
+
+.container .body .twitter-tweet {
+	margin: auto;
+}
