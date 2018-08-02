@@ -5,7 +5,7 @@ description: Building a robust projector system can lead to a few surprises, thi
 tags: projectors, CQRS
 cover_image: http://barryosull.com/images/5ca95e8a-4966-49d4-9735-9b81fd18d8aa.jpg
 ---
-Let's talk about Projectors. At it's simplest a projector is something that takes in a stream of events and does some work on them, projecting them into whatever shape or operation is needed. Like anything though, there's more to it than that, lots more. That's what this article is, my attempt to discuss the complications and problems you will run into while working with projectors day to day.
+Let's talk about Projectors. At it's simplest [a projector](/blog/projection-building-blocks-what-you-ll-need-to-build-projections) is something that takes in a stream of events and does some work on them, projecting them into whatever shape or operation is needed. Like anything though, there's more to it than that, lots more. That's what this article is, my attempt to discuss the complications and problems you will run into while working with projectors day to day.
 
 # Run modes
 Let's start simple, let's talk about the different modes of projectors and how they behave. In my experience it boils down to three modes.
