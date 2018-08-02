@@ -1,11 +1,13 @@
 ---
 title: Managing projectors is harder than you think
 published: false
-description: Building a robust projector system can lead to a few surprises, this is how you manage them
+description: Learn how to deploy and manage projectors with ease, fixing issues when they arise, with minimal downtime
 tags: projectors, CQRS
 cover_image: http://barryosull.com/images/5ca95e8a-4966-49d4-9735-9b81fd18d8aa.jpg
 ---
-Let's talk about Projectors. At it's simplest [a projector](/blog/projection-building-blocks-what-you-ll-need-to-build-projections) is something that takes in a stream of events and does some work on them, projecting them into whatever shape or operation is needed. Like anything though, there's more to it than that, lots more. That's what this article is, my attempt to discuss the complications and problems you will run into while working with projectors day to day.
+We've discussed the [bones of projectors in the past](/blog/projection-building-blocks-what-you-ll-need-to-build-projections), this time let's go deeper and look at how to manage them.
+ 
+At it's simplest a projector is something that takes in a stream of events and does some work on them, projecting them into whatever shape or operation is needed. Like anything though, there's more to it than that, lots more. That's what this article is, my attempt to discuss the complications and problems you will run into while working with projectors day to day.
 
 # Run modes
 Let's start simple, let's talk about the different modes of projectors and how they behave. In my experience it boils down to three modes.
@@ -81,7 +83,7 @@ To summarise, projectors are more complex than people think. If you want to buil
 1. Run modes
 2. Lifecycle
 3. Failures
-If you have a handle on all three of these, then you're set. You'll be able to deploy and manage projectors with ease, fixing issues when they arise, with minimal issues for you or your customers.
+If you have a handle on all three of these, then you're set. You'll be able to deploy and manage projectors with ease, fixing issues when they arise, with minimal downtime for you or your customers.
 
 I've built a projectionist system to solve the above problem, but it's not ready for the limelight, it's more of an experiment in distilling the above down into a single system. Feel free to have a look though! https://github.com/barryosull/the-projectionist
 
