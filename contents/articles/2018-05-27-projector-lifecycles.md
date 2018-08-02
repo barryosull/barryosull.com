@@ -3,7 +3,7 @@ title: Managing projectors is harder than you think
 published: false
 description: Building a robust projector system can lead to a few surprises, this is how you manage them
 tags: projectors, CQRS
-cover_image: http://barryosull.com/images/0735d1e5-ab3d-4bc2-90e3-2b885f5f260f.jpeg
+cover_image: http://barryosull.com/images/5ca95e8a-4966-49d4-9735-9b81fd18d8aa.jpg
 ---
 Let's talk about Projectors. At it's simplest a projector is something that takes in a stream of events and does some work on them, projecting them into whatever shape or operation is needed. Like anything though, there's more to it than that, lots more. That's what this article is, my attempt to discuss the complications and problems you will run into while working with projectors day to day.
 
