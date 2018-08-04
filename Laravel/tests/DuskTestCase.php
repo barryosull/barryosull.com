@@ -22,6 +22,8 @@ abstract class DuskTestCase extends BaseTestCase
         static::startChromeDriver();
     }
 
+    const BASE_URL = 'http://localhost:9515';
+
     private static $driver;
     /**
      * Create the RemoteWebDriver instance.
@@ -37,9 +39,10 @@ abstract class DuskTestCase extends BaseTestCase
             ]);
 
             self::$driver = RemoteWebDriver::create(
-                'http://localhost:9515', DesiredCapabilities::chrome()->setCapability(
-                ChromeOptions::CAPABILITY, $options
-            )
+                self:: BASE_URL,
+                DesiredCapabilities::chrome()->setCapability(
+                    ChromeOptions::CAPABILITY, $options
+                )
             );
         }
 
