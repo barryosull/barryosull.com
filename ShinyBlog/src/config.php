@@ -161,5 +161,5 @@ return [
     'themesFolder' => __DIR__ . '/../themes/',
 
     // Path to folder containing article/page contents:
-    'contentsFolder' => __DIR__ . '/../contents/',
+    'contentsFolder' => __DIR__ . '/../../contents/',
 ];

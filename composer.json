@@ -11,7 +11,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Nekudo\\ShinyBlog\\": "src/"
+            "Nekudo\\ShinyBlog\\": "ShinyBlog/src/"
         }
     },
     "repositories": [

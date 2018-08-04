@@ -33,7 +33,7 @@ class ArticleTest extends TestCase
         $response = $this->getBlog()->run();
 
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertContains("<a href=\"/\">barryosull.com</a>", $response->getBody());
+        $this->assertContains(">barryosull.com</a>", $response->getBody());
     }
 
     public function getAllArticleUrls()
