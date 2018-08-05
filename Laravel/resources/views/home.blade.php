@@ -17,8 +17,7 @@
     <title>Barry O'Sullivan Development Services</title>
     <meta name="robots" content="index,follow" />
     <meta name="description" content="Who am me">
-    <link rel="stylesheet" href="/themes/kiss/css/kiss.css">
-    <link rel="stylesheet" href="/themes/kiss/css/prism.css">
+    <link rel="stylesheet" href="/css/app.css">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -31,26 +30,19 @@
 
 </head>
 <body>
-<nav class="topnav">
-    <ul>
-        <li class="first"><a href="/">barryosull.com</a></li>
-        <li><a href="/blog">Blog</a></li>
-        <li><a href="https://www.slideshare.net/BarryOSullivan18/">Talks</a></li>
-        <li><a href="https://github.com/barryosull">Github</a></li>
-        <li class="last"><a href="https://twitter.com/barryosull">Twitter</a></li>
-        <li><a href="https://www.linkedin.com/in/barryosu/">LinkedIn</a></li>
-    </ul>
-</nav>
-<div class="content">
-    <article class="page">
-        <div class="page-content">
+<div id="app">
+    <nav-menu></nav-menu>
+    <div class="content">
+        <article class="page">
+            <div class="page-content">
 
-        </div>
-    </article>
+            </div>
+        </article>
+    </div>
+    <div class="footer">
+        <p>barryosull.com &copy; 2018</p>
+    </div>
 </div>
-<div class="footer">
-    <p>barryosull.com &copy; 2018</p>
-</div>
-<script src="/themes/kiss/js/prism.js"></script>
+<script src="/js/app.js"></script>
 </body>
 </html>
