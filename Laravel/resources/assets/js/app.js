@@ -14,6 +14,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('nav-menu', require('./components/NavMenu.vue').default);
+Vue.component('app', require('./components/App.vue').default);
 
 const app = new Vue({
     el: '#app',
