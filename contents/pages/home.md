@@ -2,7 +2,7 @@
 title: ""
 metaTitle: "Barry O'Sullivan Development Services"
 description: "Who am me"
-slug: "welcome"
+slug: "home"
 date : 2018-01-07
 ---
 <div style="padding:20px;color:#fff;background: linear-gradient(#1b365f, #3269a7); margin: -30px -60px 0px;">

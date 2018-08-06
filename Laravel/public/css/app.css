@@ -7,7 +7,7 @@ body {
 	font-size: 16px;
 	line-height: 26px;
 }
-body > .content {
+body .content {
 	margin: 0 auto;
 	padding: 0 40px;
 	max-width: 780px;

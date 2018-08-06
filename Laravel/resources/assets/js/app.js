@@ -2,10 +2,10 @@
 window.Vue = require('vue');
 
 import VueRouter from 'vue-router';
+import VueMarkdown from 'vue-markdown'
 
 Vue.use(VueRouter);
-
-Vue.component('nav-menu', require('./components/NavMenu.vue').default);
+Vue.component('vue-markdown', VueMarkdown);
 Vue.component('home', require('./components/Home.vue').default);
 Vue.component('blog', require('./components/Blog.vue').default);
 Vue.component('app', require('./components/App.vue').default);
