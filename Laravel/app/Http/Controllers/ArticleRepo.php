@@ -27,7 +27,7 @@ class ArticleRepo
         throw new \Exception('Page content not found');
     }
 
-    public function list(): array
+    public function list(?string $tag): array
     {
         $pagePath = app_path('../../contents/articles/');
 
@@ -39,7 +39,22 @@ class ArticleRepo
             return $this->parseContentFile($pathToArticle);
         }, $pageFilenames);
 
+        if ($tag) {
+            $articles = $this->filterByTag($articles, $tag);
+        }
+
         return array_values($articles);
+    }
+
+    private function filterByTag(array $articles, string $tag): array
+    {
+        return array_filter($articles, function($article) use ($tag) {
+            $tags = explode(",", $article['tags'] ?? "");
+            $tags = array_map(function ($articleTag) {
+                return trim($articleTag);
+            }, $tags);
+            return in_array($tag, $tags);
+        });
     }
 
     private function parseContentFile(string $pathToFile) : array

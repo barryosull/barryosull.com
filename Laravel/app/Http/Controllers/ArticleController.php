@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use ParsedownExtra;
 
 class ArticleController
@@ -11,6 +12,8 @@ class ArticleController
     private $parsedown;
 
     const EXERT_LENGTH = 640;
+
+    const PAGE_SIZE = 10;
 
     public function __construct(ArticleRepo $articleRepo, ParsedownExtra $parsedown)
     {
@@ -46,9 +49,15 @@ class ArticleController
         return substr($content, 0, $moreMarkerPosition)."... ";
     }
 
-    public function list()
+    public function list(Request $request)
     {
-        $articles = $this->articleRepo->list();
+        $page = $request->get('page', 1) - 1;
+
+        $tag = $request->get('tag', null);
+
+        $articles = $this->articleRepo->list($tag);
+
+        $articles = array_slice($articles, $page*self::PAGE_SIZE, self::PAGE_SIZE);
 
         $articles = array_map(function($article){
             return $this->formatResponse($article);

@@ -2,7 +2,7 @@
 title: When to version an API endpoint
 published: false
 description: description
-tags: tags
+tags: 
 cover_image: http://globalnerdy.com/wordpress/wp-content/uploads/2008/07/technical_difficulties_please_stand_by.jpg
 ---
 

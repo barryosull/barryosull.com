@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\PageController;
 use Tests\TestCase;
 
 class ArticleTest extends TestCase
@@ -43,6 +45,8 @@ class ArticleTest extends TestCase
 
         $json = json_decode($response->getContent());
 
+        $this->assertCount(ArticleController::PAGE_SIZE, $json);
+
         foreach ($json as $article) {
             $this->assertPropertyExists([
                 'title',
@@ -59,9 +63,37 @@ class ArticleTest extends TestCase
         }
     }
 
+    /**
+     * @test
+     */
+    public function paginatate_through_article_list()
+    {
+        $response = $this->get("/api/article?page=2");
+
+        $response->assertStatus(200);
+
+        $json = json_decode($response->getContent());
+
+        $this->assertCount(ArticleController::PAGE_SIZE, $json);
+    }
+
+    /**
+     * @test
+     */
+    public function filter_by_tag()
+    {
+        $response = $this->get("/api/article?tag=tags");
+
+        $response->assertStatus(200);
+
+        $json = json_decode($response->getContent());
+
+        $this->assertCount(1, $json);
+    }
+
     private function assertPropertyExists(array $keys, $object)
     {
-        
+
         foreach ($keys as $key) {
             $this->assertTrue(property_exists($object, $key), "Could not find '$key' in object '".json_encode($object)."'");
         }
