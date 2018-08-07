@@ -33,6 +33,7 @@ class ArticleController
     private function formatResponse($article): array
     {
         $article['content'] = $this->parsedown->parse($article['content']);
+        $article['url'] = "/api/article/".$article['slug'];
         $article['excerpt'] = $this->makeExcerpt($article['content']);
         return $article;
     }

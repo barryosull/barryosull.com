@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\PageController;
 use Tests\TestCase;
 
 class ArticleTest extends TestCase
@@ -20,7 +19,12 @@ class ArticleTest extends TestCase
 
         $article = json_decode($response->getContent());
 
-        $this->assertPropertyExists([
+        $this->assertHasArticleSchema($article);
+    }
+
+    private function assertHasArticleSchema($article)
+    {
+        $this->assertPropertiesExists([
             'title',
             'description',
             'slug',
@@ -30,7 +34,8 @@ class ArticleTest extends TestCase
             'published',
             'content',
             'excerpt',
-            'coverImage'
+            'coverImage',
+            'url'
         ], $article);
     }
 
@@ -48,18 +53,7 @@ class ArticleTest extends TestCase
         $this->assertCount(ArticleController::PAGE_SIZE, $json);
 
         foreach ($json as $article) {
-            $this->assertPropertyExists([
-                'title',
-                'description',
-                'slug',
-                'date',
-                'author',
-                'categories',
-                'published',
-                'content',
-                'excerpt',
-                'coverImage'
-            ], $article);
+            $this->assertHasArticleSchema($article);
         }
     }
 
@@ -91,7 +85,7 @@ class ArticleTest extends TestCase
         $this->assertCount(1, $json);
     }
 
-    private function assertPropertyExists(array $keys, $object)
+    private function assertPropertiesExists(array $keys, $object)
     {
 
         foreach ($keys as $key) {
