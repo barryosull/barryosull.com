@@ -4,18 +4,27 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use Cocur\Slugify\Slugify;
+use ParsedownExtra;
 use Symfony\Component\Yaml\Yaml;
 
 class PageController
 {
     public function get($pageSlug)
     {
-        $page = $this->findArticleFromSlug($pageSlug);
+        $page = $this->findPageFromSlug($pageSlug);
+
+        $page = $this->formatResponse($page);
 
         return response()->json($page);
     }
 
-    private function findArticleFromSlug(string $slug): array
+    private function formatResponse($page): array
+    {
+        $page['content'] = (new ParsedownExtra)->parse($page['content']);
+        return $page;
+    }
+
+    private function findPageFromSlug(string $slug): array
     {
         $pagePath = app_path('../../contents/pages/');
 

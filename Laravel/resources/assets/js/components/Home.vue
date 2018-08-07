@@ -1,8 +1,6 @@
 <template>
     <article class="page">
-        <div class="page-content">
-            <vue-markdown :source="content"></vue-markdown>
-        </div>
+        <div class="page-content" v-html="content"></div>
     </article>
 </template>
 
@@ -13,7 +11,7 @@ const axios = require('axios');
 export default {
     data() {
         return {
-            content: "Waiting for content"
+            content: "Waiting for page"
         };
     },
     mounted () {
