@@ -17,4 +17,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/page/{name}', 'PageController@get');
+Route::get('/page/{slug}', 'PageController@get');
+Route::get('/article/{slug}', 'ArticleController@get');
+Route::get('/article', 'ArticleController@list');
