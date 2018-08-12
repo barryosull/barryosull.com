@@ -31,7 +31,7 @@ class ArticleRepo
     {
         $pagePath = app_path('../../contents/articles/');
 
-        $pageFilenames = array_diff(scandir($pagePath), array('..', '.'));
+        $pageFilenames = array_reverse(array_diff(scandir($pagePath), array('..', '.')));
 
         $articles = array_map(function ($pageFilename) use ($pagePath) {
             $pathToArticle = $pagePath.$pageFilename;
