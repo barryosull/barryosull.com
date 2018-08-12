@@ -7,7 +7,6 @@ class Categories
 {
     private $data;
 
-    // TODO: Write test for rejection of non strings
     public static function fromArray(array $array): self
     {
         $categories =  new self;

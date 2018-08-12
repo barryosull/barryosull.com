@@ -3,12 +3,14 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Domain\Article;
 use Cocur\Slugify\Slugify;
 use Symfony\Component\Yaml\Yaml;
 
+// TODO: Write integration test
 class ArticleRepo
 {
-    public function find(string $slug): array
+    public function find(string $slug): Article
     {
         $pagePath = app_path('../../contents/articles/');
 
@@ -20,13 +22,17 @@ class ArticleRepo
             $page = $this->parseContentFile($pathToArticle);
 
             if ($page['slug'] == $slug) {
-                return $page;
+                return Article::fromArray($page);
             }
         }
 
         throw new \Exception('Page content not found');
     }
 
+    /**
+     * @param null|string $tag
+     * @return array[Article]
+     */
     public function list(?string $tag): array
     {
         $pagePath = app_path('../../contents/articles/');
@@ -35,7 +41,6 @@ class ArticleRepo
 
         $articles = array_map(function ($pageFilename) use ($pagePath) {
             $pathToArticle = $pagePath.$pageFilename;
-
             return $this->parseContentFile($pathToArticle);
         }, $pageFilenames);
 
@@ -43,7 +48,11 @@ class ArticleRepo
             $articles = $this->filterByTag($articles, $tag);
         }
 
-        return array_values($articles);
+        $articles = array_values($articles);
+
+        return array_map(function(array $article){
+            return Article::fromArray($article);
+        }, $articles);
     }
 
     private function filterByTag(array $articles, string $tag): array
@@ -74,7 +83,7 @@ class ArticleRepo
         } else {
             throw new \Exception('Invalid content file, missing meta information');
         }
-
+        
         $data['content'] = $content;
         return $data;
     }
@@ -104,7 +113,7 @@ class ArticleRepo
             $file_name = last(explode("/", $pathToFile));
             $data['date'] = substr($file_name, 0, 10);
         }
-        $data['categories'] = $data['tags'] ?? [];
+        $data['categories'] = $data['tags'] ? explode(",", $data['tags']) : [];
         $data['coverImage'] = $data['cover_image'] ?? null;
 
         $content = trim(

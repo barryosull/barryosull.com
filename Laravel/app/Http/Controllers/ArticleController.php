@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Domain\Article;
 use Illuminate\Http\Request;
 use ParsedownExtra;
 
@@ -25,9 +26,9 @@ class ArticleController
     {
         $article = $this->articleRepo->find($articleSlug);
 
-        $article = $this->formatResponse($article);
+        $articleResponse = $this->formatResponse($article->toArray());
 
-        return response()->json($article);
+        return response()->json($articleResponse);
     }
 
     private function formatResponse($article): array
@@ -60,8 +61,8 @@ class ArticleController
 
         $articles = array_slice($articles, $page*self::PAGE_SIZE, self::PAGE_SIZE);
 
-        $articles = array_map(function($article){
-            return $this->formatResponse($article);
+        $articles = array_map(function(Article $article){
+            return $this->formatResponse($article->toArray());
         }, $articles);
 
         return response()->json($articles);
