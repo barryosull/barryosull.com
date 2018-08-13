@@ -39,7 +39,7 @@ There are three stages in the lifecycle of a projector, from start to finish the
 We're going to start with number 2, play, because it's how most people are used to thinking about projectors.
 
 ### 2. Play
-The most basic task, a projector must be able to play events. This is the bread and butter of projections; when an event is triggered, the projector will process that event. This is typically called "playing" a projector. Usually you'll have a process that manages this and records the position of each projector in the event stream.
+The most basic task, a projector must be able to play events. This is the bread and butter of projectors; when an event is triggered, the projector will process that event. This is typically called "playing" a projector. Usually you'll have a process that manages this and records the position of each projector in the event stream.
 
 This is all very quick for active projectors, but it can be a bit of a problem for new projectors, which have to play though the entire event steam to catch up, that's why we have a separate booting process.
 
@@ -83,6 +83,7 @@ To summarise, projectors are more complex than people think. If you want to buil
 1. Run modes
 2. Lifecycle
 3. Failures
+
 If you have a handle on all three of these, then you're set. You'll be able to deploy and manage projectors with ease, fixing issues when they arise, with minimal downtime for you or your customers.
 
 I've built a projectionist system to solve the above problem, but it's not ready for the limelight, it's more of an experiment in distilling the above down into a single system. Feel free to have a look though! https://github.com/barryosull/the-projectionist
