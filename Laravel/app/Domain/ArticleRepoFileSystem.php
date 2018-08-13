@@ -1,23 +1,26 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Http\Controllers;
+namespace App\Domain;
 
-use App\Domain\Article;
 use Cocur\Slugify\Slugify;
 use Symfony\Component\Yaml\Yaml;
 
-// TODO: Write integration test
-class ArticleRepo
+class ArticleRepoFileSystem implements ArticleRepo
 {
+    private $articlePath;
+
+    public function __construct(string $articlePath = null)
+    {
+        $this->articlePath = $articlePath ?? app_path('../../contents/articles/');
+    }
+
     public function find(string $slug): Article
     {
-        $pagePath = app_path('../../contents/articles/');
-
-        $pageFilenames = array_diff(scandir($pagePath), array('..', '.'));
+        $pageFilenames = array_diff(scandir($this->articlePath), array('..', '.'));
 
         foreach ($pageFilenames as $pageFilename) {
-            $pathToArticle = $pagePath.$pageFilename;
+            $pathToArticle = $this->articlePath.$pageFilename;
 
             $page = $this->parseContentFile($pathToArticle);
 
@@ -31,16 +34,14 @@ class ArticleRepo
 
     /**
      * @param null|string $tag
-     * @return array[Article]
+     * @return Article[]
      */
-    public function list(?string $tag): array
+    public function list(?string $tag = null): array
     {
-        $pagePath = app_path('../../contents/articles/');
+        $pageFilenames = array_reverse(array_diff(scandir($this->articlePath), array('..', '.')));
 
-        $pageFilenames = array_reverse(array_diff(scandir($pagePath), array('..', '.')));
-
-        $articles = array_map(function ($pageFilename) use ($pagePath) {
-            $pathToArticle = $pagePath.$pageFilename;
+        $articles = array_map(function ($pageFilename) {
+            $pathToArticle = $this->articlePath.$pageFilename;
             return $this->parseContentFile($pathToArticle);
         }, $pageFilenames);
 
@@ -83,7 +84,7 @@ class ArticleRepo
         } else {
             throw new \Exception('Invalid content file, missing meta information');
         }
-        
+
         $data['content'] = $content;
         return $data;
     }
@@ -97,6 +98,7 @@ class ArticleRepo
         return [$data, $content];
     }
 
+    // TODO: test parsing when info is missing (ideally put logic in article where it belongs)
     private function parseJekyllMeta(string $contentRaw, string $pathToFile): array
     {
         $sections = explode('---', $contentRaw);
@@ -136,5 +138,31 @@ class ArticleRepo
     {
         $sections = explode('---', $contentRaw);
         return count($sections) > 1;
+    }
+
+    public function store(Article $article)
+    {
+        $data = $article->toArray();
+
+        $header = $this->makeHeader($data);
+
+        $content = $header.$data['content'];
+
+        $articlePath = $this->articlePath.$data['date'].'-'.$data['slug'].'.md';
+
+        file_put_contents($articlePath, $content);
+    }
+
+    private function makeHeader(array $data)
+    {
+        return "---
+title: {$data['title']}
+published: ".($data['published'] ? 'true' : 'false')."
+description: {$data['description']}
+author: {$data['author']}
+slug: {$data['slug']}
+tags: ".implode(",", $data['categories'])."
+cover_image: {$data['coverImage']}
+---";
     }
 }

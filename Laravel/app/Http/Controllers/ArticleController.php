@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Domain\Article;
+use App\Domain\ArticleRepoFileSystem;
 use Illuminate\Http\Request;
 use ParsedownExtra;
 
@@ -16,7 +17,7 @@ class ArticleController
 
     const PAGE_SIZE = 10;
 
-    public function __construct(ArticleRepo $articleRepo, ParsedownExtra $parsedown)
+    public function __construct(ArticleRepoFileSystem $articleRepo, ParsedownExtra $parsedown)
     {
         $this->articleRepo = $articleRepo;
         $this->parsedown = $parsedown;
