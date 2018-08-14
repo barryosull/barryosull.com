@@ -5,27 +5,21 @@ namespace Tests\Integration\App\Domain;
 
 use App\Domain\ArticleRepo;
 use App\Domain\ArticleRepoFileSystem;
+use League\Flysystem\Adapter\Local;
+use League\Flysystem\Filesystem;
 
 class ArticleRepoFileSystemTest extends ArticleRepoTest
 {
-    protected function makeRepo(): ArticleRepo
+    protected function makeEmptyRepo(): ArticleRepo
     {
         $testArticlePath = '/tmp/articles/';
-        if (is_dir($testArticlePath)) {
-            $this->emptyFolder($testArticlePath);
-            rmdir($testArticlePath);
-        }
-        mkdir($testArticlePath);
-        return new ArticleRepoFileSystem($testArticlePath);
-    }
+        $adapter = new Local($testArticlePath);
+        $filesystem = new Filesystem($adapter);
 
-    private function emptyFolder(string $dir)
-    {
-        $objects = scandir($dir);
-        foreach ($objects as $object) {
-            if ($object != "." && $object != "..") {
-                unlink($dir."/".$object);
-            }
+        foreach ($filesystem->listContents() as $file) {
+            $filesystem->delete($file['basename']);
         }
+
+        return new ArticleRepoFileSystem($filesystem);
     }
 }

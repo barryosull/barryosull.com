@@ -17,7 +17,7 @@ abstract class ArticleRepoTest extends TestCase
         $slug = 'article-slug';
         $article = $this->makeArticle($slug);
 
-        $repo = $this->makeRepo();
+        $repo = $this->makeEmptyRepo();
         $repo->store($article);
 
         $actualArticle = $repo->find($slug);
@@ -33,9 +33,9 @@ abstract class ArticleRepoTest extends TestCase
         $articleA = $this->makeArticle('a');
         $articleB = $this->makeArticle('b');
         $articleC = $this->makeArticle('c');
-        $expectedArticles = [$articleC, $articleB, $articleA];
+        $expectedArticles = [$articleA, $articleB, $articleC];
 
-        $repo = $this->makeRepo();
+        $repo = $this->makeEmptyRepo();
         $repo->store($articleA);
         $repo->store($articleB);
         $repo->store($articleC);
@@ -43,6 +43,27 @@ abstract class ArticleRepoTest extends TestCase
         $actualArticles = $repo->list();
 
         $this->assertEquals($expectedArticles, $actualArticles);
+    }
+
+    /**
+     * @test
+     */
+    public function articles_are_ordered_by_date_desc()
+    {
+        $articleA = $this->makeArticle('a', 'tag', '2012-01-01');
+        $articleB = $this->makeArticle('b', 'tag', '2014-01-01');
+        $articleC = $this->makeArticle('c', 'tag', '2013-01-01');
+
+        $expectedArticleOrder = [$articleB, $articleC, $articleA];
+
+        $repo = $this->makeEmptyRepo();
+        $repo->store($articleA);
+        $repo->store($articleB);
+        $repo->store($articleC);
+
+        $actualArticles = $repo->list();
+
+        $this->assertEquals($expectedArticleOrder, $actualArticles);
     }
 
     /**
@@ -56,9 +77,9 @@ abstract class ArticleRepoTest extends TestCase
         $articleA = $this->makeArticle('a', $tagA);
         $articleB = $this->makeArticle('b', $tagA);
         $articleC = $this->makeArticle('c', $tagB);
-        $expectedArticles = [$articleB, $articleA];
+        $expectedArticles = [$articleA, $articleB];
 
-        $repo = $this->makeRepo();
+        $repo = $this->makeEmptyRepo();
         $repo->store($articleA);
         $repo->store($articleB);
         $repo->store($articleC);
@@ -68,16 +89,16 @@ abstract class ArticleRepoTest extends TestCase
         $this->assertEquals($expectedArticles, $actualArticles);
     }
 
-    abstract protected function makeRepo(): ArticleRepo;
+    abstract protected function makeEmptyRepo(): ArticleRepo;
 
-    private function makeArticle(string $slug, string $tag='tag'): Article
+    private function makeArticle(string $slug, string $tag='tag', $date='2010-01-01'): Article
     {
         $categories = Categories::fromArray([$tag]);
         return new Article(
             "title",
             "Desc",
             $slug,
-            '2010-01-01',
+            $date,
             'barry',
             $categories,
             true,

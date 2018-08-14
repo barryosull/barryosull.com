@@ -83,4 +83,9 @@ class Article
             'coverImage' => $this->coverImage ? strval($this->coverImage) : null
         ];
     }
+
+    public function isPublished(): bool
+    {
+        return $this->published;
+    }
 }

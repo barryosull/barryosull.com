@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Domain\Article;
-use App\Domain\ArticleRepoFileSystem;
+use App\Domain\ArticleRepo;
 use Illuminate\Http\Request;
 use ParsedownExtra;
 
@@ -17,7 +17,7 @@ class ArticleController
 
     const PAGE_SIZE = 10;
 
-    public function __construct(ArticleRepoFileSystem $articleRepo, ParsedownExtra $parsedown)
+    public function __construct(ArticleRepo $articleRepo, ParsedownExtra $parsedown)
     {
         $this->articleRepo = $articleRepo;
         $this->parsedown = $parsedown;
@@ -58,7 +58,19 @@ class ArticleController
 
         $tag = $request->get('tag', null);
 
+        $unpublished = $request->get('unpublished', false);
+
         $articles = $this->articleRepo->list($tag);
+
+        if ($unpublished) {
+            $articles = array_filter($articles, function(Article $article) {
+                return !$article->isPublished();
+            });
+        } else {
+            $articles = array_filter($articles, function(Article $article) {
+                return $article->isPublished();
+            });
+        }
 
         $articles = array_slice($articles, $page*self::PAGE_SIZE, self::PAGE_SIZE);
 

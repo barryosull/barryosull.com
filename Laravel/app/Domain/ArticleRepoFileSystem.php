@@ -4,25 +4,26 @@ declare(strict_types=1);
 namespace App\Domain;
 
 use Cocur\Slugify\Slugify;
+use DateTime;
 use Symfony\Component\Yaml\Yaml;
+use League\Flysystem\Filesystem;
 
 class ArticleRepoFileSystem implements ArticleRepo
 {
-    private $articlePath;
+    private $filesystem;
 
-    public function __construct(string $articlePath = null)
+    public function __construct(Filesystem $filesystem)
     {
-        $this->articlePath = $articlePath ?? app_path('../../contents/articles/');
+        $this->filesystem = $filesystem;
     }
 
     public function find(string $slug): Article
     {
-        $pageFilenames = array_diff(scandir($this->articlePath), array('..', '.'));
+        $contents = $contents = $this->filesystem->listContents();
 
-        foreach ($pageFilenames as $pageFilename) {
-            $pathToArticle = $this->articlePath.$pageFilename;
+        foreach ($contents as $file) {
 
-            $page = $this->parseContentFile($pathToArticle);
+            $page = $this->parseContentFile($file['basename']);
 
             if ($page['slug'] == $slug) {
                 return Article::fromArray($page);
@@ -38,18 +39,24 @@ class ArticleRepoFileSystem implements ArticleRepo
      */
     public function list(?string $tag = null): array
     {
-        $pageFilenames = array_reverse(array_diff(scandir($this->articlePath), array('..', '.')));
+        $contents = $contents = $this->filesystem->listContents();
 
-        $articles = array_map(function ($pageFilename) {
-            $pathToArticle = $this->articlePath.$pageFilename;
-            return $this->parseContentFile($pathToArticle);
-        }, $pageFilenames);
+        $articles = array_map(function ($file) {
+            return $this->parseContentFile($file['basename']);
+        }, $contents);
 
         if ($tag) {
             $articles = $this->filterByTag($articles, $tag);
         }
 
         $articles = array_values($articles);
+
+        usort($articles, function($a, $b){
+            if ($a['date'] == $b['date']) {
+                return 0;
+            }
+            return ($a['date'] > $b['date']) ? -1 : 1;
+        });
 
         return array_map(function(array $article){
             return Article::fromArray($article);
@@ -67,12 +74,12 @@ class ArticleRepoFileSystem implements ArticleRepo
         });
     }
 
-    private function parseContentFile(string $pathToFile) : array
+    private function parseContentFile(string $file) : array
     {
-        if (!file_exists($pathToFile)) {
+        if (!$this->filesystem->has($file)) {
             throw new \Exception('Page content not found');
         }
-        $contentRaw = file_get_contents($pathToFile);
+        $contentRaw = $this->filesystem->read($file);
         if (empty($contentRaw)) {
             throw new \Exception('Invalid content file.');
         }
@@ -80,7 +87,7 @@ class ArticleRepoFileSystem implements ArticleRepo
         if ($this->isJsonMeta($contentRaw)) {
             list($data, $content) = $this->parseJsonMeta($contentRaw);
         } else if ($this->isJekyllMeta($contentRaw)) {
-            list($data, $content) = $this->parseJekyllMeta($contentRaw, $pathToFile);
+            list($data, $content) = $this->parseJekyllMeta($contentRaw, $file);
         } else {
             throw new \Exception('Invalid content file, missing meta information');
         }
@@ -99,7 +106,7 @@ class ArticleRepoFileSystem implements ArticleRepo
     }
 
     // TODO: test parsing when info is missing (ideally put logic in article where it belongs)
-    private function parseJekyllMeta(string $contentRaw, string $pathToFile): array
+    private function parseJekyllMeta(string $contentRaw, string $file): array
     {
         $sections = explode('---', $contentRaw);
         $data = Yaml::parse($sections[1], Yaml::PARSE_DATETIME);
@@ -110,10 +117,9 @@ class ArticleRepoFileSystem implements ArticleRepo
             $data['author'] = 'Barry';
         }
         if (isset($data['date'])) {
-            $data['date'] = $data['date']->format('Y-m-d');
+            $data['date'] = (new Datetime($data['date']))->format('Y-m-d');
         } else {
-            $file_name = last(explode("/", $pathToFile));
-            $data['date'] = substr($file_name, 0, 10);
+            $data['date'] = substr($file, 0, 10);
         }
         $data['categories'] = $data['tags'] ? explode(",", $data['tags']) : [];
         $data['coverImage'] = $data['cover_image'] ?? null;
@@ -148,9 +154,9 @@ class ArticleRepoFileSystem implements ArticleRepo
 
         $content = $header.$data['content'];
 
-        $articlePath = $this->articlePath.$data['date'].'-'.$data['slug'].'.md';
+        $articlePath = $data['date'].'-'.$data['slug'].'.md';
 
-        file_put_contents($articlePath, $content);
+        $this->filesystem->put($articlePath, $content);
     }
 
     private function makeHeader(array $data)
