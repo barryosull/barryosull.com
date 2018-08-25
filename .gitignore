@@ -2,7 +2,7 @@
 /.settings/
 /.buildpath
 /.project
-
+/laradock
 # PhpStorm
 .idea
 

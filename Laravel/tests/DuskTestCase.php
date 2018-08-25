@@ -22,9 +22,10 @@ abstract class DuskTestCase extends BaseTestCase
         static::startChromeDriver();
     }
 
-    const BASE_URL = 'http://localhost:9515';
+    const BASE_URL = 'http://127.0.0.1:9515';
 
     private static $driver;
+
     /**
      * Create the RemoteWebDriver instance.
      *
@@ -32,6 +33,7 @@ abstract class DuskTestCase extends BaseTestCase
      */
     protected function driver()
     {
+        throw new \Exception("");
         if (!self::$driver) {
             $options = (new ChromeOptions)->addArguments([
                 '--disable-gpu',
