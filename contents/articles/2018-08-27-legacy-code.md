@@ -140,4 +140,104 @@ The TDD Algo:
 
 Whenever possible, avoid overridng concrete methods. If you do, see if you can still call the overridden method.
 
+Four reasons that code is hard to get into a test harness
+- Instances of the object are hard to create
+- The test itself is hard to build
+- The constructor has bad side effects
+- Loads of work happens in the constructor and we don't have access
+
+Best way to tell a class will be hard to test is to try to test it
+
+Test code should be clean, easy to understand and simple to change.
+
+Don't pass null in production code unless you have no other choice (bit Java specific)
+
+Hidden dependency, the class uses a resource that is available in the active system but not to the test.
+E.g. A booted db accessor that loaded via a singleton.
+
+The answer is simple. Create the object outside of the class and inject it. 
+There are ways to make this safe without changing the signature. Easiest is to move most of the logic into a new method, have the constructor pass the object is creates, then just test the new method.
+
+The construction blob: A constructor creates objects and uses them create other objects.
+Supersede Instance Variable is a solution, but it involves creating a setter method for created objects. Avoid if you can!
+
+Singleton is used mainly for global variables and shitty dependency injection.
+If a class under test uses a singleton, then add method to the singleton that allows you to swap the actual instance for a mock.
+
+Onion Parameter: When an object require a dep, which requires more deps, each of which require other deps ... etc.
+Fake object is the obvious answer.
+
+When you extract an interface, you are brutally severing the connection to the class. (like this wording).
+
+Method testing, reasons it can be difficult
+- Method is not accessible (private)
+- The param are hard to create
+- The method has bas side effects (modifys the DB)
+- We need to sense through an object the method uses
+
+For private methods, sometimes you can test them through a public method, provided you can sense the effects.
+
+You can also move the private method to its own class. Easier to test there.
+
+Design that isn't testable is bad.
+
+Sometimes objects are hard to test because they have too many dependencies.
+
+If a method is protected, you can subclass it to get access (also a shitty technique)
+
+Don't use reflection to test private methods. It's hacky and incredibly brittle. Just bite the bullet and extract a class.
+
+Use finally sparingly (DISAGREE!)
+
+Sometimes class don't return anything, the side effects are hidden.
+
+CQS is useful here. Add a query method that let's you ask questions.
+
+Refactoring tools are your friend, as they can refactor code safely (need to learn how they work in PHPStorm)
+
+Characterisation tests: Pin down the behaviour that's already there
+
+If an object is messy, create a map of the object it calls and changes.
+
+When a program is poorly written, sometimes it hard to understand why the results are what they are.
+
+When sketching effects for a class, make sure you have found all the clients of the class, even super or sub classes.
+
+An effect sketch can help us see where we can sense different kinds of changes.
+
+Watch out for sneaky effects, like an object changing the state of dependencies (e.g. an object chaging and array passed by ref)
+
+Effects propogate in three ways
+- Return values are used by a caller
+- Modification of params that used elsewhere later on
+- Modification of static or global data
+
+Restrict effects if you can
+
+When you have to make a choice between encapsulation or test coverage, opt for test coverages, Black boxes help no one. Encapsulation is a tool for easing understanding, not an end goal.
+
+Try to test one level back, i.e. find a place where you can write tests for several changes at once.
+
+Higher level tests (acceptance/integration) are important, but they are not a substitude for unit tests, merely a step towards them.
+
+Interception points: Areas in code where you can detect the effects of change
+
+Find where you need to make a change, then flow outward, anywhere you can detect a change is an interception point (though the first may not be the best one)
+In practice it's better to pick points closer to your interception points
+
+Don't let unit tests grow into mini-integration tests.
+
+Tests are a mechanism to help us find bugs later.
+
+Good tests exercise a specific path and ensure conversion along that path work correctly.
+
+If you use libraries, try to hide them behind interfaces. It'll slow you down a bit now, but future you will be so thankful (also makes testing easier).
+
+If a piece of code is incredibly messy and hard to understand, try to write a short paragraph describing what it does.
+
+
+
+
+
+
 
