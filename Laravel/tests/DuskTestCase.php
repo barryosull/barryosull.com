@@ -24,8 +24,6 @@ abstract class DuskTestCase extends BaseTestCase
 
     const BASE_URL = 'http://127.0.0.1:9515';
 
-    private static $driver;
-
     /**
      * Create the RemoteWebDriver instance.
      *
@@ -33,21 +31,17 @@ abstract class DuskTestCase extends BaseTestCase
      */
     protected function driver()
     {
-        throw new \Exception("");
-        if (!self::$driver) {
-            $options = (new ChromeOptions)->addArguments([
-                '--disable-gpu',
-                '--headless'
-            ]);
+        $options = (new ChromeOptions)->addArguments([
+            '--disable-gpu',
+            '--headless',
+            '--no-sandbox'
+        ]);
 
-            self::$driver = RemoteWebDriver::create(
-                self:: BASE_URL,
-                DesiredCapabilities::chrome()->setCapability(
-                    ChromeOptions::CAPABILITY, $options
-                )
-            );
-        }
-
-        return self::$driver;
+        return RemoteWebDriver::create(
+            self:: BASE_URL,
+            DesiredCapabilities::chrome()->setCapability(
+                ChromeOptions::CAPABILITY, $options
+            )
+        );
     }
 }
