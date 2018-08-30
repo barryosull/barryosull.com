@@ -235,9 +235,90 @@ If you use libraries, try to hide them behind interfaces. It'll slow you down a 
 
 If a piece of code is incredibly messy and hard to understand, try to write a short paragraph describing what it does.
 
+The great thing about sketching parts of a design you are trying to understand is that it's informal and infectious. 
+(I do this but rarely , though it is useful, it just feels easier to power through, sketch feel it slows me down, but does it?)
 
+Scratch Refactoring: Create a branch, and just mess around trying to refactor it so you get a better understanding. When you're happy you've learned all you can, throw it away. Take half an hour and try the idea, you'll learn far more than by just looking at the code.
 
+Delete unused code. It just gets in the way of clarity.
 
+Reasons for an application with no structure: What gets in the way of architectural awareness?
+- The system is so complex it takes time for someone to get the big picture
+- The system is so complex there is no big picture 
+- The team is in reactive mod, dealing with emergencies so much that they lose sight of any big picture.
 
+Architecture is too important to be left to just a few people.
+Everyone should know the architectural plan and have a stake in it. They know what to do when they need to make key decisions.
+
+Tell stories of the system to each other. Simplify and condense the functionality, have a shared view. Try telling the story in different ways.
+(This is really domain modelling, where the domain is the messy system, you're learning it's language, or at least creating it)
+
+When someone describes a system, ask for the simplifications. Where did you generalise or skip over details?
+Once they've finish one deep dive, ask if there's more to to tool/concept/system. Repeat until everyone is satisfied or you hit knowledge walls. Maybe pair of an do s spike into that knowledge gap. If it's a code problem, do a quick pair code dive.
+
+There's something about a large chunk of procedural code, it just begs for more code. Ignore it's sultry charms.
+
+All procedural programs are object orientated, it's just a shame that many contain only one object.
+
+The problem with big classes
+- Confusion: Having 50  to 60 methods makes it difficult to get a sense of it's actual use
+- Many reasons to change: When a class has 20+ responsibilities, it will change A LOT
+- Painful to test
+
+Extracting objects: Look for similar methods and private vars only used by those methods, group them in code, see if there's an object/concept hidden there.
+
+Many private/protected is a sure sign there's class hiding within it.
+
+Look for the primary responsibility, try to describe the class in a single sentence, if you can't then the second sentence (or more) is probably another class.
+
+Legacy issue, duplicated code. When you find you have to make the same change in multiple places to make it work.
+Thankfully this is easier to solve, just remove the duplication piece by piece. Extract a class/function, test it, call it in the other locations.
+
+Heuristic: Start small, remove tiny pieces of duplication, it makes the big picture clearer
+
+When two methods looks roughly the same, extract the differences to other methods, when you do that, you can often make them the exact same and remove one of them.
+
+When you remove duplication, designs start to emerge naturally. No planning required, they just happen.
+
+The ultimate goal of coding, you don't have to change a lot of code to add new behaviour.
+
+Monster methods: Methods so large you are afraid to touch them
+
+Bulleted Method: Methods with nearly no indentation
+Snaraled Methods: A method domicated by a single large indented section
+ 
+Lean of automated refactoring at the start, use it to get code into a place that's easy to test, which makes future changes easier.
+
+Sense Variables: Variables added to a class so you can sense conditions in a method you want to refactor. Add the var, the test checks the value and passes, refactor the method and remove the variable. Simple.
+
+Find code that you can extract confidently without tests, then add tests to cover them. Only do this for five lines at most, aim for three. (Seems kind of small, but ok, he might have something, you can always combine it back later)
+
+Not all behaviours are equal in a system, some have more value.
+
+Break out method object: Extract a monster method into its own class
+Skeletonizing: Extract private methods so that only the control structures (conditional statements) and behavioural calls are left.
+If you can easily combine repeating control and behaviour blocks into a single method, you should, it brings clarity.
+
+Don't worry about extracted methods having awkward names, just stick with them, don't begin extracting class too soon. When you've refactored the class, then look for classes to extract.
+
+Be prepared to redo extractions. You won't always get it perfect first time, sometimes extraction needs to be reverted, but that's because your previous extraction made it so obvious.
+
+Do one thing at a time. Pair programming is great for encouraging this.
+
+Thee grass isn't really much greener in green-field development.
+
+If you want to boost morale, pick the ugliest, most obnoxious piece of code in the system and get it under test. That should give everyone a feeling of control.
+
+If several globals are always used or modified near each other, then they belong in the same class.
+
+Class names should be good, but they don't have to be perfect.
+
+If you have a method that doesn't use instance or methods, you can turn it into a static method, which is much easier to test.
+
+When extracting an interface, try to come up with a new name for it (if possible).
+
+Avoid abstract classes if you can, they make testing harder. (Agreed)
+
+You can give objects setter so you can sense changes, but it makes the object brittle and encourage bad design. When you don't have setters the system is easier to understand.
 
 
