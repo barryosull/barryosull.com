@@ -5,75 +5,104 @@ description: description
 tags: tags
 cover_image: http://globalnerdy.com/wordpress/wp-content/uploads/2008/07/technical_difficulties_please_stand_by.jpg
 ---
-A refresher for me, possible inspiration to read the book for others.
+My notes from reading "Working Effectively with Legacy Code", with my own unique spin and interpretations. If the below is interesting to you, then I highly advice you buy the book!
 
-For reasons to change software
+Now, onto the notes.
+
+## Four reasons to change software
+When it comes down to it there are four abstract reasons to change code.
 - Adding a feature
 - Fixing a bug
 - Improving the design
 - Optimising resource usage
 
-Behaviour is the most important thing about software
+How you change and test your code depends entirely on which of the above you're doing.
 
-It seems nearly impossible to add behaviour without also changing it to some degree.
+## Behaviour and change
+Behaviour is the most important thing about software. If we can't get the behaviour we want, then the software has failed. Bad code gets in the way of changing behaviour, that's what makes it bad.
 
-Key refactoring point: There aren't supposed to be any functional changes, it should still behave the same way.
+It's nearly impossible to add behaviour without also changing it to some degree. Even if it's a new feature, you'll still need to change existing parts of the system, like the UI. There's just no escaping it.
 
-When adding behaviour, we have to know that the existing behaviour isn't changing. This is why changing existing software is so difficult.
+If we're adding behaviour, we also need to knew we haven't broken existing behaviour. This is the key reason that changing existing software is so difficult. (It's also the main reason that we write tests)
 
-To mitigate risk we have to ask three questions:
-- What changes do we need to make?
-- How will we know when we've done them correctly?
-- How will we know if we haven't broken anything?
+## Mitigating Risk
 
-(the answer is tests :P)
+To mitigate risk when changing code we have to ask three questions:
+1. What changes are we going to make?
+2. How will we know we've made the correctly?
+3. How will we know we haven't broken anything?
+
+Spoiler: The answer to 2 and 3 is "tests".
 
 There are two ways to make changes to a system:
-- Edit and Pray
-- Cover and Modify
+1. Edit and Pray
+2. Cover and Modify
 
+One of these is the statues quo, the other actually works. Figuring out which is left as an exercise to the reader.
+
+Ok, it's not. The second one is the good one.
+
+"Cover and Modify" is a strategy where we cover the code we need to change in a test, then make the changes. It's the only stable way to make changes to software, otherwise you really are just hoping, and hope is not a strategy.
+
+#### The Legacy Code Catch-22
+> When we change code, we should have tests to make sure it's a safe change. To have tests, we usually have to change code.
+
+If you want to safely change legacy code, then this is the high level process:
+1. Identify change points
+2. Find test points
+3. Break dependencies (if you need to)
+4. Write tests
+5. Make changes and refactor
+
+When do you break dependencies? Well there are two reasons:
+
+#### 1. Sending: 
+Break dependencies to sense when we can't access values. E.g. we can't sense the effects of calls to methods.
+
+#### 2. Separation: 
+Break dependencies when we can't put the code under tests. I.e. it's practically impossible to test the code separately from the rest of the app.
+
+Seams: A place where you can alter behaviour without editing that place
+E.g. Overloading a method so that the base behaviour is not called (really don't like this one, relies on extension, which is a code smell IMO)
+
+Enabling pointL The point where the decision is made to use one behaviour or another
+
+Link Seams: Include mocks/stubs for tests instead of actual class file (more of C/C++ concept)
+Mocks objects are fakes that perform assertions
+
+
+"Tell code" is much easier to stub/mock, as you don't have to return anything, you just tell it to do something.
+
+In particularly nasty legacy code, the best approach is to modify the code as little as possible while wrapping it in tests.
+
+### Unit tests
 Unit tests should be fast. It is not a unit test if it:
 - Talks to a DB
 - Communicates across a network
 - Touches the file system
 - You need to change the environment 
 
-Anything that touches the above should be implemented behind an interface, called integration tests, then you mock/fake those interfaces in your unit tests. Simple.
+If you want to turn a "non" unit test into an actual unit test do the following: 
+Any aspect of a class that touches the above should be extracted into its own class/interface, which requires its own integration test (since it's integrating with other systems). Mock that class/interface in your test and now it's a real unit test.
 
-The Legacy Code Catch-22
-When we change code, we should have tests to make sure it's a safe change. To have tests, we usually have to change code.
-
-Legacy Code Change Algorithm:
-- Identify change points
-- Find test points
-- Break dependencies
-- Write tests
-- Make changes and refactor
-
-There are two reasons to break dependencies:
-- Sending: Break deps to sense when we can't access values (we can't sense the effects of calls to methods)
-- Separation: Break deps when we can't cover it with tests (we cant run the code separately from the rest of the app)
-
-Mocks objects are fakes that perform assertions
-
-Programming languages do not support testing very well.
-
-If you want to challenge your idea of what "good" design is, see how hard it is to pull a class out of the existing code.
+> 
 
 Seams: A place where you can alter behaviour without editing that place
-E.g. Overloading a method so that the base behaviouir is not called (really don't like this one, relies on extension, which is a code smell IMO)
-
-Pre-processing seams are a bit of a hack, they decrease code clarity. (more of C/C++ concept)
+E.g. Overloading a method so that the base behaviour is not called (really don't like this one, relies on extension, which is a code smell IMO)
 
 Enabling pointL The point where the decision is made to use one behaviour or another
 
 Link Seams: Include mocks/stubs for tests instead of actual class file (more of C/C++ concept)
+Mocks objects are fakes that perform assertions
+
 
 "Tell code" is much easier to stub/mock, as you don't have to return anything, you just tell it to do something.
 
 In particularly nasty legacy code, the best approach is to modify the code as little as possible while wrapping it in tests.
 
 Breaking deps and writing tests can feel time consuming, but you don't know how long that work might have taken if you hadn't written the tests. It might have broken things or caused issues, causing more work in the near future.
+
+> If you want to challenge your idea of what "good" design is, see how hard it is to pull a class out of the existing code.
 
 With tests around code, nailing down functional problems is often easier.
 
@@ -194,6 +223,9 @@ Sometimes class don't return anything, the side effects are hidden.
 CQS is useful here. Add a query method that let's you ask questions.
 
 Refactoring tools are your friend, as they can refactor code safely (need to learn how they work in PHPStorm)
+
+Key refactoring point: 
+There aren't supposed to be any functional changes, it should still behave the same way.
 
 Characterisation tests: Pin down the behaviour that's already there
 
@@ -322,3 +354,4 @@ Avoid abstract classes if you can, they make testing harder. (Agreed)
 You can give objects setter so you can sense changes, but it makes the object brittle and encourage bad design. When you don't have setters the system is easier to understand.
 
 
+> Programming languages do not support testing very well.
