@@ -5,34 +5,32 @@ description: description
 tags: tags
 cover_image: http://globalnerdy.com/wordpress/wp-content/uploads/2008/07/technical_difficulties_please_stand_by.jpg
 ---
-Retrospective on a integrating a Microservice with Legacy code
+This is a retrospective on integrating Microservice with a Legacy codebase.
 
-This is a description and analysis of how we dealt with integration a system (Digest) into a legacy codebase (API).
-
-TL;DR: We got it wrong a few times and then ended up figuring out how to do it safely.
+Short version, we wanted to integrate a microservice with our existing legacy application and completely remove the old functionality. This did not go as well as we had hoped, mostly due to the quality of the code, and if I'm quite honest, our own hubris. We figured out how to do it safely in the end, but not before we learned some hard lessons. So that's what this is, a breakdown of what we did and what we learned, hopefully it will help others from making the same mistakes.
 
 Background:
-We have a view counting microservice called Digest. We had successfully integrated it with the view count on article object returned from the API. I.e. Articles displayed in the app were showing the more acurrate digest total, as opposed to the incorrect total that API was previously calculating and showing.
+We had created a view counting micro-service called Digest. It was created to replace a faulty view counting system in the Legacy Monolith, which we call API. Digest was correctly tallying up views and we had successfully integrated part of it with API. Now articles returned by API had view data from Digest, i.e. articles displayed in the app were showing the more accurate view count from Digest, as opposed to the incorrect values that API was previously calculating and returning.
 
-However, we weren't done, API was still using the old system to populate a local table's column. So any queries/reports that relied on views were still using this inacurate view data.
+However, we weren't done, API still had the old view calculation code, which was populating a column in a table. So any queries/reports that relied on views were still using this inaccurate view data.
 
 The goal:
-Our goal was to switchover to using Digest for every view, and completely remove the old view calculating system from API.
+Our goal was to switchover to using Digest for all view data, and completely remove the old view calculating system from API. Initially we thought this was quite simple, as the column wasn't used in a lot of places, so we dove right in.
 
 Attempt 1: The big bang removal
-We removed the code that populated the old views and went through the system, looking for were the value was used. Anywhere that depended on the `view` column had the default set to null. The tests pased, the code was reviewed, so we thought we were good to go.
+We removed the code that populated the old views and went through the system, looking for were the column was used. Anywhere that depended on the `view` column had the default set to 0. The tests passed, the code was reviewed and given a thumbs up, we thought we were good to go and released it.
 
 Why it failed:
-We had inadverently broken the reports in the system, they no longer had valid view totals. We didn't realise this system was printing views. We had assumed the existing tests would catch any issues, but there were no tests for that feature of the system. 
+Turns out we had inadvertently broken a report in the system. The report relied on the `view` column being populated, but due to the messy nature of the SQL we didn't notice. We had assumed the existing tests would catch any issues, but there were no tests for that feature of the system.
 
 So we reverted the PR. The old system started populating views, but we had lost views during the time that other system was deployed. So we had to write a script to copy over values from digest and into the post_stats table. Took some time but we got it all working again. Now were at square one codewise, but we had a deeper understanding of the areas affected, we felt we could actually replace it now.
 
 Attempt 2: Populate report data from Digest
-This time round we knew that certain sections of the app relied on views from digest. We added an endpoint to digest that allowed us to fetch a collection of views based on their IDs. Anywhere in the app that needs display views would not get them via this endpoint.
+This time round we knew that certain sections of the app relied on views from Digest. We added an endpoint to Digest that allowed us to fetch a collection of views based on their IDs. Anywhere in the app that needs to display views would now get them via this endpoint.
 
-We also removed anywhere that referenced the `view` column, searching for usages of it in the app and removing anywhere not explicitly used. E.g. there was a Search class that ordered by view but no one if this was used and no tests indicated it did, so we just removed that sort by.
+We also removed anywhere that referenced the `view` column, searching for usages of it in the app and removing anywhere not explicitly used. For example, there was a Search class that ordered by view, but no one knew if this was every used and no tests indicated it did, so we just removed that sort by and waited to see what happened.
 
-This worked, until we noticed that "most populat articles" feature wasn't working right. It was displaying a collection of articles that didn't have the highest views. Whoops. Turns out it was ordering articles by view and it was the only place in the app that attempted to sort by view, it was triggered by an API call from Front, that told it to order by `views`. Only place that did that.
+This worked, until we noticed that "most popular articles" feature was showing the wrong articles. Whoops. Turns out it was ordering articles by view and it was the only place in the app that needed to sort by view. It was triggered by an API call from Front, that told it to order by `views`. Only place that did that.
 
 The feature wasn't a priority, but we got the fix/solution out pretty fast. We used the same fetch collection endpoint and digest, then sorted the result by view count in memory. Wrote some tests, they passed, so we released it and considered this a job well done.
 
