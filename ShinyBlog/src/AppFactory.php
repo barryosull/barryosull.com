@@ -2,8 +2,6 @@
 
 namespace Nekudo\ShinyBlog;
 
-const ANNOTATION_API_URI = "/api/annotator";
-
 class AppFactory
 {
     public static function make($requestUri): App
