@@ -10,12 +10,7 @@ class UnkownContentTest extends TestCase
 {
     public function test_fetching_an_unknown_url()
     {
-        $_SERVER['REQUEST_METHOD'] = 'GET';
-        $_SERVER['REQUEST_URI'] = '/unknown-url';
-
-        $config = require __DIR__.'/../../src/config.php';
-        $app = new ShinyBlog($config);
-        $response = $app->run();
+        $response = AppFactory::make()->visitUrl("/unknown-url");
 
         $this->assertEquals(404, $response->getStatusCode());
     }
