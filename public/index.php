@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/../src/bootstrap.php';
+require __DIR__ . '../ShinyBlog/src/bootstrap.php';
 
 $app = \Nekudo\ShinyBlog\AppFactory::make($_SERVER['REQUEST_URI']);
 

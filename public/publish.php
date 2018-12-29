@@ -7,7 +7,7 @@ if ($_GET['command'] != $password) {
     return;
 }
 
-chdir(__DIR__."/../");
+chdir(__DIR__ . "/ShinyBlog/");
 
 passthru("git pull origin master");
 
