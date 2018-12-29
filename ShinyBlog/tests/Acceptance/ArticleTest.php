@@ -2,6 +2,7 @@
 
 use PHPUnit\Framework\TestCase;
 use SimpleXMLElement;
+use Tests\Acceptance\Support\AppFactory;
 
 class ArticleTest extends TestCase
 {

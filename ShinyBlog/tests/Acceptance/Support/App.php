@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Acceptance;
+namespace Tests\Acceptance\Support;
 
 use GuzzleHttp\Psr7\Response;
 use Nekudo\ShinyBlog\ShinyBlog;
@@ -31,7 +31,7 @@ class App
             $_SERVER['REQUEST_METHOD'] = 'GET';
             $_SERVER['HTTP_HOST'] = 'localhost';
 
-            $config = require __DIR__.'/../../src/config.php';
+            $config = require __DIR__.'/../../../src/config.php';
             self::$blog = new ShinyBlog($config);
         }
 

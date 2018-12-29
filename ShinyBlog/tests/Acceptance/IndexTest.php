@@ -2,6 +2,7 @@
 
 use Nekudo\ShinyBlog\ShinyBlog;
 use PHPUnit\Framework\TestCase;
+use Tests\Acceptance\Support\AppFactory;
 
 class IndexTest extends TestCase
 {

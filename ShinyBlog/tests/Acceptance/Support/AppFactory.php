@@ -1,7 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Acceptance;
+namespace Tests\Acceptance\Support;
+
+use Tests\Acceptance\Support\App;
 
 class AppFactory
 {
