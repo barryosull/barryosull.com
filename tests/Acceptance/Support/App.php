@@ -31,7 +31,7 @@ class App
             $_SERVER['REQUEST_METHOD'] = 'GET';
             $_SERVER['HTTP_HOST'] = 'localhost';
 
-            $config = require __DIR__.'/../../../src/config.php';
+            $config = require __DIR__ . '/../../../ShinyBlog/src/config.php';
             self::$blog = new ShinyBlog($config);
         }
 

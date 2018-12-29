@@ -12,7 +12,7 @@
     "autoload": {
         "psr-4": {
             "Nekudo\\ShinyBlog\\": "ShinyBlog/src/",
-            "Tests\\": "ShinyBlog/tests/"
+            "Tests\\": "tests/"
         }
     },
     "repositories": [

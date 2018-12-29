@@ -29,4 +29,4 @@ jobs:
       - run: cp .env.example .env
 
       # run tests!
-      - run: ./vendor/bin/phpunit ShinyBlog/tests
+      - run: ./vendor/bin/phpunit tests
