@@ -4,9 +4,9 @@ namespace Nekudo\ShinyBlog\Domain;
 
 use DirectoryIterator;
 use Nekudo\ShinyBlog\Domain\Entity\ArticleEntity;
+use Nette\Utils\Strings;
 use RuntimeException;
 use Symfony\Component\Yaml\Yaml;
-use Cocur\Slugify\Slugify;
 
 class ContentDomain extends BaseDomain
 {
@@ -191,7 +191,7 @@ class ContentDomain extends BaseDomain
         $sections = explode('---', $this->contentRaw);
         $data = Yaml::parse($sections[1], Yaml::PARSE_DATETIME);
         if (!isset($data['slug'])) {
-            $data['slug'] = (new Slugify())->slugify($data['title']);
+            $data['slug'] = Strings::webalize($data['title']);
         }
         if (!isset($data['author'])) {
             $data['author'] = 'Barry';
