@@ -24,12 +24,34 @@ class App
             $contentRepository = new ContentRepository();
             $renderer = new Renderer();
 
-            $page = $args['page'] ?? 0;
+            $page = isset($args['page']) ? intval($args['page']) : 0;
 
-            $articles = $contentRepository->fetchCollection($page);
+            $articles = $contentRepository->fetchCollection();
             $categories = $contentRepository->fetchAllCategories();
 
-            $renderer->render("blog", ['articles' => $articles, 'categories' => $categories]);
+            $urlPrevPage = null;
+            $urlNextPage = null;
+
+            if ($page > 1) {
+                $urlPrevPage = "/blog/page-" . ($page-1);
+            }
+            if ($page == 1) {
+                $urlPrevPage = "/blog";
+            }
+
+
+            $perPage = 8;
+
+            if (count($articles) > (($page+1) * $perPage)) {
+                $urlNextPage = "/blog/page-" . ($page+1);
+            }
+
+            $renderer->render("blog", [
+                'articles' => array_slice($articles, $page * $perPage, 8),
+                'categories' => $categories,
+                'urlPrevPage' => $urlPrevPage,
+                'urlNextPage' => $urlNextPage
+            ]);
         });
 
         $slimApp->get("/blog/{slug}", function ($request, $response, $args) {

@@ -43,7 +43,7 @@ class ContentRepository
         throw new \Exception('Article content not found');
     }
 
-    public function fetchCollection(int $page, bool $includeDraft = false): array
+    public function fetchCollection(bool $includeDraft = false): array
     {
         $dir = __DIR__ . "/../contents/articles/";
 
@@ -68,9 +68,7 @@ class ContentRepository
             });
         }
 
-        $perPage = 8;
-
-        return array_slice($articles, $page * $perPage, 8);
+        return $articles;
     }
 
     public function fetchAllCategories(): array
@@ -141,6 +139,33 @@ class ContentRepository
 
         $data['content'] = $content;
 
+        $data['excerpt'] = $this->getExcerpt($data['slug'], $content);
+
         return $data;
     }
+
+    const EXERT_LENGTH = 640;
+
+    private function getExcerpt(string $slug, string $content) : string
+    {
+        if (empty($content)) {
+            return '';
+        }
+        $moreMarkerPosition = strpos($content, '<!--more-->');
+        if (empty($moreMarkerPosition)) {
+            $moreMarkerPosition = self::EXERT_LENGTH;
+        }
+        $excerpt = substr($content, 0, $moreMarkerPosition). "... <br>";
+
+        $readMoreLink = $this->readMoreLink("/blog/" . $slug);
+        $excerpt .= $readMoreLink;
+
+        return $excerpt;
+    }
+
+    private function readMoreLink(string $url): string
+    {
+        return '<a href="' . $url . '" style="float:right" class="btn">Read on &raquo;</a>';
+    }
+
 }
