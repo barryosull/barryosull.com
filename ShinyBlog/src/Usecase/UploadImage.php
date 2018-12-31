@@ -8,7 +8,7 @@ class UploadImage
 
         $public_image_path = "images/".$image_id.".".$this->imageExt($image);
 
-        $server_image_path = "/var/www/barryosull.com/public/$public_image_path";
+        $server_image_path = "/var/www/barryosull.com-static/$public_image_path";
 
         $command = "scp -p $image $host:$server_image_path";
         exec($command);
