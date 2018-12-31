@@ -16,7 +16,7 @@ function isSlimAppRequest(string $uri): bool
     if ($uri == "/") {
         return true;
     }
-    if (isBlogRequest($uri) && (!isBlogPagination($uri) && !isBlogFeedRequest($uri) && !isBlogCategoryRequest($uri))) {
+    if (isBlogRequest($uri) && (!isBlogFeedRequest($uri) && !isBlogCategoryRequest($uri))) {
         return true;
     }
     return false;
@@ -24,12 +24,7 @@ function isSlimAppRequest(string $uri): bool
 
 function isBlogRequest($uri): bool
 {
-    return strpos($uri, "/blog/") !== false;
-}
-
-function isBlogPagination($uri): bool
-{
-    return strpos($uri, "/blog/page-") !== false;
+    return strpos($uri, "/blog") !== false;
 }
 
 function isBlogFeedRequest($uri): bool

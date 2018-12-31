@@ -6,7 +6,7 @@ namespace Barryosull\Slim;
 use Nette\Utils\Strings;
 use Symfony\Component\Yaml\Yaml;
 
-class PageRepository
+class ContentRepository
 {
     public function fetchPage(string $page) : array
     {
@@ -43,6 +43,61 @@ class PageRepository
         throw new \Exception('Article content not found');
     }
 
+    public function fetchCollection(int $page, bool $includeDraft = false): array
+    {
+        $dir = __DIR__ . "/../contents/articles/";
+
+        $files = scandir($dir);
+
+        $articles = [];
+
+        foreach($files as $file) {
+
+            if (strpos($file, ".md") === false) {
+                continue;
+            }
+
+            $articles[] = (object)$this->parseJekyllMetaData($dir . $file);
+        }
+
+        $articles = array_reverse($articles);
+
+        if (!$includeDraft) {
+            $articles = array_filter($articles, function($article){
+               return $article->published;
+            });
+        }
+
+        $perPage = 8;
+
+        return array_slice($articles, $page * $perPage, 8);
+    }
+
+    public function fetchAllCategories(): array
+    {
+        $dir = __DIR__ . "/../contents/articles/";
+
+        $files = scandir($dir);
+
+        $categories = [];
+
+        foreach($files as $file) {
+
+            if (strpos($file, ".md") === false) {
+                continue;
+            }
+
+            $article = $this->parseJekyllMetaData($dir . $file);
+
+            $categories = array_merge($categories, $article['categories'] ?? []);
+        }
+
+        sort($categories);
+        $categories = array_unique($categories);
+
+        return $categories;
+    }
+
     private function parseJekyllMetaData($pathToFile): array
     {
         $contentRaw = file_get_contents($pathToFile);
@@ -66,7 +121,12 @@ class PageRepository
             $data['date'] = substr($file_name, 0, 10);
         }
         if (isset($data['tags'])) {
-            $data['categories'] = $data['tags'] ?? [];
+            $categoriesString = $data['tags'] ?? '';
+            $categories = explode(",", $categoriesString);
+
+            $data['categories'] = array_map(function($category){
+                return trim($category);
+            }, $categories);
         }
 
         $data['coverImage'] = $data['cover_image'] ?? null;

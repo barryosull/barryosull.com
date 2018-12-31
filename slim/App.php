@@ -11,20 +11,33 @@ class App
 
         $slimApp->get('/', function ($request, $response, $args) {
 
-            $pageRepo = new PageRepository();
+            $contentRepository = new ContentRepository();
             $renderer = new Renderer();
 
-            $page = $pageRepo->fetchPage('home');
+            $page = $contentRepository->fetchPage('home');
 
             $renderer->render("page", ['page'=>(object)$page]);
         });
 
-        $slimApp->get("/blog/{slug}", function ($request, $response, $args) {
+        $slimApp->get('/blog[/page-{page}]', function ($request, $response, $args) {
 
-            $pageRepo = new PageRepository();
+            $contentRepository = new ContentRepository();
             $renderer = new Renderer();
 
-            $article = $pageRepo->fetchArticleBySlug($args['slug']);
+            $page = $args['page'] ?? 0;
+
+            $articles = $contentRepository->fetchCollection($page);
+            $categories = $contentRepository->fetchAllCategories();
+
+            $renderer->render("blog", ['articles' => $articles, 'categories' => $categories]);
+        });
+
+        $slimApp->get("/blog/{slug}", function ($request, $response, $args) {
+
+            $contentRepository = new ContentRepository();
+            $renderer = new Renderer();
+
+            $article = $contentRepository->fetchArticleBySlug($args['slug']);
 
             $renderer->render("article", ['page' => (object)$article, 'article' => (object)$article]);
         });
