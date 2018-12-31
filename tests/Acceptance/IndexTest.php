@@ -11,5 +11,6 @@ class IndexTest extends TestCase
         $response = AppFactory::make()->visitUrl("/");
 
         $this->assertEquals(200, $response->getStatusCode());
+        $this->assertContains(">barryosull.com</a>", strval($response->getBody()));
     }
 }
