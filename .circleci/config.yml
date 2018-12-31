@@ -26,13 +26,6 @@ jobs:
 
       - run: cp .env.example .env
 
-      - run:
-          name: Creating Artifacts folder
-          command: |
-            mkdir /tmp/artifacts;
-
       # run tests!
       - run: ./vendor/bin/phpunit tests
 
-      - store_artifacts:
-          path: /tmp/artifacts
