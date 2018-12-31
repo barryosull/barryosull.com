@@ -17,7 +17,7 @@ class AppHttp
         $response = $client->get($url);
 
         if ($response->getStatusCode() != 200) {
-            $filename = strtolower(str_replace("/", "-", $url));
+            $filename = strtolower(str_replace("/", "-", $url)) . ".html";
             $dir = "/tmp/artifacts";
             $path = $dir . "/" . $filename;
             if (!is_dir($dir)) {
