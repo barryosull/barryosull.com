@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/../ShinyBlog/src/bootstrap.php';
+require __DIR__ . '/../bootstrap.php';
 
 if (isSlimAppRequest($_SERVER['REQUEST_URI'])) {
 

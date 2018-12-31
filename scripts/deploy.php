@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/../src/bootstrap.php';
+require __DIR__ . '/../bootstrap.php';
 
 $host = getenv('REMOTE_HOST');
 
