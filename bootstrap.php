@@ -9,5 +9,5 @@ require __DIR__ . '/vendor/autoload.php';
 
 use Dotenv\Dotenv;
 
-$dotenv = new Dotenv(__DIR__ . '/../barryosull.com');
+$dotenv = new Dotenv(__DIR__ . '');
 $dotenv->load();
