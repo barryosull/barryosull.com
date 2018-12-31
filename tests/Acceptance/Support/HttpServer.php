@@ -45,7 +45,7 @@ class HttpServer
     private function waitUntilWebServerAcceptsRequests()
     {
         $waitForItCmd = 'bash '.__DIR__.'/wait-for-it.sh -t 5 -q '.self::HOST;
-  
+
         system($waitForItCmd, $returnVar);
         if ($returnVar !== 0) {
             throw new \Exception(

@@ -5,7 +5,7 @@ namespace Tests\Acceptance\Support;
 
 use Psr\Http\Message\ResponseInterface;
 
-class AppHttp implements App
+class AppHttp
 {
     public function visitUrl(string $url): ResponseInterface
     {

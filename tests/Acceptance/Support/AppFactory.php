@@ -5,7 +5,7 @@ namespace Tests\Acceptance\Support;
 
 class AppFactory
 {
-    public static function make(): App
+    public static function make(): AppHttp
     {
         return new AppHttp();
     }
