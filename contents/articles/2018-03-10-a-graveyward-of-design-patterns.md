@@ -2,7 +2,7 @@
 title: "A graveyard of design patterns"
 published: false
 description: ""
-tags: event sourcing
+tags: event-sourcing
 ---
 Bla bla bla bla
 

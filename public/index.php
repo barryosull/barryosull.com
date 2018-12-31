@@ -16,7 +16,7 @@ function isSlimAppRequest(string $uri): bool
     if ($uri == "/") {
         return true;
     }
-    if (isBlogRequest($uri) && (!isBlogFeedRequest($uri) && !isBlogCategoryRequest($uri))) {
+    if (isBlogRequest($uri) && (!isBlogFeedRequest($uri))) {
         return true;
     }
     return false;
@@ -30,11 +30,6 @@ function isBlogRequest($uri): bool
 function isBlogFeedRequest($uri): bool
 {
     return $uri == "/blog/feed";
-}
-
-function isBlogCategoryRequest($uri): bool
-{
-    return strpos($uri, "/blog/category") !== false;
 }
 
 

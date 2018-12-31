@@ -2,7 +2,7 @@
 title: "Growing your dev team: Code consistency is king"
 published: false
 description: If you want to grow your dev team, make your code consistent
-tags: management, design patterns, growth
+tags: management, design-patterns, growth
 cover_image: http://barryosull.com/images/ff21e4a8-0140-4d27-9172-46e19b3dcd33.jpg
 ---
 

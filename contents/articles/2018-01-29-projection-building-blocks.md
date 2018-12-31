@@ -2,7 +2,7 @@
 title: "Projection Building Blocks: What you'll need to build projections "
 published: true
 description: The building blocks of a robust projection system
-tags: event sourcing, projectors, CQRS
+tags: event-sourcing, projectors, CQRS
 cover_image: http://barryosull.com/images/ff21e4a8-0140-4d27-9172-46e19b3dcd33.jpg
 ---
 

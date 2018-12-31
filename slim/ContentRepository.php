@@ -43,7 +43,7 @@ class ContentRepository
         throw new \Exception('Article content not found');
     }
 
-    public function fetchCollection(bool $includeDraft = false): array
+    public function fetchCollection(?string $category, bool $includeDraft = false): array
     {
         $dir = __DIR__ . "/../contents/articles/";
 
@@ -65,6 +65,12 @@ class ContentRepository
         if (!$includeDraft) {
             $articles = array_filter($articles, function($article){
                return $article->published;
+            });
+        }
+
+        if ($category) {
+            $articles = array_filter($articles, function($article) use ($category) {
+                return in_array($category, $article->categories);
             });
         }
 
@@ -123,7 +129,7 @@ class ContentRepository
             $categories = explode(",", $categoriesString);
 
             $data['categories'] = array_map(function($category){
-                return trim($category);
+                return strtolower(trim($category));
             }, $categories);
         }
 
@@ -167,5 +173,4 @@ class ContentRepository
     {
         return '<a href="' . $url . '" style="float:right" class="btn">Read on &raquo;</a>';
     }
-
 }

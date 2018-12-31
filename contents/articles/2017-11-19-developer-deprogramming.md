@@ -2,7 +2,7 @@
 title: "Developer deprogramming: Getting started in Event Sourcing"
 published: true
 description: Event Sourcing mistakes, a story of making them and how to avoid them
-tags: event sourcing, ddd
+tags: event-sourcing, ddd
 cover_image: https://thepracticaldev.s3.amazonaws.com/i/10xpi9u14p5s6i0seyzd.png
 ---
 

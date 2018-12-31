@@ -20,38 +20,11 @@ class App
         });
 
         $slimApp->get('/blog[/page-{page}]', function ($request, $response, $args) {
+            (new BlogController())->handle($request, $response, $args);
+        });
 
-            $contentRepository = new ContentRepository();
-            $renderer = new Renderer();
-
-            $page = isset($args['page']) ? intval($args['page']) : 0;
-
-            $articles = $contentRepository->fetchCollection();
-            $categories = $contentRepository->fetchAllCategories();
-
-            $urlPrevPage = null;
-            $urlNextPage = null;
-
-            if ($page > 1) {
-                $urlPrevPage = "/blog/page-" . ($page-1);
-            }
-            if ($page == 1) {
-                $urlPrevPage = "/blog";
-            }
-
-
-            $perPage = 8;
-
-            if (count($articles) > (($page+1) * $perPage)) {
-                $urlNextPage = "/blog/page-" . ($page+1);
-            }
-
-            $renderer->render("blog", [
-                'articles' => array_slice($articles, $page * $perPage, 8),
-                'categories' => $categories,
-                'urlPrevPage' => $urlPrevPage,
-                'urlNextPage' => $urlNextPage
-            ]);
+        $slimApp->get('/blog/category/{category}[/page-{page}]', function ($request, $response, $args) {
+            (new BlogController())->handle($request, $response, $args);
         });
 
         $slimApp->get("/blog/{slug}", function ($request, $response, $args) {

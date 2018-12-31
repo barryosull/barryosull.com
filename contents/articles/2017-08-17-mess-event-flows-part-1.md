@@ -2,7 +2,7 @@
 title: "Messy Event Flows: Part 1"
 published: true
 description: Restructuring events flows in event sourced apps
-tags: event sourcing, event storming, ddd
+tags: event-sourcing, event-storming, ddd
 cover_image: https://thepracticaldev.s3.amazonaws.com/i/x9hxvpnu64nynaw1bj3j.png
 ---
 

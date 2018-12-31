@@ -3,7 +3,7 @@ title: Immediate Consistency in Event Sourcing
 published: true
 description: Strategies for immediate consistency in event sourcing 
 cover_image: https://thepracticaldev.s3.amazonaws.com/i/ad1vtbq52gf9kpwdkplz.jpg
-tags: event sourcing, ddd, php
+tags: event-sourcing, ddd, php
 ---
 A continuation on the [Messy Event Flows series](https://dev.to/barryosull/messy-event-flows-part-1) (if you could call it that). You don't need to read it first, but if you're interested, give it a shot, it gives a little more context. 
 

@@ -2,7 +2,7 @@
 title: "Broadcasting events in PHP"
 published: false
 description: "When it comes to building and playing projetors, how quickly should you process events and what are the trade-offs"
-tags: event sourcing
+tags: event-sourcing
 ---
 
 Blocking:
