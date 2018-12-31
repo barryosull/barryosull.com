@@ -16,7 +16,17 @@ class App
 
             $page = $pageRepo->fetchPage('home');
 
-            $renderer->render($page);
+            $renderer->render("page", ['page'=>(object)$page]);
+        });
+
+        $slimApp->get("/blog/{slug}", function ($request, $response, $args) {
+
+            $pageRepo = new PageRepository();
+            $renderer = new Renderer();
+
+            $article = $pageRepo->fetchArticleBySlug($args['slug']);
+
+            $renderer->render("article", ['page' => (object)$article, 'article' => (object)$article]);
         });
 
         $slimApp->run();

@@ -21,6 +21,28 @@ class PageRepository
         return $data;
     }
 
+    public function fetchArticleBySlug(string $articleSlug) : array
+    {
+        $dir = __DIR__ . "/../contents/articles/";
+
+        $files = scandir($dir);
+
+        foreach($files as $file) {
+
+            if (strpos($file, ".md") === false) {
+                continue;
+            }
+
+            $data = $this->parseJekyllMetaData($dir . $file);
+
+            if ($data['slug'] == $articleSlug) {
+                return $data;
+            }
+        }
+
+        throw new \Exception('Article content not found');
+    }
+
     private function parseJekyllMetaData($pathToFile): array
     {
         $contentRaw = file_get_contents($pathToFile);

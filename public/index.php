@@ -11,11 +11,35 @@ if (isSlimAppRequest($_SERVER['REQUEST_URI'])) {
 $shinyBlogApp = \Nekudo\ShinyBlog\AppFactory::make($_SERVER['REQUEST_URI']);
 $shinyBlogApp->run();
 
-function isSlimAppRequest(string $uri)
+function isSlimAppRequest(string $uri): bool
 {
     if ($uri == "/") {
         return true;
     }
+    if (isBlogRequest($uri) && (!isBlogPagination($uri) && !isBlogFeedRequest($uri) && !isBlogCategoryRequest($uri))) {
+        return true;
+    }
+    return false;
+}
+
+function isBlogRequest($uri): bool
+{
+    return strpos($uri, "/blog/") !== false;
+}
+
+function isBlogPagination($uri): bool
+{
+    return strpos($uri, "/blog/page-") !== false;
+}
+
+function isBlogFeedRequest($uri): bool
+{
+    return $uri == "/blog/feed";
+}
+
+function isBlogCategoryRequest($uri): bool
+{
+    return strpos($uri, "/blog/category") !== false;
 }
 
 

@@ -5,9 +5,11 @@ namespace Barryosull\Slim;
 
 class Renderer
 {
-    public function render(array $page)
+    public function render(string $view, array $data)
     {
-        $page = (object)$page;
-        require __DIR__ . "/templates/default.php";
+        foreach ($data as $key => $value) {
+            $$key = $value;
+        }
+        require __DIR__ . "/views/" . $view . ".php";
     }
 }
