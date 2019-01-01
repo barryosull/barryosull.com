@@ -36,9 +36,8 @@ date : 2018-01-07
 | [Using Interfaces Effectively](https://www.youtube.com/watch?v=5ZsTXTE52mE&t=16s) | [Domain Driven Design for Everyone Else](/blog/domain-driven-design-for-everyone-else) | [The Projectionist: System for running projectors and keeping track of their position](https://github.com/barryosull/the-projectionist) |
 
 # Last Event
-[PHPDublin Feb 2018 - Workshop on Using Interfaces Effectively](https://www.meetup.com/PHP-Dublin/events/247509662/)
-I ran a workshop on using interfaces effectively. Went very smoothly and attendees got a lot of value from it. 
-> "Wow, Barry had much to share and the workshop was a great learning experience." - André Breier
+[PHPDublin Nov 2018 - Making your Career Happen](https://www.meetup.com/PHP-Dublin/events/256204461/)
+I ran a collaborative workshop where all participants were involved in defining and exploring the current hiring landscape and how to navigate through it.
 
 # About me
 I am a software developer and solutions architect from Ireland, I enjoy writing software and designing solutions to real problems.
