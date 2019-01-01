@@ -8,9 +8,13 @@ use Symfony\Component\Yaml\Yaml;
 
 class ContentRepository
 {
+    const CONTENTS_DIR = __DIR__ . "/../contents";
+
+    const ARTICLES_DIR = self::CONTENTS_DIR . "/articles/";
+
     public function fetchPage(string $page) : \stdClass
     {
-        $pathToFile = __DIR__ . "/../contents/pages/" . $page . ".md";
+        $pathToFile = self::CONTENTS_DIR . "/pages/" . $page . ".md";
 
         if (!file_exists($pathToFile)) {
             throw new \Exception('Page content not found');
@@ -23,7 +27,7 @@ class ContentRepository
 
     public function fetchArticleBySlug(string $articleSlug) : \stdClass
     {
-        $dir = __DIR__ . "/../contents/articles/";
+        $dir = self::ARTICLES_DIR;
 
         $files = scandir($dir);
 
@@ -45,7 +49,7 @@ class ContentRepository
 
     public function fetchCollection(?string $category = null, bool $includeDraft = false): array
     {
-        $dir = __DIR__ . "/../contents/articles/";
+        $dir = self::ARTICLES_DIR;
 
         $files = scandir($dir);
 
@@ -79,7 +83,7 @@ class ContentRepository
 
     public function fetchAllCategories(): array
     {
-        $dir = __DIR__ . "/../contents/articles/";
+        $dir = self::ARTICLES_DIR;
 
         $files = scandir($dir);
 
