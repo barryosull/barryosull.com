@@ -8,7 +8,7 @@ use Symfony\Component\Yaml\Yaml;
 
 class ContentRepository
 {
-    public function fetchPage(string $page) : array
+    public function fetchPage(string $page) : \stdClass
     {
         $pathToFile = __DIR__ . "/../contents/pages/" . $page . ".md";
 
@@ -18,10 +18,10 @@ class ContentRepository
 
         $data = $this->parseJekyllMetaData($pathToFile);
 
-        return $data;
+        return (object)$data;
     }
 
-    public function fetchArticleBySlug(string $articleSlug) : array
+    public function fetchArticleBySlug(string $articleSlug) : \stdClass
     {
         $dir = __DIR__ . "/../contents/articles/";
 
@@ -36,7 +36,7 @@ class ContentRepository
             $data = $this->parseJekyllMetaData($dir . $file);
 
             if ($data['slug'] == $articleSlug) {
-                return $data;
+                return (object)$data;
             }
         }
 

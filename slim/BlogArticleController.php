@@ -15,7 +15,7 @@ class BlogArticleController
 
         $article = $contentRepository->fetchArticleBySlug($args['slug']);
 
-        $body = $renderer->render("article", ['page' => (object)$article, 'article' => (object)$article]);
+        $body = $renderer->render("article", ['page' => (object)$article, 'article' => $article]);
 
         $response->getBody()->write($body);
 
