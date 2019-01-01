@@ -6,7 +6,7 @@ namespace Barryosull\Slim;
 use Nette\Utils\Strings;
 use Symfony\Component\Yaml\Yaml;
 
-class MarkdownParser
+class JekyllParser
 {
     public function parseJekyllMarkdownFile($pathToFile): Article
     {
@@ -28,7 +28,7 @@ class MarkdownParser
             ? $data['date']->format('Y-m-d')
             : $this->getDateFromFilename($pathToFile);
         $article->categories = (isset($data['tags']))
-            ? $this->getCaterogiesFromArticle($data)
+            ? $this->getCategoriesFromArticle($data)
             : [];
         $article->url = "/blog/" . $article->slug;
         $article->coverImage = $data['cover_image'] ?? null;
@@ -76,7 +76,7 @@ class MarkdownParser
      * @param $data
      * @return array
      */
-    private function getCaterogiesFromArticle($data): array
+    private function getCategoriesFromArticle($data): array
     {
         $categoriesString = $data['tags'] ?? '';
         $categories = explode(",", $categoriesString);

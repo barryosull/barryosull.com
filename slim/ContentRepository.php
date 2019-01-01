@@ -13,7 +13,7 @@ class ContentRepository
 
     public function __construct()
     {
-        $this->fileParser = new MarkdownParser();
+        $this->fileParser = new JekyllParser();
     }
 
     public function fetchPage(string $page) : Article
