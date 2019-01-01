@@ -21,7 +21,7 @@ class JekyllParser
         $article = new Article();
 
         $article->title = $data['title'];
-        $article->published = $data['published'];
+        $article->published = $data['published'] ?? true;
         $article->slug = $data['slug'] ?? Strings::webalize($data['title']);
         $article->author = $data['author'] ?? 'Barry';
         $article->date = (isset($data['date']))
