@@ -31,20 +31,12 @@ class ContentRepository
 
     public function fetchArticleBySlug(string $articleSlug) : Article
     {
-        $dir = self::ARTICLES_DIR;
+        $articles = $this->fetchAllArticles();
 
-        $files = scandir($dir);
+        foreach ($articles as $article) {
 
-        foreach($files as $file) {
-
-            if (strpos($file, ".md") === false) {
-                continue;
-            }
-
-            $data = $this->fileParser->parseJekyllMarkdownFile($dir . $file);
-
-            if ($data->slug == $articleSlug) {
-                return $data;
+            if ($article->slug == $articleSlug) {
+                return $article;
             }
         }
 
@@ -53,22 +45,7 @@ class ContentRepository
 
     public function fetchCollection(?string $category = null, bool $includeDraft = false): array
     {
-        $dir = self::ARTICLES_DIR;
-
-        $files = scandir($dir);
-
-        $articles = [];
-
-        foreach($files as $file) {
-
-            if (strpos($file, ".md") === false) {
-                continue;
-            }
-
-            $articles[] = $this->fileParser->parseJekyllMarkdownFile($dir . $file);
-        }
-
-        $articles = array_reverse($articles);
+        $articles = $this->fetchAllArticles();
 
         if (!$includeDraft) {
             $articles = array_filter($articles, function($article){
@@ -87,20 +64,11 @@ class ContentRepository
 
     public function fetchAllCategories(): array
     {
-        $dir = self::ARTICLES_DIR;
-
-        $files = scandir($dir);
+        $articles = $this->fetchAllArticles();
 
         $categories = [];
 
-        foreach($files as $file) {
-
-            if (strpos($file, ".md") === false) {
-                continue;
-            }
-
-            $article = $this->fileParser->parseJekyllMarkdownFile($dir . $file);
-
+        foreach ($articles as $article) {
             $categories = array_merge($categories, $article->categories ?? []);
         }
 
@@ -108,5 +76,29 @@ class ContentRepository
         $categories = array_unique($categories);
 
         return $categories;
+    }
+
+    /**
+     * @return array
+     * @throws \Exception
+     */
+    private function fetchAllArticles(): array
+    {
+        $dir = self::ARTICLES_DIR;
+
+        $files = scandir($dir);
+
+        $articles = [];
+
+        foreach ($files as $file) {
+
+            if (strpos($file, ".md") === false) {
+                continue;
+            }
+
+            $articles[] = $this->fileParser->parseJekyllMarkdownFile($dir . $file);
+        }
+
+        return array_reverse($articles);
     }
 }
