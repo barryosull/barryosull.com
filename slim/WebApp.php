@@ -9,6 +9,30 @@ class WebApp
     {
         $slimApp = $this->makeApp();
 
+        $this->addCacheMiddleware($slimApp);
+
+        $this->addRoutes($slimApp);
+
+        $slimApp->run();
+    }
+
+    private function makeApp(): \Slim\App
+    {
+        $configuration = [
+            'settings' => [
+                'displayErrorDetails' => true,
+            ],
+        ];
+        $c = new \Slim\Container($configuration);
+
+        return new \Slim\App($c);
+    }
+
+    /**
+     * @param $slimApp
+     */
+    private function addRoutes($slimApp): void
+    {
         $slimApp->get('/', function ($request, $response, $args) {
             return (new HomeController())->handle($request, $response, $args);
         });
@@ -28,19 +52,20 @@ class WebApp
         $slimApp->get("/blog/{slug}", function ($request, $response, $args) {
             return (new BlogArticleController())->handle($request, $response, $args);
         });
-
-        $slimApp->run();
     }
 
-    private function makeApp(): \Slim\App
+    /**
+     * @param $slimApp
+     */
+    private function addCacheMiddleware($slimApp): void
     {
-        $configuration = [
-            'settings' => [
-                'displayErrorDetails' => true,
-            ],
-        ];
-        $c = new \Slim\Container($configuration);
+        $slimApp->add(function ($request, $response, $next) {
 
-        return new \Slim\App($c);
+            $response = $next($request, $response);
+
+            $response = $response->withHeader('Cache-Control', 'max-age=600, public');
+
+            return $response;
+        });
     }
 }
