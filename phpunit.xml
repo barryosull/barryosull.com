@@ -21,6 +21,6 @@
     </filter>
     <php>
         <env name="ENV" value="testing"/>
-        <env name="DOMAIN" value="http://blog.barryosull.local"/>
+        <env name="DOMAIN" value="http://localhost:8000"/>
     </php>
 </phpunit>

@@ -32,7 +32,7 @@ class BlogController
             $urlNextPage = "/blog/page-" . ($page+1);
         }
 
-        $renderer->render("blog", [
+        echo $renderer->render("blog", [
             'articles' => array_slice($articles, $page * $perPage, 8),
             'categories' => $categories,
             'urlPrevPage' => $urlPrevPage,

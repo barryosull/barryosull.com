@@ -43,7 +43,7 @@ class ContentRepository
         throw new \Exception('Article content not found');
     }
 
-    public function fetchCollection(?string $category, bool $includeDraft = false): array
+    public function fetchCollection(?string $category = null, bool $includeDraft = false): array
     {
         $dir = __DIR__ . "/../contents/articles/";
 
@@ -74,7 +74,7 @@ class ContentRepository
             });
         }
 
-        return $articles;
+        return array_values($articles);
     }
 
     public function fetchAllCategories(): array

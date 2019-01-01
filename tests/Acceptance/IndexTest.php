@@ -1,6 +1,5 @@
 <?php namespace Tests\Acceptance;
 
-use Nekudo\ShinyBlog\ShinyBlog;
 use PHPUnit\Framework\TestCase;
 use Tests\Acceptance\Support\AppFactory;
 

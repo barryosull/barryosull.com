@@ -16,7 +16,7 @@ class App
 
             $page = $contentRepository->fetchPage('home');
 
-            $renderer->render("page", ['page'=>(object)$page]);
+            echo $renderer->render("page", ['page'=>(object)$page]);
         });
 
         $slimApp->get('/blog[/page-{page}]', function ($request, $response, $args) {
@@ -27,6 +27,29 @@ class App
             (new BlogController())->handle($request, $response, $args);
         });
 
+        $slimApp->get("/blog/feed", function ($request, $response, $args) {
+
+            $contentRepository = new ContentRepository();
+            $renderer = new Renderer();
+
+            $articles = $contentRepository->fetchCollection();
+
+            $pubDate = date(DATE_RSS, strtotime($articles[0]->date));
+
+            $response = $response->withHeader('Content-type', 'text/xml');
+
+            $xml = $renderer->render("rss", [
+                'root' => getenv("DOMAIN"),
+                'articles' => $articles,
+                'pubDate' => $pubDate,
+            ]);
+
+            $body = $response->getBody();
+            $body->write($xml);
+
+            return $response;
+        });
+
         $slimApp->get("/blog/{slug}", function ($request, $response, $args) {
 
             $contentRepository = new ContentRepository();
@@ -34,7 +57,7 @@ class App
 
             $article = $contentRepository->fetchArticleBySlug($args['slug']);
 
-            $renderer->render("article", ['page' => (object)$article, 'article' => (object)$article]);
+            echo $renderer->render("article", ['page' => (object)$article, 'article' => (object)$article]);
         });
 
         $slimApp->run();

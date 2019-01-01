@@ -71,7 +71,7 @@ class BlogTest extends TestCase
         $urls = [];
         foreach ($xml->channel->item as $item) {
             $urls[] = [
-                str_replace('http://localhost', '', strval($item->link))
+                strval($item->link)
             ];
         }
 

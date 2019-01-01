@@ -11,7 +11,6 @@
     ],
     "autoload": {
         "psr-4": {
-            "Nekudo\\ShinyBlog\\": "ShinyBlog/src/",
             "Barryosull\\Slim\\": "slim/",
             "Tests\\": "tests/"
         }

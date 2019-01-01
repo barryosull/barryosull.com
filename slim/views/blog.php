@@ -65,7 +65,7 @@
             <div style="float:left; width:25%" class="categories">
                 <div class="hl-sm">Topics</div>
                 <?php foreach ($categories as $category): ?>
-                    <a href="<?php echo "/blog/category/".Nekudo\ShinyBlog\Domain\SlugFactory::makeSlug($category); ?>" class="btn"><?php echo $category; ?></a><br>
+                    <a href="<?php echo "/blog/category/".$category; ?>" class="btn"><?php echo $category; ?></a><br>
                 <?php endforeach; ?>
             </div>
 
