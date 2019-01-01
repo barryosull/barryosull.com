@@ -13,13 +13,7 @@ $shinyBlogApp->run();
 
 function isSlimAppRequest(string $uri): bool
 {
-    if ($uri == "/") {
-        return true;
-    }
-    if (isBlogRequest($uri) && (!isBlogFeedRequest($uri))) {
-        return true;
-    }
-    return false;
+    return ! isBlogFeedRequest($uri);
 }
 
 function isBlogRequest($uri): bool
