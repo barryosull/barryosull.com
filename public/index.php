@@ -2,7 +2,7 @@
 
 require __DIR__ . '/../bootstrap.php';
 
-$slimApp = new \Barryosull\Slim\App();
+$slimApp = new \Barryosull\Slim\WebApp();
 $slimApp->run();
 
 
