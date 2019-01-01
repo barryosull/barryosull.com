@@ -16,7 +16,7 @@ class ContentRepository
         $this->fileParser = new MarkdownParser();
     }
 
-    public function fetchPage(string $page) : \stdClass
+    public function fetchPage(string $page) : Article
     {
         $pathToFile = self::CONTENTS_DIR . "/pages/" . $page . ".md";
 
@@ -29,7 +29,7 @@ class ContentRepository
         return $data;
     }
 
-    public function fetchArticleBySlug(string $articleSlug) : \stdClass
+    public function fetchArticleBySlug(string $articleSlug) : Article
     {
         $dir = self::ARTICLES_DIR;
 

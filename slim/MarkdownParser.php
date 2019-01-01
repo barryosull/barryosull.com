@@ -8,7 +8,7 @@ use Symfony\Component\Yaml\Yaml;
 
 class MarkdownParser
 {
-    public function parseJekyllMarkdownFile($pathToFile): \stdClass
+    public function parseJekyllMarkdownFile($pathToFile): Article
     {
         $contentRaw = file_get_contents($pathToFile);
         if (empty($contentRaw)) {
@@ -18,44 +18,24 @@ class MarkdownParser
         $sections = explode('---', $contentRaw);
         $data = Yaml::parse($sections[1], Yaml::PARSE_DATETIME);
 
-        if (!isset($data['slug'])) {
-            $data['slug'] = Strings::webalize($data['title']);
-        }
-        if (!isset($data['author'])) {
-            $data['author'] = 'Barry';
-        }
-        if (isset($data['date'])) {
-            $data['date'] = $data['date']->format('Y-m-d');
-        } else {
-            $file_name = last(explode("/", $pathToFile));
-            $data['date'] = substr($file_name, 0, 10);
-        }
-        if (isset($data['tags'])) {
-            $categoriesString = $data['tags'] ?? '';
-            $categories = explode(",", $categoriesString);
+        $article = new Article();
 
-            $data['categories'] = array_map(function($category){
-                return strtolower(trim($category));
-            }, $categories);
-        }
+        $article->title = $data['title'];
+        $article->published = $data['published'];
+        $article->slug = $data['slug'] ?? Strings::webalize($data['title']);
+        $article->author = $data['author'] ?? 'Barry';
+        $article->date = (isset($data['date']))
+            ? $data['date']->format('Y-m-d')
+            : $this->getDateFromFilename($pathToFile);
+        $article->categories = (isset($data['tags']))
+            ? $this->getCaterogiesFromArticle($data)
+            : [];
+        $article->url = "/blog/" . $article->slug;
+        $article->coverImage = $data['cover_image'] ?? null;
+        $article->content = $this->getMarkdownContents($sections);
+        $article->excerpt = $this->getExcerpt($article->slug, $article->content);
 
-        $data['url'] = "/blog/" . $data['slug'];
-
-        $data['coverImage'] = $data['cover_image'] ?? null;
-
-        $content = trim(
-            implode("---",
-                array_values(
-                    array_slice($sections, 2)
-                )
-            )
-        );
-
-        $data['content'] = $content;
-
-        $data['excerpt'] = $this->getExcerpt($data['slug'], $content);
-
-        return (object)$data;
+        return $article;
     }
 
     const EXERT_LENGTH = 640;
@@ -80,5 +60,46 @@ class MarkdownParser
     private function readMoreLink(string $url): string
     {
         return '<a href="' . $url . '" style="float:right" class="btn">Read on &raquo;</a>';
+    }
+
+    /**
+     * @param $pathToFile
+     * @return string
+     */
+    private function getDateFromFilename($pathToFile): string
+    {
+        $file_name = last(explode("/", $pathToFile));
+        return substr($file_name, 0, 10);
+    }
+
+    /**
+     * @param $data
+     * @return array
+     */
+    private function getCaterogiesFromArticle($data): array
+    {
+        $categoriesString = $data['tags'] ?? '';
+        $categories = explode(",", $categoriesString);
+
+        $categories = array_map(function ($category) {
+            return strtolower(trim($category));
+        }, $categories);
+        return $categories;
+    }
+
+    /**
+     * @param $sections
+     * @return string
+     */
+    private function getMarkdownContents($sections): string
+    {
+        $content = trim(
+            implode("---",
+                array_values(
+                    array_slice($sections, 2)
+                )
+            )
+        );
+        return $content;
     }
 }
