@@ -15,9 +15,9 @@
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
     <meta charset="utf-8">
-    <title><?php echo $page->title; ?></title>
+    <title>Blog - Barry O Sullivan</title>
     <meta name="robots" content="index,follow" />
-    <meta name="description" content="<?php echo $page->description; ?>">
+    <meta name="description" content="Articles on DDD, Event Sourcing and software development in general, with a sprinkle of PHP and sarcasm.">
     <link rel="stylesheet" href="/themes/kiss/css/kiss.css">
     <link rel="stylesheet" href="/themes/kiss/css/prism.css">
 

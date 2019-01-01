@@ -133,6 +133,8 @@ class ContentRepository
             }, $categories);
         }
 
+        $data['url'] = "/blog/" . $data['slug'];
+
         $data['coverImage'] = $data['cover_image'] ?? null;
 
         $content = trim(

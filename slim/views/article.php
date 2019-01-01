@@ -106,7 +106,7 @@
                 <div class="categories">
                     <div class="hl-sm">Categories</div>
                     <?php foreach ($article->categories as $category): ?>
-                        <a href="<?php echo $category['link']; ?>" class="btn"><?php echo $category['name']; ?></a>
+                        <a href="/blog/category/<?php echo $category ?>" class="btn"><?php echo $category ?></a>
                     <?php endforeach; ?>
                 </div>
             <?php endif; ?>
