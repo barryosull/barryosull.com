@@ -20,8 +20,8 @@ I give talks and workshops on PHP and DDD topics. I enjoy discussing the concept
 | Workshop | Using in interfaces effectively | [link](https://slides.com/barryosull/workshop-using-interfaces-effectively) | 2018 | PHP Dublin |
 | Talk | DDD Lessons Learned | [link](https://www.slideshare.net/BarryOSullivan18/ddd-lessons-learned) | 2018 | DDD EU |
 | Workshop | PHP Test Fest| [link](https://www.slideshare.net/BarryOSullivan18/php-test-fest) | 2017 | PHP Dublin |
-| Talk | Cleaning up your codebase with a Clean Architecture | [link](https://www.slideshare.net/BarryOSullivan18/cleaning-up-your-codebase-with-a-clean-architecture) | 2017 | Waterford TechMeetup |
-| Talk | Design Patterns, the good, the bad and the anti-pattern | [link](https://www.slideshare.net/BarryOSullivan18/design-patterns-the-good-the-bad-and-the-antipattern) | 2016 | PHPDublin |
+| Talk | Cleaning up your codebase with a Clean Architecture | [link](https://www.slideshare.net/BarryOSullivan18/cleaning-up-your-codebase-with-a-clean-architecture) | 2017 | Waterford Tech Meetup |
+| Talk | Design Patterns, the good, the bad and the anti-pattern | [link](https://www.slideshare.net/BarryOSullivan18/design-patterns-the-good-the-bad-and-the-antipattern) | 2016 | PHP Dublin |
 | Talk | Managing Expectations | [link](https://www.slideshare.net/BarryOSullivan18/managing-expectations-87252968) | 2016 | PHP Dublin |
 | Talk | Building a Blog with an Onion Architecture | [link](https://www.slideshare.net/BarryOSullivan18/building-a-blog-with-an-onion-architecture) | 2016 | PHP Dublin |
 | Talk | Valueo-Objects | [link](https://www.slideshare.net/BarryOSullivan18/value-objects-87253304) | 2016 | PHP Dublin |
