@@ -5,7 +5,10 @@ use Tests\Acceptance\Support\AppFactory;
 
 class IndexTest extends TestCase
 {
-    public function test_load_homepage()
+    /**
+     * @test
+     */
+    public function homepage_loads()
     {
         $response = AppFactory::make()->visitUrl("/");
 

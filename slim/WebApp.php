@@ -37,6 +37,10 @@ class WebApp
             return (new HomeController())->handle($request, $response, $args);
         });
 
+        $slimApp->get('/talks', function ($request, $response, $args) {
+            return (new TalksController())->handle($request, $response, $args);
+        });
+
         $slimApp->get('/blog[/page-{page}]', function ($request, $response, $args) {
             return (new BlogController())->handle($request, $response, $args);
         });
