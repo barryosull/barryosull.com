@@ -1,5 +1,5 @@
 ---
-title: Solution Infatuation: The con-man of Anti-patterns
+title: Solution Infatuation - The con-man of Anti-patterns
 published: false
 description: description
 tags: legacy

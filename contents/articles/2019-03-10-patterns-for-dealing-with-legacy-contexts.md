@@ -1,5 +1,5 @@
 ---
-title: Legacy Contexts: Patterns for dealing with Legacy
+title: Legacy Contexts - Patterns for dealing with Legacy
 published: false
 description: description
 tags: legacy

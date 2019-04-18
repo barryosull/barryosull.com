@@ -43,16 +43,7 @@
 
 </head>
 <body>
-<nav class="topnav">
-    <ul>
-        <li class="first"><a href="/">barryosull.com</a></li>
-        <li<?php if($_SERVER['REQUEST_URI'] !== '/'): ?> class="active"<?php endif; ?>><a href="/blog">Blog</a></li>
-        <li><a href="/talks">Talks</a></li>
-        <li><a href="https://github.com/barryosull">Github</a></li>
-        <li class="last"><a href="https://twitter.com/barryosull">Twitter</a></li>
-        <li><a href="https://www.linkedin.com/in/barryosu/">LinkedIn</a></li>
-    </ul>
-</nav>
+<?php include "nav.php"; ?>
 <div class="content">
 
     <article class="article">
@@ -131,7 +122,7 @@
 
 </div>
 <div class="footer">
-    <p>barryosull.com &copy; 2018</p>
+    <p>barryosull.com &copy; 2019</p>
 </div>
 <script src="/themes/kiss/js/prism.js"></script>
 </body>
