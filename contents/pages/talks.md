@@ -24,4 +24,4 @@ I give talks and workshops on PHP and DDD topics. I enjoy discussing the concept
 | Talk | Design Patterns, the good, the bad and the anti-pattern | [link](https://www.slideshare.net/BarryOSullivan18/design-patterns-the-good-the-bad-and-the-antipattern) | 2016 | PHP Dublin |
 | Talk | Managing Expectations | [link](https://www.slideshare.net/BarryOSullivan18/managing-expectations-87252968) | 2016 | PHP Dublin |
 | Talk | Building a Blog with an Onion Architecture | [link](https://www.slideshare.net/BarryOSullivan18/building-a-blog-with-an-onion-architecture) | 2016 | PHP Dublin |
-| Talk | Valueo-Objects | [link](https://www.slideshare.net/BarryOSullivan18/value-objects-87253304) | 2016 | PHP Dublin |
+| Talk | Value-Objects | [link](https://www.slideshare.net/BarryOSullivan18/value-objects-87253304) | 2016 | PHP Dublin |
