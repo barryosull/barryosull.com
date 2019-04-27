@@ -8,7 +8,8 @@ date : 2018-01-24
 I give talks and workshops on PHP and DDD topics. I enjoy discussing the concepts and sharing them with others.
 
 |Type   | Title | Link  | Date | Location |
-| ---   | ---   | ---   | ---   | ---   | 
+| ---   | ---   | ---   | ---   | ---   |
+| Workshop | Event Storming Workshop: Building Noteworthy | [link](https://slides.com/barryosull/event-storming-workshop-building-noteworthy#/) | 2019 | DDD IE |
 | Workshop | Event Storming Hands on Session | [link](https://slides.com/barryosull/event-storming-workshop) | 2019 | DDD IE |
 | Talk | Mapping Constraints | [link](https://slides.com/barryosull/mapping-constraints) | 2019 | DDD Belfast |
 | Talk | The Apocalypse Meme in Software: DDD EU 2019 | [link](https://slides.com/barryosull/the-apocalypse-meme-in-software-ddd-eu-2019) | 2019 | DDD EU |

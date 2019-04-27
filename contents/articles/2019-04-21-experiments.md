@@ -1,31 +1,66 @@
 ---
-title: Experiments
+title: Experimenting in code
 published: false
 description: description
 tags: legacy
 cover_image: http://globalnerdy.com/wordpress/wp-content/uploads/2008/07/technical_difficulties_please_stand_by.jpg
 ---
 
-Expirimentation
+I've been working full time as a consultant/contactor for the last year (before that I did it on and off part-time) focusing on fixing and improving legacy systems. These systems are typically hard to navigate and understand, thus making them expensive to change. In my experience there are two main reasons these systems get into this state:
 
-I've been working full time as a consultant/contactor over the last year (before that I did it part time on and off) focussing on fixing and improving legacy systems. One thing I've noticed, time and time again, is that most of the complications I'm fixing or navigating around are experiments that were left in the codebase.
+1. The code has no design 
+2. The code has experimental design
 
-The developer timeline
+To me number 2 is worse and causes more problems, and that's what I'm going to talk today.
 
-I was recently taking to a friend of mine who write simple programs to solve problems for himself, such as an invoice management system (he's self employed). He then said to me that he doesn't consider himself a developer though, because he just cobbles together code from tutorials until it works, he doesn't know anything about design. First of all, I told him that he is 100% a software developer, second, I would rather deal with his code than some of the "clever" code I've seen, and here's why.
+What do I mean by experiments? An experiment is any piece of code were the developer was clearly trying out a new idea. Be it a new technology, a library or a design pattern, these pieces of experimental code end up littering the codebase and obfuscating the actual intent of the piece of code. 
 
+This should come as no surprise, we've all seen it and we've all done it, it's how we get better. The problem isn't the experiments themselves, it's the fact they're left in the codebase. This is a systematic problem in software development, constantly rearing it's ugly head, messing up projects and causing headaches for developers and the business owners. Why does this happen and what can we do about it?
 
-Accidental Complication
-JBrains has an excellent talk on this topic[Insert link to talk here]. Everytime we commit one of these experiments to the codebase were are potentially introducing accidentual complication. 
+Before we dig into those questions, let's have a look at the problems causes by these experiments.
 
-Lava Layer Anti-pattern
+## The problem with experimental code
+It's not enough to say "that is causes problems", if we want to actually address this we have to be able to explore and explain the kinds of issues this code creates.
+
+#### Accidental Complication
+JBrains has an [excellent talk on this ideas](https://www.youtube.com/watch?v=WSes_PexXcA). Everytime we commit one of these experiments to the codebase were are potentially introducing accidental complication. Accidental complication is complication that's introduced but didn't have to be there. You didn't add it intentionally, but there it is, thus it is accidental. 
+
+Accidentil complication is an obstacle that you must navigate before you can understand what's actually going on in a piece of code. It doesn't add anything, it's just getting in the way. Worse, it's inconsistent, we don't repeat experiments, so any knowledge you gain about one area of the system will not transfer elsewhere, the accidental complication will always be different. 
+
+This is the main reason why we can't estimate correctly.
+
+#### Lava Layer Anti-pattern
+We originally called this an anti-pattern in the image above, but I've realised it's actually a subset of legacy, one that is a little messy, but not quite a ball of mud.
+
+(http://mikehadlow.blogspot.com/2014/12/the-lava-layer-anti-pattern.html)[Good write up]
+The above system actually has a name
 Talk here about lava layer.
 
+## Why this happens
+When we initially learn to program, we start by copying code that we know works. If we're using a framework we'll copy the code examples and then tweak them until the system works. 
+
+Eventually we'll get to a point that these systems become unmaintainable, or we get the niggling feeling that we're not doing things right. That's when we move onto experimenting.
+
+When developers start out, they 
+
+They have no concept of design or structure, and why would they? They're just getting to grips with the basic.
+
+After a while the developer realises there are holes in their skillset, and they need to learn about design in order to progress, or they think they need to know certain skills to keep themselves employed (CV driven development).
+
+The developer timeline
+To understand why this happens, we need to discuss the developer timeline.
+
+When we start coding we just hammer code together until it works. This strategy works for a while, so we keep doing it, until we reach a p
+
+I was recently taking to a friend of mine who write simple programs to solve business problems, such as an invoice management system (he's self employed). He then said to me that he doesn't consider himself a developer though, as he just cobbles together code from tutorials until it works, he doesn't know anything about design. First of all, I told him that he is 100% a software developer, second, I would rather deal with his code than some of the "designed" code I've seen, because most 
+
+
+
 When we learn how to program
-When people learn to program, they start by copying code that they know works. If you're using a framework you'll copy the code examples and then tweak them until your system works. 
+
 
 Why do we experiment? 
-Eventually you'll get to a point that these systems become unmaintainable, or you get the niggling feeling that you're not doing things right. That's when you move onto experimenting.
+
 
 Trying to get better
 This is when things get dangerous. When we build something new, we try out a new technology or pattern, because why not? 
@@ -46,7 +81,7 @@ I've made these mistakes, I look back at the experiments I left in the code I wo
 
 I think we need to discuss experimentation in software, and I have a few ideas of my own on the matter.
 
-I worked on a system where the developer had tried 10 different experinments. Some were complex, others were simple, but overall all these experiments overlapped each other and got in the way of understanding what was going down. I ended up gutting the codebase, removing 40% of the code leaving the same functionality (with tests).
+I worked on a system where the developer had tried 10 different experiments. Some were complex, others were simple, but overall all these experiments overlapped each other and got in the way of understanding what was going down. I ended up gutting the codebase, removing 40% of the code while maintaining the same behaviour.
 
 ## Managing experiments
 The job of improving the team lies on the manager. It's their responsibility to ensure that the team has the skills needed to do the job. So the manager should have an active hand in planning, executing and evaluating experiments. They need to work with the entire team to do this.If they don't view the system holistically then that is impossible.
