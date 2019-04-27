@@ -6,35 +6,45 @@ tags: legacy
 cover_image: http://globalnerdy.com/wordpress/wp-content/uploads/2008/07/technical_difficulties_please_stand_by.jpg
 ---
 
-I've been working full time as a consultant/contactor for the last year (before that I did it on and off part-time) focusing on fixing and improving legacy systems. These systems are typically hard to navigate and understand, thus making them expensive to change. In my experience there are two main reasons these systems get into this state:
+I've been working full time as a consultant/contractor for the last year (before that I did it on and off part-time) focusing on fixing and improving legacy systems. These systems are typically hard to navigate and understand, thus making them expensive to change. In my experience there are two main reasons these systems get into this state:
 
 1. The code has no design 
 2. The code has experimental design
 
-To me number 2 is worse and causes more problems, and that's what I'm going to talk today.
+For me number 2 is worse and causes more problems, and that's what I'm going to talk today.
 
-What do I mean by experiments? An experiment is any piece of code were the developer was clearly trying out a new idea. Be it a new technology, a library or a design pattern, these pieces of experimental code end up littering the codebase and obfuscating the actual intent of the piece of code. 
+What do I mean by experiments? An experiment is any piece of code were the developer was clearly trying out a new idea. Be it a new technology, a library or a design pattern, these pieces of experimental code end up littering the codebase and obfuscating the actual intent of a piece of code. 
 
-This should come as no surprise, we've all seen it and we've all done it, it's how we get better. The problem isn't the experiments themselves, it's the fact they're left in the codebase. This is a systematic problem in software development, constantly rearing it's ugly head, messing up projects and causing headaches for developers and the business owners. Why does this happen and what can we do about it?
+This should come as no surprise, we've all seen it and we've all done it, it's how we get better (or add a new technology to our CV). The problem isn't the experiments themselves, it's the fact they're left in the codebase. This is a systematic problem in software development, constantly rearing it's ugly head, messing up projects and causing headaches for developers and business owners. Why does this happen and what can we do about it?
 
-Before we dig into those questions, let's have a look at the problems causes by these experiments.
+Before we dig into those questions, let's have a look at the problems causes by experimental code.
 
 ## The problem with experimental code
-It's not enough to say "that is causes problems", if we want to actually address this we have to be able to explore and explain the kinds of issues this code creates.
+It's not enough to say "it causes problems", if we want to actually address this we have to be able to explore and explain the kinds of issues this code creates. Looking at it from a problem space perspective, the first issue is that of accidental complication.
 
 #### Accidental Complication
-JBrains has an [excellent talk on this ideas](https://www.youtube.com/watch?v=WSes_PexXcA). Everytime we commit one of these experiments to the codebase were are potentially introducing accidental complication. Accidental complication is complication that's introduced but didn't have to be there. You didn't add it intentionally, but there it is, thus it is accidental. 
+Every time we commit an experiment to the codebase we are potentially introducing accidental complication. This is complication that didn't have to be there, you didn't add it intentionally, but there it is, thus it is accidental. Some complication are necessary, like using the right design pattern, it's add more to the codebase, but if offsets this cost by increasing understanding. 
 
-Accidentil complication is an obstacle that you must navigate before you can understand what's actually going on in a piece of code. It doesn't add anything, it's just getting in the way. Worse, it's inconsistent, we don't repeat experiments, so any knowledge you gain about one area of the system will not transfer elsewhere, the accidental complication will always be different. 
+Accidental complication does not increase understanding, it is an obstacle that you must navigate before you can understand what's actually going on in a piece of code. It doesn't add anything, it's just getting in the way. Worse, it's inconsistent. When we try out a new idea we usually make mistakes, which we don't repeat, so any knowledge you gain about one area of the system will not transfer elsewhere, the accidental complication will always be different. This is the main reason why we can't estimate reliably, we never know how much accidental complication we'll uncover or how much it will impede our work. 
 
-This is the main reason why we can't estimate correctly.
+JBrains has an [excellent talk on this concept](https://www.youtube.com/watch?v=WSes_PexXcA).
+
+So that's the issue from a problem perspective, but how does this manifest in the solution space?
 
 #### Lava Layer Anti-pattern
-We originally called this an anti-pattern in the image above, but I've realised it's actually a subset of legacy, one that is a little messy, but not quite a ball of mud.
+If a software system is profitable it will be long lived, and any long lived software inevitably turns into a layered mess of patterns, libraries and technologies. It becomes stratified with these concepts, some cutting through the entire codebase, others living in their own little module.
 
-(http://mikehadlow.blogspot.com/2014/12/the-lava-layer-anti-pattern.html)[Good write up]
-The above system actually has a name
-Talk here about lava layer.
+To see why this happens, let's go through an example.
+
+Say your SQL queries are getting messy and difficult to manage, so someone decides to use an ORM for one part of the system. A few years later that ORM is considered out of date, so someone else decides to use the newer, sexier ORM! Actually wait, that's not good anymore, ORM is out, MongoDB is in. And round and round it goes, until the entire codebase is stratified with different "experiments" in data storage technologies and techniques.
+
+This patterns comes into play whenever someone decides to try out a new idea or technology in a feature, and then stops once the feature works. They don't migrate the entire system over to the new paradigm, it stays as it is. So now we're left with a system that has two ways of doing things when it used to have one. 
+
+All these layers introduce accidental complication, so it's no wonder we have such difficulty with lava layers systems. And as the system gets more stratified and difficult to understand, we try to fix it by applying yet more patterns and ideas, accelerating it's descent into a ball of mud.
+
+Here's a good write on the concept that does into [more detail](http://mikehadlow.blogspot.com/2014/12/the-lava-layer-anti-pattern.html).
+
+This is clearly a big problem and it affects every piece of software I've ever worked with professionally, can we figure out why it happens?
 
 ## Why this happens
 When we initially learn to program, we start by copying code that we know works. If we're using a framework we'll copy the code examples and then tweak them until the system works. 
