@@ -6,48 +6,49 @@ tags: legacy
 cover_image: http://globalnerdy.com/wordpress/wp-content/uploads/2008/07/technical_difficulties_please_stand_by.jpg
 ---
 
-I've been working full time as a consultant/contractor for the last year focusing on fixing and improving legacy web apps. These systems are typically hard to navigate and understand, thus making them expensive to change. In my experience there are two main reasons these systems get into this state:
+I've been working full time as a consultant/contractor for the last year focusing on fixing and improving legacy web apps. These systems are typically hard to navigate and understand, thus making them expensive to change. And I've started to notice a recurring problem, one that I've seen at every company I've worked for. We such at experimenting.  
+
+In my experience there are two main reasons these systems get messy:
 
 1. The code has no design 
 2. The code has experimental design
 
-For me number 2 is worse and causes more problems, not because it's bad, but because we don't do it with care. That's what I'm going to talk about today.
+For me number 2 is worse and causes more problems, not because it's bad, but because we don't do it effectively. That's what I'm going to talk about today.
 
-What do I mean by experiments? An experiment is any piece of code were the developer was clearly trying out a new idea. Be it a new technology, a framework, a library or a design pattern, these pieces of experimental code end up littering the codebase and making it difficult to understand and navigate. 
+## What's an experiment?
+To me an experiment is any piece of code were the developer was clearly trying out a new idea. Be it a new technology, a framework, a library or a design pattern, these pieces of experimental code end up littering the codebase and making it difficult to understand and navigate. 
 
-This should come as no surprise, we've all seen it and we've all done it, it's how we get better as developers (or add a new technology to our CV). The problem isn't the experiments themselves, it's the fact they're left in the codebase. This is a systematic problem in software development, one that constantly rears it's ugly head, messing up projects and causing headaches for developers and business owners. Why does this happen and what can we do about it?
-
-Before we dig into those questions, let's have a look at the problems causes by experimental code.
+This should come as no surprise, we've all seen it and we've all done it, it's how we get better as developers (or add a new technology to our CV). The problem isn't the experiments themselves, it's the fact they're left in the codebase. This is a systematic problem in software development, one that constantly rears it's ugly head, messing up projects and causing headaches for developers and business owners. We need to understand why this happens and what we can do about it, but before that we need to understand the problem.
 
 ## The problem with experimental code
-It's not enough to say "it causes problems", if we want to actually address this we have to be able to explore and explain the kinds of issues these experiments create. Looking at it from a problem space perspective, the first issue is that of accidental complication.
+It's not enough to say "it causes problems", we need to understand the cost and end result of this issue. Looking at it from a problem space perspective, the first issue is that of accidental complication.
 
 #### Accidental Complication
 Every time we commit an experiment to the codebase we are potentially introducing accidental complication. This is complication that didn't have to be there and isn't adding anything, thus it is accidental. Some complication is necessary, like introducing a needed design pattern for clarity; it introduces a new concept to the codebase, but if offsets this cost by increasing understanding or making things more flexible.
 
-Accidental complication does not increase understanding, it is an obstacle that you must navigate before you can understand what's actually going on in a piece of code. It doesn't add anything, it's just getting in the way. Worse, it's inconsistent. When we try out a new idea we usually make mistakes, in the next experiment we'll make different mistakes, so any knowledge you gain about one area of the system will not transfer elsewhere, the accidental complication will always be different. This is the main reason why we can't estimate reliably, we never know how much accidental complication we'll uncover or how much it will impede our work. 
+Accidental complication does not increase understanding, it is an obstacle that you must navigate before you can understand what's actually going on in a piece of code. I.e. It doesn't add anything, it's just getting in the way. Worse, it's inconsistent. When we try out a new idea we usually make mistakes, and in the next experiment we'll make different mistakes, so any knowledge you gain about one area of the system will not transfer elsewhere, the accidental complication will always be different. This is the main reason why we can't estimate reliably, we never know how much accidental complication we'll uncover or how much it will impede our work. 
 
 JBrains has an [excellent talk on this concept](https://www.youtube.com/watch?v=WSes_PexXcA).
 
-So that's the issue from a problem perspective, but how does this manifest in the solution space? What do these codebases look like?
+What does a codebase that's full of acciendental complication look like, and how does it manifest?
 
 #### Lava Layer Anti-pattern
 If a software system is profitable it will be long lived, and any long lived software inevitably turns into a layered mess of patterns, libraries and technologies. It becomes stratified with these concepts, some cutting through the entire codebase, others living in their own little bubble.
 
-To see why this happens, let's go through an example.
+Here's a story that should explain why this happens.
 
-Say your SQL queries are getting messy and difficult to manage, so someone decides to use an ORM for one part of the system. A few years later a new comes along, and that ORM is considered out of date, so someone else decides to use the newer, sexier ORM! Actually wait, that's not good anymore, ORM is out, MongoDB is in. And round and round it goes, until the entire codebase is stratified with different "experiments".
+Say your SQL queries are getting messy and difficult to manage, so someone decides to use an ORM for one part of the system. A few years later a new dev comes along, and that ORM is considered out of date, so someone else decides to use the newer, sexier ORM! Actually wait, that's not good anymore, ORM is out, MongoDB is in. And round and round it goes, until the entire codebase is stratified with different "experiments".
 
-This patterns comes into play whenever someone decides to try out a new idea or technology in a feature, and then stops once the feature works. They don't migrate the entire system over to the new paradigm, most of it stays as it is. So now we're left with a system that has two ways of doing things when it used to only have one. 
+This patterns comes into play whenever someone decides to try out a new idea or technology in a feature, and then stops once the feature works. They don't migrate the entire system over to the new paradigm, most of it stays as it is. So now we're left with a system that has two ways of doing things when it used to only have one. Ohh no wait, now its three . . . uhoh.
 
 All these layers introduce accidental complication, so it's no wonder we have such difficulty with lava layers systems. And as the system gets more stratified and difficult to understand, we try to fix it by applying yet more patterns and ideas, accelerating it's descent into a ball of mud.
 
 Fore more details on the lava layer anti-pattern [you should read this article](http://mikehadlow.blogspot.com/2014/12/the-lava-layer-anti-pattern.html).
 
-This is clearly a big problem and it affects every piece of software I've ever worked with professionally, can we figure out why it happens?
+This is clearly a big problem and it affects every piece of software I've ever worked with professionally.
 
 ## Why this happens
-When we initially learn to program, we start by copying code that we know works. If we're using a framework we'll copy the code examples and then tweak them until the system works. 
+At this point I'm speculating, so bear with me. When we initially learn to program, we start by copying code that we know works. If we're using a framework we'll copy the code examples and then tweak them until the system works. 
 
 Eventually we get to a point that these systems become unmaintainable, changes get increasingly expensive and fragile. This descent into an unmaintainable mess is accelerated by the size of the team. The more people working on a system, the faster it will mutate and lose clarity.
 
@@ -60,13 +61,17 @@ The best way to get better at something is to practice. If you want to become a 
 
 And yet what do we do in our industry? We expect people to churn out code at a predictable rate, often under pressure. We assume/hope that developers have all the skills needed, selecting for those than can speak confidently in interviews, and any code that is written but isn't used is considered massively wasteful.
 
-What will happen in the above culture? Well, developers are unlikely to have all the skills needed to build a maintainable system, since every system is different (and we're notoriously bad at building them). The devs will realise this, but won't want to admit it. So they'll experiment on the sly. 
+What will happen in the above culture? Well, developers are unlikely to have all the skills needed to build a maintainable system, since every system is different (and we're notoriously bad at building them). The devs will realise this, but won't want to admit it, as that's counter to the culture. So they'll experiment on the sly. 
 
 ### A short story
-I once worked in a company were we didn't discuss design collaboratively. We had inherited a PHP codebase that had seen little love, and we had to deal with it. We tried to fix it, but we didn't really work together, we didn't even review each others code. And you know what you'd find in the codebase? Tons of running but failed experiments in design. The company itself has a culture of "always be winning", i.e. we were always succeeding and needed to be confident at all time. This meant that pretty much everyone doubled down on their ideas, including the developers, which lead us to introducing tons of needless complications and not even realising it.
+I once worked in a company were we didn't discuss design collaboratively. We had inherited a PHP codebase that had seen little love, and we had to deal with it. We tried to fix it, but we didn't really work together, we only reviewed code when we did hotfixes. And you know what you'd find in that codebase? Tons of running but failed experiments in design. The company itself had a culture of "always be winning", i.e. we were always succeeding and needed to be confident at all time. This meant that pretty much everyone doubled down on their ideas, including the developers, which lead us to introducing tons of needless complications and not even realising it.
 
-### Moving forward
+### It's all about pressure
 You don't even need a bad culture to do this, as long as there's pressure this will happen, unless we're aware of it and deal with it head one.
+
+Couple this pressure with the optimism and over-confidence bias and you have a a recipe for messy code.
+
+The answer to this pretty simple to me, acceptance and humility.
 
 ## Managing experiments
 The job of improving the team lies on the manager. It's their responsibility to ensure that the team has the skills needed to do the job. So the manager should have an active hand in planning, executing and evaluating experiments. They need to work with the entire team to do this. If they don't view the system holistically then that is impossible.
@@ -80,6 +85,9 @@ Testing out an idea takes time and that's fine. It's ok if you think a piece of 
 
 ## Don't commit failed experiments
 All because the code runs doesn't mean the experiment was a success. Introducing new concepts always comes with a cost, so you have to be honest on whether the benefit of using the pattern is worth the cost of adding it.
+
+## Favour consistency
+You should strive to make the consisteny bounded in some way.
 
 ## You don't always have the right answer
 As I progress as I developer I'm realising that I no longer have anything to prove. I.e. I'm no longer trying to prove I'm a smarty pants developer that knows everything and always has the right answer. 
