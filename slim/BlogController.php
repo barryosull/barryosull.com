@@ -28,7 +28,8 @@ class BlogController
             'articles' => array_slice($articles, $page * self::PER_PAGE, self::PER_PAGE),
             'categories' => $categories,
             'urlPrevPage' => $urlPrevPage,
-            'urlNextPage' => $urlNextPage
+            'urlNextPage' => $urlNextPage,
+            "uri" => strval($request->getUri())
         ]);
 
         $response->getBody()->write($body);

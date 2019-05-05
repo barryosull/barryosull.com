@@ -3,35 +3,63 @@ declare(strict_types=1);
 
 namespace Barryosull\Slim;
 
+use Psr\Http\Message\ResponseInterface;
+use Slim\App;
+use Slim\Container;
+use Slim\Http\Headers;
+use Slim\Http\Request;
+use Slim\Http\RequestBody;
+use Slim\Http\Response;
+use Slim\Http\Uri;
+
 class WebApp
 {
     public function run()
     {
         $slimApp = $this->makeApp();
 
-        $this->addCacheMiddleware($slimApp);
-
-        $this->addRoutes($slimApp);
-
         $slimApp->run();
     }
 
-    private function makeApp(): \Slim\App
+    public function visitUrl(string $uri): ResponseInterface
+    {
+        $slimApp = $this->makeApp();
+
+        $url = getenv('DOMAIN') . "/" . $uri;
+
+        $request = new Request(
+            "GET",
+            Uri::createFromString($url),
+            new Headers(),
+            [],
+            [],
+            new RequestBody()
+        );
+
+        return $slimApp->process($request, new Response());
+    }
+
+    private function makeApp(): App
     {
         $configuration = [
             'settings' => [
                 'displayErrorDetails' => true,
             ],
         ];
-        $c = new \Slim\Container($configuration);
+        $c = new Container($configuration);
 
-        return new \Slim\App($c);
+        $app = new App($c);
+
+        $this->addCacheMiddleware($app);
+        $this->addRoutes($app);
+
+        return $app;
     }
 
     /**
-     * @param $slimApp
+     * @param App $slimApp
      */
-    private function addRoutes($slimApp): void
+    private function addRoutes(App $slimApp): void
     {
         $slimApp->get('/', function ($request, $response, $args) {
             return (new HomeController())->handle($request, $response, $args);
@@ -59,9 +87,9 @@ class WebApp
     }
 
     /**
-     * @param $slimApp
+     * @param App $slimApp
      */
-    private function addCacheMiddleware($slimApp): void
+    private function addCacheMiddleware(App $slimApp): void
     {
         $slimApp->add(function ($request, $response, $next) {
 

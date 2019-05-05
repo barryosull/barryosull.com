@@ -15,7 +15,7 @@ class HomeController
 
         $page = $contentRepository->fetchPage('home');
 
-        $body = $renderer->render("page", ['page'=>$page]);
+        $body = $renderer->render("page", ['page'=>$page, "uri" => strval($request->getUri())]);
 
         $response->getBody()->write($body);
 

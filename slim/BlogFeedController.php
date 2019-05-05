@@ -23,6 +23,7 @@ class BlogFeedController
             'root' => getenv("DOMAIN"),
             'articles' => $articles,
             'pubDate' => $pubDate,
+            "uri" => strval($request->getUri())
         ]);
 
         $body = $response->getBody();

@@ -7,9 +7,7 @@ class Renderer
 {
     public function render(string $view, array $data): string
     {
-        foreach ($data as $key => $value) {
-            $$key = $value;
-        }
+        extract($data);
 
         ob_start();
 
