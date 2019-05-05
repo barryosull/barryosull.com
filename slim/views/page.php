@@ -17,7 +17,6 @@
     <meta charset="utf-8">
     <title><?php echo $page->title; ?></title>
     <meta name="robots" content="index,follow" />
-    <meta name="description" content="<?php echo $page->excerpt; ?>">
     <link rel="stylesheet" href="/themes/kiss/css/kiss.css">
     <link rel="stylesheet" href="/themes/kiss/css/prism.css">
 
