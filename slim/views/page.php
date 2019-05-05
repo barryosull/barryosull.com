@@ -33,12 +33,10 @@
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@barryosull" />
         <meta name="twitter:title" content="<?php echo $article->title ?>" />
-        <meta name="twitter:description" content="<?php echo $article->excerpt ?>" />
         <meta name="twitter:image" content="<?php echo $article->coverImage ?>" />
 
         <meta property="og:title" content="<?php echo $article->title ?>"/>
         <meta property="og:image" content="<?php echo $article->coverImage ?>" />
-        <meta property="og:description" content="<?php echo $article->excerpt ?>" />
     <?php endif; ?>
 
 </head>
