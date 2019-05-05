@@ -66,6 +66,10 @@ class ContentRepository
     {
         $articles = $this->fetchAllArticles();
 
+        $articles = array_filter($articles, function($article){
+            return $article->published;
+        });
+
         $categories = [];
 
         foreach ($articles as $article) {
