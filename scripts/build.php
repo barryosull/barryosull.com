@@ -7,14 +7,22 @@ use Tests\Acceptance\Support\AppHttp;
 
 require __DIR__ . '/../bootstrap.php';
 
-$builtHtmlDir = __DIR__ . "/../public/html/";
+$assetDir = __DIR__ . "/../public";
+$builtHtmlDir = __DIR__ . "/../public_html";
 $fileSystem = new Filesystem(new Local($builtHtmlDir));
 $webApp = AppFactory::make();
 
-$urls = $webApp->getUrls();
+copyAssets($assetDir, $builtHtmlDir);
 
+$urls = $webApp->getUrls();
 foreach ($urls as $url) {
     buildStaticPage($webApp, $fileSystem, $url);
+}
+
+function copyAssets($assetDir, $builtHtmlDir)
+{
+    exec("cp -Rf $assetDir/ $builtHtmlDir");
+    exec("rm $builtHtmlDir/index.php");
 }
 
 function buildStaticPage(AppHttp $webApp, Filesystem $fileSystem, string $url): void
