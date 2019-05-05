@@ -25,7 +25,7 @@ Building a business is not like that at all, there are just too many unknowns. I
 
 Complex problems cannot be controlled, [they can only be managed](https://sloanreview.mit.edu/article/the-critical-difference-between-complex-and-complicated/). Yet we still try to treat business development as a process, because we __really__ want it to be one. Just look at the popularity of "Agile"* and "Lean", especially the heavily marketed, process orientated versions, they re-enforce this illusion (and they also don't work). It's wishful thinking.
 
-[Complicated vs Complex](/images/complicated-vs-complex.png)
+![Complicated vs Complex](/images/complicated-vs-complex.png)
 
 DDD acknowledges this fact, and instead of focussing on rigid processes and hard rules (i.e. one size fits all solutions), it presents techniques to manage and remove ambiguity. The secret isn't following a process, it's about iterating on the problem you're trying to solve.
 

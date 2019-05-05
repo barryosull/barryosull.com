@@ -48,7 +48,7 @@ It turns out this is a recurring pattern.
 ## The feedback loop
 At it's core it's all about the feedback loop. The above can be distilled down to the following, a constant loop where you switch between styles when appropriate, starting and ending at connective.
 
-[Feedback Loop](/images/comms-feedback-loop.png)
+![Feedback Loop](/images/comms-feedback-loop.png)
 
 If you need to come up with lots of ideas, go competitive, when you need consensus, switch to connective. It really is that simple.
 
