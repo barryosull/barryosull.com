@@ -1,5 +1,9 @@
 <?php
 
+$assetDir = __DIR__ . "/../public";
+$builtHtmlDir = __DIR__ . "/../public_html";
+copyAssets($assetDir, $builtHtmlDir);
+
 use League\Flysystem\Adapter\Local;
 use League\Flysystem\Filesystem;
 use Tests\Acceptance\Support\AppFactory;
@@ -7,12 +11,8 @@ use Tests\Acceptance\Support\AppHttp;
 
 require __DIR__ . '/../bootstrap.php';
 
-$assetDir = __DIR__ . "/../public";
-$builtHtmlDir = __DIR__ . "/../public_html";
 $fileSystem = new Filesystem(new Local($builtHtmlDir));
 $webApp = AppFactory::make();
-
-copyAssets($assetDir, $builtHtmlDir);
 
 $urls = $webApp->getUrls();
 foreach ($urls as $url) {
@@ -21,6 +21,7 @@ foreach ($urls as $url) {
 
 function copyAssets($assetDir, $builtHtmlDir)
 {
+    exec("cp .env.example .env");
     exec("cp -Rf $assetDir/ $builtHtmlDir");
     exec("rm $builtHtmlDir/index.php");
 }
