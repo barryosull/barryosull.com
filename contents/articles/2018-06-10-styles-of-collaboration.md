@@ -3,7 +3,7 @@ title: Communication styles - Working effectively as a team
 published: true
 description: Communicating is easy, communicating effectively is surprisingly hard. This article explore the two keys ways we communicate and how we can use them in tandem to reach the best result.
 tags: productivity, communication, leadership, brainstorming 
-cover_image: http://barryosull.com/images/9f50b0a1-e792-455c-b626-633fb8718a06.jpg
+cover_image: /images/communication-styles.jpg
 ---
 
 This idea for this article came from a twitter thread by [@ErynnBrook](https://twitter.com/ErynnBrook/).
@@ -48,7 +48,7 @@ It turns out this is a recurring pattern.
 ## The feedback loop
 At it's core it's all about the feedback loop. The above can be distilled down to the following, a constant loop where you switch between styles when appropriate, starting and ending at connective.
 
-![Styles of communication](http://barryosull.com/images/ab0e4b48-ee5a-4014-9abe-dd75d99f4d0b.png).
+[Feedback Loop](/images/comms-feedback-loop.png)
 
 If you need to come up with lots of ideas, go competitive, when you need consensus, switch to connective. It really is that simple.
 

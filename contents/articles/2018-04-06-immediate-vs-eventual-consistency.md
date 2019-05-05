@@ -3,7 +3,7 @@ title: "Immediate vs eventual consistency"
 published: true
 description: "When it comes to building and playing projectors, when should you process events and what are the trade-offs"
 tags: event-sourcing, architecture, event-driven
-cover_image: http://barryosull.com/images/1e92472a-f6d6-444a-ab64-5ba3d659820c.png
+cover_image: /images/immediate-consistency.png
 ---
 In the [last article](https://barryosull.com/blog/projection-building-blocks-what-you-ll-need-to-build-projections) we looked at projectors, the backbone of any CQRS/Event Driven system. This article was originally meant to be about implementing projectors, but I realised there was an important question to answer first, one that would shape the solution, "When do we project the events, now, or later?". Turns out this question has far reaching effects, so it's important we dig into it before moving onward.
 

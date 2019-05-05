@@ -3,7 +3,7 @@ title: "Acceptance testing your PHP app with ease"
 published: true
 description: "A dive into the various ways you can acceptance test your apps in PHP"
 tags: tdd, php, acceptance-tests
-cover_image: http://barryosull.com/images/b02b4a32-fa43-456b-8b29-40692678376e.jpg
+cover_image: /images/acceptance-testing.jpg
 ---
 
 Acceptance tests are core to any stable system, they're how you make sure it actually works, start to finish (My preference is to write them first, use them a guideline to make sure the feature I'm writing works as expected).

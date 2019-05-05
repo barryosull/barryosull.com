@@ -3,7 +3,7 @@ title: Writing a DSL parser using PegJS
 published: true
 description: Write a simple parser using PegJS
 tags: dsl
-cover_image: http://barryosull.com/images/0bd858fa-5347-4b09-9f5f-2ec5f0bd1de4.png
+cover_image: /images/write-a-dsl-in-pegjs.png
 ---
 
 In the [previous article](/blog/write-dsls-and-code-faster/) I wrote about Domain Specific Languages (DSLs) and how useful they are, but I didn't get into the details of parsing them, that's where this article comes in.
