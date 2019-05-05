@@ -1,3 +1,0 @@
-#!/bin/bash
-git push origin master
-php ./vendor/bin/phpunit ShinyBlog/tests && php ShinyBlog/scripts/deploy.php

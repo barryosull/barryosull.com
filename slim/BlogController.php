@@ -36,6 +36,11 @@ class BlogController
         return $response;
     }
 
+    public static function getPageCount(array $articles): int
+    {
+        return intval(ceil(count($articles)/self::PER_PAGE));
+    }
+
     /**
      * @param array $args
      * @return int
