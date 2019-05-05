@@ -3,7 +3,7 @@ title: Managing projectors is harder than you think
 published: true
 description: Learn how to deploy and manage projectors with ease, fixing issues when they arise, with minimal downtime
 tags: projectors, CQRS
-cover_image: http://barryosull.com/images/5ca95e8a-4966-49d4-9735-9b81fd18d8aa.jpg
+cover_image: /images/managing-projectors.jpg
 ---
 We've discussed the [bones of projectors in the past](/blog/projection-building-blocks-what-you-ll-need-to-build-projections), this time let's go deeper and look at how to manage them.
  
