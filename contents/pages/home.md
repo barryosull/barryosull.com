@@ -11,7 +11,7 @@ date : 2018-01-07
 
     <div style="float:left; width:150px; margin:20px 20px 0px 0px">
 
-        <img class="face" style="width:150px; margin-bottom:20px;" src="http://barryosull.com/images/cfdbf55a-dbe0-4e33-866f-efa951160a7a.jpg">
+        <img class="face" style="width:150px; margin-bottom:20px;" src="/images/me-circle.jpg">
     
         <a class="btn" style="font-size:20px" href="mailto:contact@barryosull.com">Get in Contact</a>
     </div>
