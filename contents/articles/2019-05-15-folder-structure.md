@@ -45,7 +45,7 @@ Quick bit of background, we structure our codebases using a [Clean Architecture]
 
 The main reason for this is to decouple your system from implementation details, so that it's easier to design, understand and test.
 
-### The Problem
+## The Problem
 
 The issue that sparked introspective into folder structure was the high level folder `app`. `app` is the default folder created by Laravel for your applications code (thus the name). However you can see that within `app` is another folder called `App`. We didn't like this as it meant there were two folders in a hierarchy with the same name despite the fact that they serve different purposes. One is the framework's concept of an `app`, the other is the defined interface for our `App`, i.e. the input and outputs decoupled from the framework and technical details. This is potentially confusing.
 
