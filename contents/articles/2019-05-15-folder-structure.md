@@ -37,11 +37,11 @@ This is the structure of our web app, as you can see it's a fairly standard Lara
 
 Quick bit of background, we structure our codebases using a [Clean Architecture](https://barryosull.com/blog/cleaning-up-your-codebase-with-a-clean-architecture/)/[Onion Architecture](https://www.codeguru.com/csharp/csharp/cs_misc/designtechniques/understanding-onion-architecture.html). I won't go into too much detail but here's a quick overview:
 
-*Domain:* The core code of your system, models the problem you're solving. Contains no technical details (e.g. no SQL or DB concepts), focuses on business language and concepts instead.
+**Domain:** The core code of your system, models the problem you're solving. Contains no technical details (e.g. no SQL or DB concepts), focuses on business language and concepts instead.
 
-*Application:* Compose domain objects into a single business operation (e.g. CreateUser) that can pass or fail, allow domain code to interact with external systems via interfaces (e.g. a Notification service). 
+**Application:** Compose domain objects into a single business operation (e.g. CreateUser) that can pass or fail, allow domain code to interact with external systems via interfaces (e.g. a Notification service). 
 
-*Infrastructure:* The implementation of domain, application concepts. All technical details and framework bindings live here. This is where you glue your domain/app code to technical concepts such as databases and/or libraries. HTTP controllers live here, as they are technical concepts that plug into app/domain code.
+**Infrastructure:** The implementation of domain, application concepts. All technical details and framework bindings live here. This is where you glue your domain/app code to technical concepts such as databases and/or libraries. HTTP controllers live here, as they are technical concepts that plug into app/domain code.
 
 The main reason for this is to decouple your system from implementation details, so that it's easier to design, understand and test.
 
