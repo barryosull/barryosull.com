@@ -33,7 +33,7 @@ With that out of the way let's look at the folder structure that was causing us 
 /vendor
 ```
 
-This is the structure of our web app, as you can see it's a fairly standard Laravel app, the only thing that's different is the internals of the `app` folder structure.
+This is the structure of our web app, as you can see it's a fairly standard Laravel app, the only thing that's different is the internals of the "app" folder structure.
 
 Quick bit of background, we structure our codebases using a [Clean Architecture](https://barryosull.com/blog/cleaning-up-your-codebase-with-a-clean-architecture/)/[Onion Architecture](https://www.codeguru.com/csharp/csharp/cs_misc/designtechniques/understanding-onion-architecture.html). I won't go into too much detail but here's a quick overview:
 
@@ -47,9 +47,9 @@ The main reason for this is to decouple your system from implementation details,
 
 ## The Problem
 
-The issue that sparked introspective into folder structure was the high level folder `app`. `app` is the default folder created by Laravel for your applications code (thus the name). However you can see that within `app` is another folder called `App`. We didn't like this as it meant there were two folders in a hierarchy with the same name despite the fact that they serve different purposes. One is the framework's concept of an `app`, the other is the defined interface for our `App`, i.e. the input and outputs decoupled from the framework and technical details. This is potentially confusing.
+The issue that sparked introspective into folder structure was the high level folder "app". "app" is the default folder created by Laravel for your applications code (thus the name). However you can see that within "app" is another folder called "App". We didn't like this as it meant there were two folders in a hierarchy with the same name despite the fact that they serve different purposes. One is the framework's concept of an "app", the other is the defined interface for our "App", i.e. the input and outputs decoupled from the framework and technical details. This is potentially confusing.
 
-We had a discussion about changing the folder name to be clearer, since `app` isn't great. We iterated on a couple of names, including `components`, `src`, even `code` (I'm not joking). None of them really fit. We realised that changing the name would break Laravel convention which would confuse new developers. 
+We had a discussion about changing the folder name to be clearer, since "app" isn't great. We iterated on a couple of names, including "components", "src", even "code" (I'm not joking). None of them really fit. We realised that changing the name would break Laravel convention which would confuse new developers. 
 
 This got me thinking, why are we letting the framework control this? It's an implementation detail, yet it's exerting control over the folder structure and our thinking. On top of that our business code is now wrapped and contained by the framework code. This implies that our code is a subset of the system, even though the opposite is true. This affects our thinking and constantly re-enforces the idea that the framework is in control (even though it really isn't).
 
@@ -81,7 +81,7 @@ So with all the above in mind, how would we structure our codebase? (You can pro
 /vendor
 ```
 
-First of, you'll notice that our `app` code is now called `contexts`. By naming it contexts we make it very clear that the code inside is solving a particular problem for a specific sub domain (here's some detail on the concept of [bounded contexts](https://martinfowler.com/bliki/BoundedContext.html)). As the application grows we'll add more contexts. `app` was far too generic a name, whereas `contexts` gives context straight away (I'm so sorry for that pun).
+First of, you'll notice that our "app" code is now called "contexts". By naming it contexts we make it very clear that the code inside is solving a particular problem for a specific sub domain (here's some detail on the concept of [bounded contexts](https://martinfowler.com/bliki/BoundedContext.html)). As the application grows we'll add more contexts. "app" was far too generic a name, whereas "contexts" gives context straight away (I'm so sorry for that pun).
 
 Second you'll notice that the framework code is now contained is its own folder structure, independent of the contexts. This makes it very clear that the framework is a detail, rather than the controller of the system. It is a component that our contexts use, rather than a system exerting design control on our contexts.
 
