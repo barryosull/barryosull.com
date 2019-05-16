@@ -17,7 +17,7 @@
     <meta charset="utf-8">
     <title><?php echo $page->title; ?></title>
     <meta name="robots" content="index,follow" />
-    <meta name="description" content="<?php echo $page->excerpt; ?>">
+    <meta name="description" content="<?php echo $page->description; ?>">
     <link rel="stylesheet" href="/themes/kiss/css/kiss.css">
     <link rel="stylesheet" href="/themes/kiss/css/prism.css">
 
@@ -33,12 +33,12 @@
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@barryosull" />
         <meta name="twitter:title" content="<?php echo $article->title ?>" />
-        <meta name="twitter:description" content="<?php echo $article->excerpt ?>" />
+        <meta name="twitter:description" content="<?php echo $article->description ?>" />
         <meta name="twitter:image" content="<?php echo $article->coverImage ?>" />
 
         <meta property="og:title" content="<?php echo $article->title ?>"/>
         <meta property="og:image" content="<?php echo $article->coverImage ?>" />
-        <meta property="og:description" content="<?php echo $article->excerpt ?>" />
+        <meta property="og:description" content="<?php echo $article->description ?>" />
     <?php endif; ?>
 
 </head>

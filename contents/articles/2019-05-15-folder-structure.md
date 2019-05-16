@@ -1,5 +1,5 @@
 ---
-title: Folder Structure and Frameworks: What is exerting control?
+title: "Folder Structure and Frameworks: What is exerting control?"
 published: true
 description: How you structure your code within a framework affects how you think about your system, what problems can this cause and can we solve them?
 tags: ddd, architecture, software-design
