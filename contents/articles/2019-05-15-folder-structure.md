@@ -7,14 +7,14 @@ cover_image: /images/frameworks-control.jpg
 ---
 Recently I've been thinking about folder structures, specifically how we structure our web apps to encourage the design we want and to enable other developers to explore and understand the codebase. This train of thought was spurred by a problem we faced with one of our app, which I'll get into shortly.
 
-### Folders give contexts
+## Folders Give Context
 When we open up an application the folder structure is the first thing we see, even before we glance down at the readme. It conveys the hierarchy of concepts and hopefully how they relate to each other. A haphazard folder hurts more than it helps, especially if you have to hop around from folder to folder to figure out what anything does. Choosing the right structure is important, it's why so many frameworks come with a structure already defined, it's a foundation you can easily build on.
 
 Now some developers advocate putting all your code into a single folder that's "per feature", e.g. controllers, DB accessors, repos, configs, etc... but honestly I've never seen this work out. It's always a jumbled mess that falls apart once you have more than 7 classes, so I'm just gonna disregard that notion straight off the bat.
 
 With that out of the way let's look at the folder structure that was causing us issues.
 
-### The Status Quo
+## The Status Quo
 
 ```
 /app
@@ -61,7 +61,7 @@ Instead I'd like a structure that makes encourages the separation between the co
 
 So with all the above in mind, how would we structure our codebase? (You can probably guess where I'm going with this).
 
-### The new Structure
+## The New Structure
 
 ```
 /contexts
@@ -91,7 +91,7 @@ Public is at the root level as it usually contains lots of resources that are fr
 
 Effectively I've inverted the dependencies to the folder structure, now the abstractions (the business code) is no longer contained within the details (the framework).
 
-### Conclusion
+## Structure matters
 How you structure your codebase will influence how you think about it, and our practice of building our application code inside out framework code and lead to problems, it's forces a way of thinking that just muddies the water, for junior and senior developers alike.
 
 My goal with the above structure is to make it very clear that the contexts are the heart of the application, not the framework. This guides developers to focus on writing solid context code, written from the perspective of the domain rather than the implementation details. I believe this structure encourages better design and aids developers in understanding the distinction and responsibility of each folder. In short, less noise, more signal.
