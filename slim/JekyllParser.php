@@ -32,11 +32,26 @@ class JekyllParser
             : [];
         $article->url = "/blog/" . $article->slug;
         $article->description = $data['description'] ?? "";
-        $article->coverImage = $data['cover_image'] ?? null;
+        $article->coverImage = $this->getCoverImage($data);
         $article->content = $this->getMarkdownContents($sections);
         $article->excerpt = $this->getExcerpt($article->slug, $article->content);
 
         return $article;
+    }
+
+    private function getCoverImage(array $data)
+    {
+        $image = $data['cover_image'] ?? null;
+
+        if (is_null($image)) {
+            return $image;
+        }
+
+        if (strpos($image, "http") === 0) {
+            return $image;
+        }
+
+        return getenv('DOMAIN') . $image;
     }
 
     const EXERT_LENGTH = 640;
