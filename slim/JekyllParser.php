@@ -31,6 +31,7 @@ class JekyllParser
             ? $this->getCategoriesFromArticle($data)
             : [];
         $article->url = "/blog/" . $article->slug;
+        $article->description = $data['description'] ?? "";
         $article->coverImage = $data['cover_image'] ?? null;
         $article->content = $this->getMarkdownContents($sections);
         $article->excerpt = $this->getExcerpt($article->slug, $article->content);

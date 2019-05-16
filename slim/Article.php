@@ -11,6 +11,7 @@ class Article
     public $date;
     public $categories;
     public $url;
+    public $description;
     public $coverImage;
     public $content;
     public $excerpt;
